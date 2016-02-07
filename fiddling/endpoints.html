@@ -9,7 +9,10 @@
         <br />
         <button id = "email_incorrect_pw_test">
             Incorrect Email Test
-        </button>
+        </button> <br />
+        <button id = "email_pw_incorrect_test">
+            Incorrect Password Test
+        </button> <br />
         <div id = "response" style="font-family:monospace;">
         </div>
         <script>
@@ -44,8 +47,7 @@
 
         $("#sign_in_test").click( function() { hit_endpoint("jack@cirno.de", "1234"); });
         $("#email_incorrect_pw_test").click( function() { hit_endpoint("jill@cirno.de", "1234"); });
-
-
+        $("#email_pw_incorrect_test").click( function() { hit_endpoint("jack@cirno.de", "4321"); });
 
         </script>
     </body>
