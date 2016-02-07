@@ -6,16 +6,16 @@
         <button id = "sign_in_test">
             Sign In Test
         </button>
+        <button id = "email_incorrect_pw_test">
+            Incorrect Password Test
+        </button>
         <div id = "response" style="font-family:monospace;">
         </div>
         <script>
 
         // I am putting the javascript here because i'd rather keep this file as a monolith in case we have more proof-of-concepts in the future
-        
-        var email = "jack@cirno.de";
-        var password = "1234";
 
-        sign_in_test = function()
+        hit_endpoint = function(email, password)
         {
 
             var data_string = JSON.stringify({
@@ -41,7 +41,11 @@
             })
         }
 
-        $("#sign_in_test").click( function() { sign_in_test(); });
+        $("#sign_in_test").click( function() { hit_endpoint("jack@cirno.de", "1234"); });
+        $("#email_incorrect_pw_test").click( function() { hit_endpoint("jill@cirno.de", "1234"); });
+
+
+
         </script>
     </body>
 </html>
