@@ -22,10 +22,11 @@
         hit_endpoint = function(email, password)
         {
 
-            var data_string = JSON.stringify({
-                    "email": email, 
-                    "password": password
-                });
+            var data_string = JSON.stringify(
+            {
+                "email": email, 
+                "password": password
+            });
 
             $.ajax(
             {
@@ -42,7 +43,7 @@
                     console.log(data);
                     $("#response").html(JSON.stringify(data));
                 }
-            })
+            });
         }
 
         $("#sign_in_test").click( function() { hit_endpoint("jack@cirno.de", "1234"); });
