@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    </head>
+    <body>
+        <button id = "sign_in_test">
+            Sign In Test
+        </button>
+        <div id = "response" style="font-family:monospace;">
+        </div>
+        <script>
+        
+        var email = "jack@cirno.de";
+        var password = "1234";
+
+        sign_in_test = function()
+        {
+
+            var data_string = JSON.stringify({
+                    "email": email, 
+                    "password": password
+                });
+
+            $.ajax(
+            {
+                type: "POST",
+                url: "https://tenv-service.swiftceipt.com/signIn",
+                data: data_string,
+                beforeSend : function(xhr)
+                {
+                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                },
+                success: function(data, status)
+                {
+                    console.log(data);
+                    $("#response").html(JSON.stringify(data));
+                }
+            })
+        }
+
+        $("#sign_in_test").click( function() { sign_in_test(); });
+        </script>
+    </body>
+</html>
