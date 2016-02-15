@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    </head>
+    <body>
+        <button id = "sign_in_test">
+            Sign In Test
+        </button>
+        <br />
+        <button id = "email_incorrect_pw_test">
+            Incorrect Email Test
+        </button> <br />
+        <button id = "email_pw_incorrect_test">
+            Incorrect Password Test
+        </button> <br />
+        <button id = "long_email_pw_test">
+            Long Email Test
+        </button> <br />
+        <button id = "email_long_pw_test">
+            Long Password Test
+        </button> <br />
+        <div id = "response" style="font-family:monospace;">
+        </div>
+        <script>
+
+        // I am putting the javascript here because i'd rather keep this file as a monolith in case we have more proof-of-concepts in the future
+
+        hit_endpoint = function(email, password)
+        {
+
+            var data_string = JSON.stringify(
+            {
+                "email": email, 
+                "password": password
+            });
+
+            $.ajax(
+            {
+                type: "POST",
+                url: "https://tenv-service.swiftceipt.com/signIn",
+                data: data_string,
+                beforeSend : function(xhr)
+                {
+                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                },
+                success: function(data, status)
+                {
+                    console.log(data);
+                    $("#response").html(JSON.stringify(data));
+                }
+            });
+        }
+
+        $("#sign_in_test").click( function() { hit_endpoint("jack@cirno.de", "1234"); });
+        $("#email_incorrect_pw_test").click( function() { hit_endpoint("jill@cirno.de", "1234"); });
+        $("#email_pw_incorrect_test").click( function() { hit_endpoint("jack@cirno.de", "4321"); });
+        $("#long_email_pw_test").click( function() { hit_endpoint("jack@cirno.de".repeat(100), "4321"); });
+        $("#email_long_pw_test").click( function() { hit_endpoint("jack@cirno.de", "4321".repeat(100)); });
+
+        </script>
+    </body>
+</html>
