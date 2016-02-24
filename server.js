@@ -12,6 +12,7 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 app.use(express.static(__dirname + '/public'));
 
 // routes
+require('./routes/routes.js').init(app);
 
 // launch 
 app.listen(port, ipaddress, function() {
