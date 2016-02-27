@@ -1,3 +1,5 @@
+var request = require('request');
+
 exports.init = function(app)
 {
     app.get("*", function(request, response)
@@ -8,9 +10,38 @@ exports.init = function(app)
     app.post("/login", check_login);
 }
 
-check_login = function(request, response)
+check_login = function(req, res)
 {
-    console.log("\t" + request.body.email);
-    console.log("\t" + request.body.password);
-    response.render("login_tester.ejs");
+   var options = {
+        url: "https://tenv-service.swiftceipt.com/signIn",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            "email": req.body.email, 
+            "password": req.body.password
+        }
+    };
+
+    request.post(options,function (error, api_response, body)
+    {
+        if(body.errors.length > 0)
+        {
+            res.render("dummy_result",
+                {
+                    message: "failure"
+                });
+        }
+        else
+        {
+            res.render("dummy_result",
+            {
+                message: "success!"
+            });
+        }
+    });
 }
