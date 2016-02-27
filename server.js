@@ -22,6 +22,7 @@ app.use(session({
   secret: chance.word({length: 30}),
   duration: 180 * 60 * 1000, // 180 minutes or 3 hours
   activeDuration: 30 * 60 * 1000, // 30 minutes
+  secure: true, // ensures cookies are only used via HTTPS
 }));
 
 // routes
