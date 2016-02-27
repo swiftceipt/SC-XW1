@@ -10,6 +10,8 @@ var options = {
     json: true,
     body: 
     {
+        // these are the credientials for a dummy account
+        // that Kevin gave us
         "email": "jack@cirno.de", 
         "password": 1234
     }
