@@ -10,8 +10,8 @@ var options = {
     json: true,
     body: 
     {
-        "email": "jack@cerno.de", 
-        "password": "1234"
+        "email": "jack@cirno.de", 
+        "password": 1234
     }
 };
 
