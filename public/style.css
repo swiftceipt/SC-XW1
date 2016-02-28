@@ -5,11 +5,29 @@
 
 body
 {
-  padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
 }
+.navbar-brand{
+    padding-top: 5px;
+}
+.navbar-brand > img { 
+    max-height: 40px; }
 
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.btn-primary {
+    background: #F95722;
+    color: #ffffff;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #ff3333;
+}
 .form-signin
 {
   max-width: 330px;
@@ -41,7 +59,10 @@ body
 .form-signin .form-control:focus
 {
   z-index: 2;
+    border-color: #F95722;
+  box-shadow: inset 0 1px 1px rgba(249, 87, 34, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
 }
+
 
 .form-signin input[type="email"]
 {
