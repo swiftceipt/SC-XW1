@@ -42,7 +42,8 @@ makeReceiptRequest = function(authToken)
         body: 
         {
             // use the token that we're provided
-            authToken: authToken
+            authToken: authToken,
+            lastUpdateTimestamp: "2000-01-01 00:00:00.0"
         }
     };
 
