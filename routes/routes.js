@@ -40,7 +40,9 @@ check_login = function(request, response)
         }
         else
         {
+            // save user info in the session
             request.session.email = body.scEmail;
+            request.session.authToken = body.authToken;
             response.redirect("dashboard");
         }
     });
@@ -48,7 +50,7 @@ check_login = function(request, response)
 
 landing = function(request, response)
 {
-    response.render("dashboard", {email: request.session.email});
+    response.render("dashboard", {session: request.session});
 }
 
 receipts = function(request, response)
