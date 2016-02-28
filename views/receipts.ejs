@@ -1,0 +1,11 @@
+<p>These are your receipts</p>
+
+<% if (typeof receipts == "object") { %>
+    <% for(var i = 0; i < receipts.length; i ++) { %>
+        <p><%= receipts[i] %></p>
+    <% } %>
+<% } else { %>
+    There are no receipts associated with this account 
+<% } %>
+
+<p><a href = "/dashboard">Dashboard</a></p>
