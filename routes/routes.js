@@ -2,12 +2,14 @@ var request_api = require('request');
 
 exports.init = function(app)
 {
-    app.get("*", function(request, response)
+    app.get("/", function(request, response)
     {
         response.render("login_tester.ejs");
     });
 
     app.post("/login", check_login);
+    app.get("/dashboard", is_logged_in,landing);
+    app.get("/receipts", is_logged_in, receipts);
 }
 
 check_login = function(request, response)
@@ -39,10 +41,29 @@ check_login = function(request, response)
         else
         {
             request.session.email = body.scEmail;
-            response.render("dummy_result",
-            {
-                message: "success!"
-            });
+            response.redirect("dashboard");
         }
     });
+}
+
+landing = function(request, response)
+{
+    response.render("dashboard", {email: request.session.email});
+}
+
+receipts = function(request, response)
+{
+    response.render("receipts", {email: request.session.email});
+}
+
+is_logged_in = function(request, response, next)
+{
+    if(request.session && request.session.email)
+    {
+        next();
+    }
+    else
+    {
+        response.render("login_tester");
+    }
 }
