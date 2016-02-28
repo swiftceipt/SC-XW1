@@ -22,26 +22,33 @@
         <![endif]-->
     </head>
     <body>
-        <% if (typeof receipts == "object") { %>
-            <table>
-                <thead>
-                    <th>Store Name</th>
-                    <th>Address</th>
-                    <th>Date</th>
-                    <th>Subtotal</th>
-                </thead>
+        <div class = "container">
+            <div class = "row">
+                <div class = "col-md-2">Put something here</div>
+                <div class = "col-md-10">
+                    <% if (typeof receipts == "object") { %>
+                        <table>
+                            <thead>
+                                <th>Store Name</th>
+                                <th>Address</th>
+                                <th>Date</th>
+                                <th>Subtotal</th>
+                            </thead>
 
-            <% for(var i = 0; i < receipts.length; i ++) { %>
-                <tr>
-                    <td><%= receipts[i].name %></td>
-                    <td><%= receipts[i].address %></td>
-                    <td><%= receipts[i].date_modified %></td>
-                    <td><%= receipts[i].subtotal %></td>
-                </tr>
-            <% } %>
-        <% } else { %>
-            There are no receipts associated with this account 
-        <% } %>
+                        <% for(var i = 0; i < receipts.length; i ++) { %>
+                            <tr>
+                                <td><%= receipts[i].name %></td>
+                                <td><%= receipts[i].address %></td>
+                                <td><%= receipts[i].date_modified %></td>
+                                <td><%= receipts[i].subtotal %></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        There are no receipts associated with this account 
+                    <% } %>
+                </div>
+            </div>
+        </div>
 
     <p><a href = "/dashboard">Dashboard</a></p>
     </body>
