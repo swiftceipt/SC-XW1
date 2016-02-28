@@ -83,5 +83,35 @@ landing = function(request, response)
 
 receipts = function(request, response)
 {
-    response.render("receipts", {email: request.session.email});
+    var options = {
+        url: "https://tenv-service.swiftceipt.com/getNewReceipts",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            // use the token that we're provided
+            // used date that occurs way before swiftCeipt
+            // was made to get all of them
+            authToken: request.session.authToken,
+            lastUpdateTimestamp: "2000-01-01 00:00:00.0"
+        }
+    };
+
+    request_api.post(options, function(error, api_response, body)
+    {
+        if(!error)
+        {
+            console.log(body);
+            response.render("receipts", {receipts: body.receipts});
+        }
+        else
+        {
+            console.log(error);
+            response.render("receipts", {receipts: "None"});
+        }
+    });
 }
