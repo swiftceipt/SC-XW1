@@ -45,7 +45,7 @@
                             <tr>
                                 <td><%= receipts[i].name %></td>
                                 <td><%= receipts[i].address %></td>
-                                <td><%= receipts[i].date_modified %></td>
+                                <td><%= new Date(receipts[i].date_created).toDateString() %></td>
                                 <td>$<%= receipts[i].subtotal %></td>
                             </tr>
                         <% } %>
