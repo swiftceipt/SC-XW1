@@ -69,9 +69,12 @@ is_logged_in = function(request, response, next)
     }
     else
     {
-        response.render("login_tester", message: {
+        response.render("login_tester",
+                {
+                    message: {
                         type: "danger",
                         content: "You have to login to see that!"
-                    });
+                    }
+                });
     }
 }

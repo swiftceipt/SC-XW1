@@ -41,8 +41,16 @@
 
                 <br />
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            </form>
 
+                <br />
+
+                <% if (typeof message != 'undefined') { %>
+                    <div class="alert alert-<%= message.type %>" role = "alert">
+                        <%= message.content %>
+                    </div>
+                <% } %>
+
+            </form>
         </div> <!-- /container -->
     </body>
 </html>
