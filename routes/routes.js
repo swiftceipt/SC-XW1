@@ -4,7 +4,7 @@ exports.init = function(app)
 {
     app.get("/", function(request, response)
     {
-        response.render("login_tester.ejs");
+        response.render("login_tester");
     });
 
     app.post("/login", check_login);
@@ -33,9 +33,12 @@ check_login = function(request, response)
     {
         if(body.errors.length > 0)
         {
-            response.render("dummy_result",
+            response.render("login_tester",
                 {
-                    message: "failure"
+                    message: {
+                        type: "danger",
+                        content: body.errors[0].errorMessage
+                    }
                 });
         }
         else
@@ -66,6 +69,9 @@ is_logged_in = function(request, response, next)
     }
     else
     {
-        response.render("login_tester");
+        response.render("login_tester", message: {
+                        type: "danger",
+                        content: "You have to login to see that!"
+                    });
     }
 }
