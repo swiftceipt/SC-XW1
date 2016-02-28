@@ -10,6 +10,7 @@ exports.init = function(app)
     app.post("/login", check_login);
     app.get("/dashboard", is_logged_in,landing);
     app.get("/receipts", is_logged_in, receipts);
+    app.get("/logout", is_logged_in, logout);
 }
 
 check_login = function(request, response)
@@ -77,4 +78,10 @@ is_logged_in = function(request, response, next)
             }
         });
     }
+}
+
+logout = function(request, response)
+{
+    request.session.reset();
+    response.redirect('/');
 }
