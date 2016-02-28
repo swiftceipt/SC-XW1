@@ -52,16 +52,6 @@ check_login = function(request, response)
     });
 }
 
-landing = function(request, response)
-{
-    response.render("dashboard", {session: request.session});
-}
-
-receipts = function(request, response)
-{
-    response.render("receipts", {email: request.session.email});
-}
-
 is_logged_in = function(request, response, next)
 {
     if(request.session && request.session.email)
@@ -84,4 +74,14 @@ logout = function(request, response)
 {
     request.session.reset();
     response.redirect('/');
+}
+
+landing = function(request, response)
+{
+    response.render("dashboard", {session: request.session});
+}
+
+receipts = function(request, response)
+{
+    response.render("receipts", {email: request.session.email});
 }
