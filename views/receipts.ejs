@@ -24,10 +24,10 @@
     <body>
         <div class = "container">
             <div class = "row">
-                <div class = "col-md-2">Put something here</div>
-                <div class = "col-md-10">
+                <div class = "col-md-4">Put something here</div>
+                <div class = "col-md-8">
                     <% if (typeof receipts == "object") { %>
-                        <table>
+                        <table class = "table table-hover">
                             <thead>
                                 <th>Store Name</th>
                                 <th>Address</th>
@@ -40,7 +40,7 @@
                                 <td><%= receipts[i].name %></td>
                                 <td><%= receipts[i].address %></td>
                                 <td><%= receipts[i].date_modified %></td>
-                                <td><%= receipts[i].subtotal %></td>
+                                <td>$<%= receipts[i].subtotal %></td>
                             </tr>
                         <% } %>
                     <% } else { %>
