@@ -4,9 +4,14 @@ exports.init = function(app)
 {
     app.get("/", function(request, response)
     {
-        response.render("login_tester");
+        response.render("index");
     });
-
+    
+    app.get("/login",function(request, response){
+        
+        response.render("login");
+        
+    });
     app.post("/login", check_login);
     app.get("/register", register);
     app.get("/dashboard", is_logged_in,landing);
@@ -35,7 +40,7 @@ check_login = function(request, response)
     {
         if(body.errors.length > 0)
         {
-            response.render("login_tester",
+            response.render("login",
                 {
                     message: {
                         type: "danger",
