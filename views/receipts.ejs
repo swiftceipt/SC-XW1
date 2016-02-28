@@ -1,11 +1,61 @@
-<p>These are your receipts</p>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="Login page for SwiftCeipt">
+        <meta name="author" content="Sivan Mehta">
 
-<% if (typeof receipts == "object") { %>
-    <% for(var i = 0; i < receipts.length; i ++) { %>
-        <p><%= receipts[i] %></p>
-    <% } %>
-<% } else { %>
-    There are no receipts associated with this account 
-<% } %>
+        <title>Receipts</title>
 
-<p><a href = "/dashboard">Dashboard</a></p>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <style type="text/css">
+        body
+        {
+          padding-top: 40px;
+          padding-bottom: 40px;
+          background-color: #eee;
+        }
+        </style>
+    </head>
+    <body>
+        <div class = "container">
+            <div class = "row">
+                <div class = "col-md-4">Put something here</div>
+                <div class = "col-md-8">
+                    <% if (typeof receipts == "object") { %>
+                        <table class = "table table-hover">
+                            <thead>
+                                <th>Store Name</th>
+                                <th>Address</th>
+                                <th>Date</th>
+                                <th>Subtotal</th>
+                            </thead>
+
+                        <% for(var i = 0; i < receipts.length; i ++) { %>
+                            <tr>
+                                <td><%= receipts[i].name %></td>
+                                <td><%= receipts[i].address %></td>
+                                <td><%= new Date(receipts[i].date_created).toDateString() %></td>
+                                <td>$<%= receipts[i].subtotal %></td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        There are no receipts associated with this account 
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+    <p><a href = "/dashboard">Dashboard</a></p>
+    </body>
+</html>
