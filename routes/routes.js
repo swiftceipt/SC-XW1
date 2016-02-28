@@ -8,6 +8,7 @@ exports.init = function(app)
     });
 
     app.post("/login", check_login);
+    app.get("/register", register);
     app.get("/dashboard", is_logged_in,landing);
     app.get("/receipts", is_logged_in, receipts);
     app.get("/logout", is_logged_in, logout);
@@ -74,6 +75,11 @@ logout = function(request, response)
 {
     request.session.reset();
     response.redirect('/');
+}
+
+register = function(request, response)
+{
+    response.render("register",{});
 }
 
 landing = function(request, response)
