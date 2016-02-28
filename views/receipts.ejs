@@ -1,8 +1,19 @@
-<p>These are your receipts</p>
-
 <% if (typeof receipts == "object") { %>
+    <table>
+        <thead>
+            <th>Store Name</th>
+            <th>Address</th>
+            <th>Date</th>
+            <th>Subtotal</th>
+        </thead>
+
     <% for(var i = 0; i < receipts.length; i ++) { %>
-        <p><%= receipts[i] %></p>
+        <tr>
+            <td><%= receipts[i].name %></td>
+            <td><%= receipts[i].address %></td>
+            <td><%= receipts[i].date_modified %></td>
+            <td><%= receipts[i].subtotal %></td>
+        </tr>
     <% } %>
 <% } else { %>
     There are no receipts associated with this account 
