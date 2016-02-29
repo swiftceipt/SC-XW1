@@ -2,21 +2,24 @@ var request_api = require('request');
 
 exports.init = function(app)
 {
-    app.get("/", function(request, response)
-    {
-        response.render("index");
-    });
-    
     app.get("/login",function(request, response){
         
         response.render("login");
         
     });
     app.post("/login", check_login);
-    app.get("/register", register);
+    app.get("/logout", is_logged_in, logout);
+
+    app.get("/register", register_landing);
+    app.post("/register", register);
+    
+    app.get("/", function(request, response)
+    {
+        response.render("index");
+    });
+
     app.get("/dashboard", is_logged_in,landing);
     app.get("/receipts", is_logged_in, receipts);
-    app.get("/logout", is_logged_in, logout);
 }
 
 check_login = function(request, response)
@@ -82,9 +85,16 @@ logout = function(request, response)
     response.redirect('/');
 }
 
+register_landing = function(request, response)
+{
+    response.render("register", {});
+}
+
 register = function(request, response)
 {
-    response.render("register",{});
+    // create a new user based on the given parameters
+    console.log(request.body);
+    response.render("register", {});
 }
 
 landing = function(request, response)
