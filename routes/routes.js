@@ -69,7 +69,7 @@ is_logged_in = function(request, response, next)
     }
     else
     {
-        response.render("login_tester",
+        response.render("login",
         {
             message: {
                 type: "danger",
