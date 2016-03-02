@@ -30,27 +30,11 @@
     <body>
         <div class = "container">
             <% if (typeof receipts == "object") { %>
-            <div class = "row">
-                <div class = "col-md-4">Put something here</div>
-                <div class = "col-md-8">
-                        <table class = "table table-hover">
-                            <thead>
-                                <th>Store Name</th>
-                                <th>Address</th>
-                                <th>Date</th>
-                                <th>Subtotal</th>
-                            </thead>
-
-                        <% for(var i = 0; i < receipts.length; i ++) { %>
-                            <tr>
-                                <td><%= receipts.body[i].name %></td>
-                                <td><%= receipts.body[i].address %></td>
-                                <td><%= new Date(receipts.body[i].date_created).toDateString() %></td>
-                                <td>$<%= receipts.body[i].subtotal %></td>
-                            </tr>
-                        <% } %>
-                </div>
-            </div>
+                <% for(var i = 0; i < receipts.length; i++) { %>
+                    <div class = "row">
+                        <%= receipts[i].name %>
+                    </div>
+                <% } %>
             <% } else { %>
                 There are no receipts associated with this account 
             <% } %>
