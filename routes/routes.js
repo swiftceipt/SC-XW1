@@ -126,7 +126,7 @@ receipts = function(request, response)
     {
         if(!error)
         {
-            response.render("receipts", {receipts: body});
+            response.render("receipts", {receipts: body.receipts});
         }
         else
         {
