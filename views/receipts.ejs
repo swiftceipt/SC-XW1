@@ -1,17 +1,9 @@
 <html lang="en">
     <head>
         <% include partials/headers %>
-
-        <style type="text/css">
-        body
-        {
-          padding-top: 40px;
-          padding-bottom: 40px;
-          background-color: #eee;
-        }
-        </style>
     </head>
     <body>
+        <% include partials/navbar %>
         <div class = "container">
             <% if (typeof receipts == "object") { %>
                 <% for(var i = 0; i < receipts.length; i++) { %>
@@ -25,5 +17,6 @@
         </div>
 
     <p><a href = "/dashboard">Dashboard</a></p>
+    <% include partials/footer %>
     </body>
 </html>
