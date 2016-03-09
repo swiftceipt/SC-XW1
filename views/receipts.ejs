@@ -17,9 +17,15 @@
                         </div>
                         <div id="collapse<%= receipts[i].receipt_id %>" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <h1><%= receipts[i].name %></h1>
-                                <p><%=  receipts[i].address %></p>
-                                <a href = "popup_template.html" onclick = "return popitup('popup_template.html')">Original Receipt</a>
+                                <div class = "row">
+                                    <div class = "col-md-4">
+                                        <h1><%= receipts[i].name %></h1>
+                                        <p><%=  receipts[i].address %></p>
+                                    </div>
+                                    <div class = "col-md-8">
+                                        <%- receipts[i].html %>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
