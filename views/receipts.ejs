@@ -12,18 +12,27 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= receipts[i].receipt_id %>">Receipt <%= receipts[i].receipt_id %></a>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= receipts[i].receipt_id %>"><%= receipts[i].name %></a>
                             </h4>
+                            <%= receipts[i].date_created %>
+
                         </div>
                         <div id="collapse<%= receipts[i].receipt_id %>" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class = "row">
                                     <div class = "col-md-4">
-                                        <h1><%= receipts[i].name %></h1>
-                                        <p><%=  receipts[i].address %></p>
-                                    </div>
-                                    <div class = "col-md-8">
-                                        <%- receipts[i].html %>
+
+                                        <h2>Total</h2>
+                                        <p>$<%= receipts[i].total %></p>
+
+                                        <h2>Items</h2>
+                                        <ol>
+                                            <% for(var j = 0; j < receipts[i].itemsList.length; j++) { %>
+
+                                                <li><%= receipts[i].itemsList[j].name %></li>
+
+                                            <% } %>
+                                        </ol>
                                     </div>
                                 </div>
                             </div>
