@@ -43,15 +43,15 @@ new_user = function(body)
     if(body.email.length >= 80){ return {reason: "Email is too long"}; }
     if(!isEmail(body.email)){ return {reason: "Email is malformed"}; }
 
-    // Password
-    if(body.password == undefined || body.password.length == 0){ return {reason: "Password cannot be blank"}; }
-    if(body.password.length >= 80){ return {reason: "Password is too long"}; }
-
     //username
     if(body.username == undefined || body.username.length == 0){ return {reason: "Username cannot be blank"}; }
     if(body.username.length <= 2){ return {reason: "Username is too short"}; }
     if(body.username.length >= 30){ return {reason: "Username is too long"}; }
     if(!is_valid_username(body.username)){ return {reason: "Username cannot contain special characters"}; }
+    
+    // Password
+    if(body.password == undefined || body.password.length == 0){ return {reason: "Password cannot be blank"}; }
+    if(body.password.length >= 80){ return {reason: "Password is too long"}; }
 
     return {reason: "I haven't implemented calling the backend yet"};
 }
