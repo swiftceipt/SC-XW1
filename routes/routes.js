@@ -94,6 +94,26 @@ register = function(request, response)
 {
     // create a new user based on the given parameters
     console.log(request.body);
+
+    var options = {
+        url: "https://tenv-service.swiftceipt.com/registerUser",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            firstName: request.body.firstName,
+            lastName: request.body.lastName,
+            email: request.body.email,
+            username: request.body.username,
+            password: request.body.password
+
+        }
+    };
+
     response.render("register", {});
 }
 
