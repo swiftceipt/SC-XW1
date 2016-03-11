@@ -31,12 +31,14 @@
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
                 </div>
 
+                <br />
+
                 <% if (typeof message != 'undefined') { %>
                     <div class="alert alert-<%= message.type %>" role = "alert">
                         <%= message.content %>
                     </div>
                 <% } %>
-                
+
             </form>
         </div> <!-- /container -->
         <% include partials/footer %>
