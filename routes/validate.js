@@ -35,10 +35,11 @@ new_user = function(body)
 
     //username
     if(body.username == undefined){ return {reason: "Username cannot be blank"}; }
+    if(body.username.length <= 2){ return {reason: "Username is too short"}; }
     if(body.username.length >= 30){ return {reason: "Username is too long"}; }
     if(!isASCII(body.username)){ return {reason: "Username cannot contain non-ascii characters"}; }
 
-    return {reason: "I haven't implemented it yet"};
+    return {reason: "I haven't implemented calling the backend yet"};
 }
 
 module.exports = {
