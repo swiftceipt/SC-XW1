@@ -23,18 +23,24 @@ function isASCII(str)
     return /^[\x00-\x7F]+$/.test(str);
 }
 
+function isEmail(str)
+{
+    return /\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}/.test(str);
+}
+
 new_user = function(body)
 {
     // Email
-    if(body.email == undefined){ return {reason: "Email cannot be blank"}; }
+    if(body.email == undefined || body.email.length == 0){ return {reason: "Email cannot be blank"}; }
     if(body.email.length >= 80){ return {reason: "Email is too long"}; }
+    if(!isEmail(body.email)){ return {reason: "Email is malformed"}; }
 
     // Password
-    if(body.password == undefined){ return {reason: "Password cannot be blank"}; }
+    if(body.password == undefined || body.email.length == 0){ return {reason: "Password cannot be blank"}; }
     if(body.password.length >= 80){ return {reason: "Password is too long"}; }
 
     //username
-    if(body.username == undefined){ return {reason: "Username cannot be blank"}; }
+    if(body.username == undefined || body.email.length == 0){ return {reason: "Username cannot be blank"}; }
     if(body.username.length <= 2){ return {reason: "Username is too short"}; }
     if(body.username.length >= 30){ return {reason: "Username is too long"}; }
     if(!isASCII(body.username)){ return {reason: "Username cannot contain non-ascii characters"}; }
