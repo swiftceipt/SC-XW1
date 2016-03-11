@@ -18,9 +18,17 @@ username:
     http://stackoverflow.com/a/14313213/3934731
 */
 
-function isASCII(str)
+function is_valid_username(str)
 {
-    return /^[\x00-\x7F]+$/.test(str);
+    // test particularly defined character set
+    var allowed_chars = "abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVWYXZ1234567890-_";
+    for(var i = 0; i < str.length; i++)
+    {
+        if(allowed_chars.indexOf(str.charAt(i)) <= -1)
+        {
+            return false
+        }
+    }
 }
 
 function isEmail(str)
@@ -43,7 +51,7 @@ new_user = function(body)
     if(body.username == undefined || body.username.length == 0){ return {reason: "Username cannot be blank"}; }
     if(body.username.length <= 2){ return {reason: "Username is too short"}; }
     if(body.username.length >= 30){ return {reason: "Username is too long"}; }
-    if(!isASCII(body.username)){ return {reason: "Username cannot contain non-ascii characters"}; }
+    if(!is_valid_username(body.username)){ return {reason: "Username cannot contain special characters"}; }
 
     return {reason: "I haven't implemented calling the backend yet"};
 }
