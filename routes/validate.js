@@ -36,11 +36,11 @@ new_user = function(body)
     if(!isEmail(body.email)){ return {reason: "Email is malformed"}; }
 
     // Password
-    if(body.password == undefined || body.email.length == 0){ return {reason: "Password cannot be blank"}; }
+    if(body.password == undefined || body.password.length == 0){ return {reason: "Password cannot be blank"}; }
     if(body.password.length >= 80){ return {reason: "Password is too long"}; }
 
     //username
-    if(body.username == undefined || body.email.length == 0){ return {reason: "Username cannot be blank"}; }
+    if(body.username == undefined || body.username.length == 0){ return {reason: "Username cannot be blank"}; }
     if(body.username.length <= 2){ return {reason: "Username is too short"}; }
     if(body.username.length >= 30){ return {reason: "Username is too long"}; }
     if(!isASCII(body.username)){ return {reason: "Username cannot contain non-ascii characters"}; }
