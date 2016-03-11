@@ -95,6 +95,15 @@ register = function(request, response)
     // create a new user based on the given parameters
     console.log(request.body);
 
+    // validate inputs
+    var validation = validate(request.body);
+    if(validation != true)
+    {
+        response.render("register", {message: {
+                                        type: "danger",
+                                        content: validation.reason }});
+    }
+
     var options = {
         url: "https://tenv-service.swiftceipt.com/registerUser",
         headers:
@@ -115,6 +124,11 @@ register = function(request, response)
     };
 
     response.render("register", {});
+}
+
+validate = function(username, password)
+{
+    return {reason: "I haven't implemented it yet"};
 }
 
 landing = function(request, response)
