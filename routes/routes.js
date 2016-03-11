@@ -1,4 +1,5 @@
 var request_api = require('request');
+var validation = require('./validate');
 
 exports.init = function(app)
 {
@@ -41,7 +42,17 @@ check_login = function(request, response)
 
     request_api.post(options,function (error, api_response, body)
     {
-        if(body.errors.length > 0)
+        if(api_response.statusCode == 500)
+        {
+            response.render("login",
+            {
+                message: {
+                    type: "danger",
+                    content: "The SwiftCeipt server is currently down (500 error)"
+                }
+            });
+        }
+        else if(body.errors.length > 0)
         {
             response.render("login",
                 {
@@ -96,12 +107,12 @@ register = function(request, response)
     console.log(request.body);
 
     // validate inputs
-    var validation = validate(request.body);
-    if(validation != true)
+    var result = validation.new_user(request.body);
+    if(result != true)
     {
         response.render("register", {message: {
                                         type: "danger",
-                                        content: validation.reason }});
+                                        content: result.reason }});
     }
 
     var options = {
@@ -124,11 +135,6 @@ register = function(request, response)
     };
 
     response.render("register", {});
-}
-
-validate = function(username, password)
-{
-    return {reason: "I haven't implemented it yet"};
 }
 
 landing = function(request, response)
