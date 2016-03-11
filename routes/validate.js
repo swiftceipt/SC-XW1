@@ -13,14 +13,30 @@ username:
     Should not exceed 30 characters. Please sanitize before requesting; non-ascii characters, this means you. Please allow only letters, numbers, underscores, and hyphens. No spaces. Do not include @ceet.us, this is added by the backend
 */
 
+/*
+    Taken from:
+    http://stackoverflow.com/a/14313213/3934731
+*/
+
+function isASCII(str)
+{
+    return /^[\x00-\x7F]+$/.test(str);
+}
+
 new_user = function(body)
 {
     // Email
     if(body.email == undefined){ return {reason: "Email cannot be blank"}; }
     if(body.email.length >= 80){ return {reason: "Email is too long"}; }
+
     // Password
-    if(body.password == undefined){ return {reason: "password cannot be blank"}; }
-    if(body.password.length >= 80){ return {reason: "password is too long"}; }
+    if(body.password == undefined){ return {reason: "Password cannot be blank"}; }
+    if(body.password.length >= 80){ return {reason: "Password is too long"}; }
+
+    //username
+    if(body.username == undefined){ return {reason: "Username cannot be blank"}; }
+    if(body.username.length >= 30){ return {reason: "Username is too long"}; }
+    if(!isASCII(body.username)){ return {reason: "Username cannot contain non-ascii characters"}; }
 
     return {reason: "I haven't implemented it yet"};
 }
