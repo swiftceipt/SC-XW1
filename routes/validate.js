@@ -13,11 +13,6 @@ username:
     Should not exceed 30 characters. Please sanitize before requesting; non-ascii characters, this means you. Please allow only letters, numbers, underscores, and hyphens. No spaces. Do not include @ceet.us, this is added by the backend
 */
 
-/*
-    Taken from:
-    http://stackoverflow.com/a/14313213/3934731
-*/
-
 function is_valid_username(str)
 {
     // test particularly defined character set
@@ -30,6 +25,11 @@ function is_valid_username(str)
         }
     }
 }
+
+/*
+    From:
+    http://regexlib.com/Search.aspx?k=email
+*/
 
 function isEmail(str)
 {
