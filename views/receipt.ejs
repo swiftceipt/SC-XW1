@@ -9,7 +9,7 @@
                 <div class = "col-md-8">
                     <h2><%= receipt.name %></h2>
                     <h3>Receipt #<%= receipt.receipt_id %></h3>
-                    <h4><%= receipt.date_created %></h4>
+                    <h4><%=  new Date(receipt.date_created).toLocaleDateString() %> at <%= new Date(receipt.date_created).toLocaleTimeString() %></h4>
                     <table class = "table table-hover">
                         <thead>
                             <th>Item</th>
