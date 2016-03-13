@@ -20,7 +20,9 @@ exports.init = function(app)
     });
 
     app.get("/dashboard", is_logged_in,landing);
+
     app.get("/receipts", is_logged_in, receipts);
+    app.get("/receipts/:receiptId", is_logged_in, receipt)
 }
 
 check_login = function(request, response)
@@ -190,4 +192,9 @@ receipts = function(request, response)
             response.render("receipts", {receipts: "None"});
         }
     });
+}
+
+receipt = function(request, response)
+{
+    response.render("receipt", {receiptId: request.params.receiptId});
 }
