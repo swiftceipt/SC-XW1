@@ -147,7 +147,7 @@ register = function(request, response)
             console.log(body.errors);
             response.render("register", {message: {
                                         type: "danger",
-                                        content: "The server could not register you =(" }});
+                                        content: body.errors[0].errorMessage }});
         }
     });
 
