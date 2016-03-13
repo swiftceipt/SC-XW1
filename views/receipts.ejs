@@ -24,15 +24,6 @@
                                         <a href = "receipts/<%= receipts[i].receipt_id %>">Link</a>
                                         <h2>Total</h2>
                                         <p>$<%= receipts[i].total %></p>
-
-                                        <h2>Items</h2>
-                                        <ol>
-                                            <% for(var j = 0; j < receipts[i].itemsList.length; j++) { %>
-
-                                                <li><%= receipts[i].itemsList[j].name %></li>
-
-                                            <% } %>
-                                        </ol>
                                     </div>
                                 </div>
                             </div>
