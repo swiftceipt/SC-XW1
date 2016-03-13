@@ -23,6 +23,14 @@
                 <p>Sales Tax</p>
                 <p>Grand Total</p>
             </div>
+            <div style = "font-family:monospace">
+                <%= JSON.stringify(receipt) %>
+            </div>
+            <% if (typeof message != 'undefined') { %>
+                    <div class="alert alert-<%= message.type %>" role = "alert">
+                        <%= message.content %>
+                    </div>
+                <% } %>
         </div>
         <% include partials/footer %>
     </body>
