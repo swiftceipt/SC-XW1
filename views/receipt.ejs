@@ -19,14 +19,14 @@
                         <% for(var i = 0; i < receipt.itemsList.length; i++) { %>
                             <tr>
                                 <td><%= receipt.itemsList[i].name %></td>
-                                <td><%= receipt.itemsList[i].mapInfo.price %></td>
+                                <td>$<%= receipt.itemsList[i].mapInfo.price %></td>
                                 <td><%= receipt.itemsList[i].mapInfo.quantity %></td>
                             </tr>
                         <% } %>
+                        <tr><td>Subtotal:</td><td> $<%= receipt.subtotal %></td>
+                        <tr><td>Sales Tax:</td><td> $<%= receipt.tax %></td>
+                        <tr><td>Grand Total:</td><td> $<%= receipt.total %></td>
                     </table>
-                    <p>Subtotal</p>
-                    <p>Sales Tax</p>
-                    <p>Grand Total</p>
                 </div>
             </div>
             <div>
