@@ -104,7 +104,7 @@ register_landing = function(request, response)
 register = function(request, response)
 {
     // create a new user based on the given parameters
-    console.log(request.body);
+    // console.log(request.body);
 
     // validate inputs
     var result = validation.new_user(request.body);
