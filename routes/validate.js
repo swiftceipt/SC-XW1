@@ -21,9 +21,11 @@ function is_valid_username(str)
     {
         if(allowed_chars.indexOf(str.charAt(i)) <= -1)
         {
-            return false
+            return false;
         }
     }
+
+    return true;
 }
 
 /*
@@ -53,7 +55,7 @@ new_user = function(body)
     if(body.password == undefined || body.password.length == 0){ return {reason: "Password cannot be blank"}; }
     if(body.password.length >= 80){ return {reason: "Password is too long"}; }
 
-    return {reason: "I haven't implemented calling the backend yet"};
+    return true;
 }
 
 module.exports = {
