@@ -1,4 +1,5 @@
 var request_api = require('request');
+var validation = require('./validate');
 
 exports.init = function(app)
 {
@@ -41,7 +42,17 @@ check_login = function(request, response)
 
     request_api.post(options,function (error, api_response, body)
     {
-        if(body.errors.length > 0)
+        if(api_response.statusCode == 500)
+        {
+            response.render("login",
+            {
+                message: {
+                    type: "danger",
+                    content: "The SwiftCeipt server is currently down (500 error)"
+                }
+            });
+        }
+        else if(body.errors.length > 0)
         {
             response.render("login",
                 {
@@ -93,8 +104,53 @@ register_landing = function(request, response)
 register = function(request, response)
 {
     // create a new user based on the given parameters
-    console.log(request.body);
-    response.render("register", {});
+    // console.log(request.body);
+
+    // validate inputs
+    var result = validation.new_user(request.body);
+    if(result != true)
+    {
+        response.render("register", {message: {
+                                        type: "danger",
+                                        content: result.reason }});
+    }
+
+    var options = {
+        url: "https://tenv-service.swiftceipt.com/registerUser",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            firstName: request.body.firstName,
+            lastName: request.body.lastName,
+            email: request.body.email,
+            username: request.body.username,
+            password: request.body.password
+
+        }
+    };
+
+    request_api.post(options, function(error, api_response, body)
+    {
+        if(!error && body.ackValue == "SUCCESS")
+        {
+            response.render("login", {message: {
+                                        type: "success",
+                                        content: "You have been registered!" }});
+        }
+        else
+        {
+            console.log(body.errors);
+            response.render("register", {message: {
+                                        type: "danger",
+                                        content: body.errors[0].errorMessage }});
+        }
+    });
+
 }
 
 landing = function(request, response)

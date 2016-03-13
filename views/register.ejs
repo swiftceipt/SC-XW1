@@ -31,11 +31,23 @@
                     <input type="text" name = "email" class="form-control" placeholder="Email">
                 </div>
                 <div class = "row">
+                    <input type="text" name = "username" class="form-control" placeholder="Username">
+                </div>
+                <div class = "row">
                     <input type="password" name = "password" class="form-control" placeholder="Password">
                 </div>
                 <div class = "row">
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
                 </div>
+
+                <br />
+
+                <% if (typeof message != 'undefined') { %>
+                    <div class="alert alert-<%= message.type %>" role = "alert">
+                        <%= message.content %>
+                    </div>
+                <% } %>
+
             </form>
         </div> <!-- /container -->
         <br>
