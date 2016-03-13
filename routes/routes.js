@@ -136,9 +136,9 @@ register = function(request, response)
 
     request_api.post(options, function(error, api_response, body)
     {
-        if(body.ackValue == "SUCCESS")
+        if(!error && body.ackValue == "SUCCESS")
         {
-            response.render("register", {message: {
+            response.render("login", {message: {
                                         type: "success",
                                         content: "You have been registered!" }});
         }
@@ -147,7 +147,7 @@ register = function(request, response)
             console.log(body.errors);
             response.render("register", {message: {
                                         type: "danger",
-                                        content: "You could not be registered =(" }});
+                                        content: "The server could not register you =(" }});
         }
     });
 
