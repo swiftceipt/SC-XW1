@@ -5,32 +5,37 @@
     <body>
         <% include partials/navbar-inside %>
         <div class = "container">
-            <div class = "col-md-8">
-                <h2>Store Name</h2>
-                <h3>Receipt #<%= receiptId %></h3>
-                <h4>Purchase Time and Date</h4>
-                <table class = "table">
-                    <thead>
-                        <th>Item</th>
-                        <th>Price</th>
-                    </thead>
-                    <tr>
-                        <td>repeat as many times</td>
-                        <td>asdf</td>
-                    </tr>
-                </table>
-                <p>Subtotal</p>
-                <p>Sales Tax</p>
-                <p>Grand Total</p>
+            <div class = "row">
+                <div class = "col-md-8">
+                    <h2><%= receipt.name %></h2>
+                    <h3>Receipt #<%= receipt.receipt_id %></h3>
+                    <h4><%= receipt.date_created %></h4>
+                    <table class = "table table-hover">
+                        <thead>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </thead>
+                        <% for(var i = 0; i < receipt.itemsList.length; i++) { %>
+                            <tr>
+                                <td><%= receipt.itemsList[i].name %></td>
+                                <td><%= receipt.itemsList[i].mapInfo.price %></td>
+                                <td><%= receipt.itemsList[i].mapInfo.quantity %></td>
+                            </tr>
+                        <% } %>
+                    </table>
+                    <p>Subtotal</p>
+                    <p>Sales Tax</p>
+                    <p>Grand Total</p>
+                </div>
             </div>
-            <div style = "font-family:monospace">
-                <%= JSON.stringify(receipt) %>
-            </div>
-            <% if (typeof message != 'undefined') { %>
-                    <div class="alert alert-<%= message.type %>" role = "alert">
-                        <%= message.content %>
-                    </div>
+            <div>
+                <% if (typeof message != 'undefined') { %>
+                        <div class="alert alert-<%= message.type %>" role = "alert">
+                            <%= message.content %>
+                        </div>
                 <% } %>
+            </div>
         </div>
         <% include partials/footer %>
     </body>
