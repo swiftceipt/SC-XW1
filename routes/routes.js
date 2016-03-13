@@ -134,7 +134,23 @@ register = function(request, response)
         }
     };
 
-    response.render("register", {});
+    request_api.post(options, function(error, api_response, body)
+    {
+        if(body.ackValue == "SUCCESS")
+        {
+            response.render("register", {message: {
+                                        type: "success",
+                                        content: "You have been registered!" }});
+        }
+        else
+        {
+            console.log(body.errors);
+            response.render("register", {message: {
+                                        type: "danger",
+                                        content: "You could not be registered =(" }});
+        }
+    });
+
 }
 
 landing = function(request, response)
