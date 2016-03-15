@@ -1,3 +1,7 @@
+
+var request_api = require('request');
+var validation = require('./validate');
+
 exports.init = function(app)
 {
 	app.get("/graph_data", is_logged_in, f1);
@@ -13,9 +17,40 @@ f1 = function(request, response)
 {
 	var authToken = request.session.authToken;
 
-	// call the SC api to get the data from the SC database
-	var sc_data = {1: "Dog", 2: "Cat"};
+	var options = {
+        url: "https://tenv-service.swiftceipt.com/getNewReceipts",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            // use the token that we're provided
+            // used date that occurs way before swiftCeipt
+            // was made to get all of them
+            authToken: request.session.authToken,
+            lastUpdateTimestamp: "2000-01-01 00:00:00.0"
+        }
+    };
 
-	// send the data back
-	response.send(sc_data);
-}
+    request_api.post(options, function(error, api_response, body)
+    {
+        if(!error)
+        {
+        	sc_data = body.receipts;
+        	response.render("graph_data", sc_data);
+
+            //response.render("receipts", {receipts: body.receipts});
+        }
+        else
+        {
+            console.log(error);
+            sc_data = none;
+            response.render("graph_data", sc_data);
+
+            //response.render("receipts", {receipts: "None"});
+        }
+    });
+	}
