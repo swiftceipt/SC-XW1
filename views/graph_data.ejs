@@ -1,14 +1,162 @@
 <% include partials/headers %>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript">
+	$(function () {
 
+    $(document).ready(function () {
+
+        // Build the chart
+        $('#container3').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Spending by stores'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'The Home Depot',
+                    y: 95.72
+                }, {
+                    name: 'American Eagle',
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Applebee',
+                    y: 10.38
+                }, {
+                    name: 'OLIVE GARDEN',
+                    y: 4.77
+                }, {
+                    name: 'Pizza Hut',
+                    y: 0.91
+                }, {
+                    name: 'Dicks Sporting Goods',
+                    y: 0.2
+                },{
+                    name: 'Uber',
+                    y: 95.72
+                },{
+                    name: 'Image Auto Detailing,LLC',
+                    y: 95.72
+                },{
+                    name: 'Neiman Marcus',
+                    y: 95.72
+                }]
+            }]
+        });
+    });
+});
+
+$(function () {
+    $('#container1').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Monthly Spendings of 2016'
+        },
+        subtitle: {
+            text: 'Source: SwiftCeipt'
+        },
+        xAxis: {
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Spendings ($)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} $</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Spending',
+            data: [658.88,0,0,0,0,0,0,0,0,0,0,0]
+        }]
+    });
+});
+
+</script>
 <% include partials/navbar-inside %>
-<p>This is the dashboard</p>
-<% if (typeof sc_data == "object") { %>
+<div id="wrapper">
+<% include partials/sidebar %>
+<div id="page-content-wrapper">
+
+<section id="month">
+<h2>Monthly Spendings</h2>
+<div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<% if (typeof parsed == "object") { %>
                 <div class="container">
-                	<%= JSON.stringify(parsed) %>
+                	<%= JSON.stringify(parsed['by_month']) %>
                 </div>
                 <% } %>
-<!-- graph data -->
-<div id = "responseArea"></div>
+</section>
 
-<a href = "/receipts">Receipts</a> <a href = "/logout">Logout</a>
-<a href = "/graph_data">Graph_data</a>
+<!-- <section id="year">
+<h2>Yearly Spendings</h2>
+<% if (typeof parsed == "object") { %>
+                <div class="container">
+                	<%= JSON.stringify(parsed['by_year']) %>
+                </div>
+                <% } %>
+</section> -->
+<hr/>
+<section id="store">
+<h2>Spendings by store</h2>
+    <div id="container3" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+	<% if (typeof parsed == "object") { %>
+                <div class="container">
+                	<%= JSON.stringify(parsed['by_store']) %>
+                </div>
+                <% } %>
+</section>
+</div>
+
+</div>
