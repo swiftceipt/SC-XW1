@@ -1,6 +1,6 @@
 var request_api = require('request');
 var validation = require('./validate');
-var google_maps = require('./maps');
+var google_maps = require('./map');
 
 exports.init = function(app)
 {
