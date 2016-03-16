@@ -1,5 +1,6 @@
 var request_api = require('request');
 var validation = require('./validate');
+var google_maps = require('./maps');
 
 exports.init = function(app)
 {
@@ -218,6 +219,8 @@ receipt = function(request, response)
     {
         if(!error && body.ackValue == "SUCCESS")
         {
+            // add the lat and long from the Google Maps
+            google_maps.addLatLong(body.receipt);
             response.render("receipt", {receipt: body.receipt});
         }
         else
