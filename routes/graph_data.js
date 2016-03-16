@@ -29,23 +29,62 @@ parse_date_string = function(date_str){
 by_year = function(receipts){
 	var result = {}
 	for(var i = 0; i < receipts.length; i++){
-		date = 
-		result.receipts[0].date_created = 
-		console.log(sc_data[0].total);
-			console.log(sc_data[0].date_created); 
+		date = parse_date_string(receipts[i].date_created);
+		year = date.year;
+		total = parseFloat(receipts[i].total); 
+
+		if(result.hasOwnProperty(year)){
+			result[year] += total;
+		}
+ 		else{
+ 			result[year] = total;
+ 		}
 	}
+	return result;
 
 }
 by_month = function(receipts){
+	var result = {}
 	for(var i = 0; i < receipts.length; i++){
+		date = parse_date_string(receipts[i].date_created);
+		year = date.year;
+		month = date.month;
+		total = parseFloat(receipts[i].total); 
 
+		if(result.hasOwnProperty(year)){
+			//if result already have this year's information
+			if(result[year].hasOwnProperty(month)){
+				//if result already have this year's and this month's information
+				result[year][month] += total;
+			}
+			//if result have this year's info but not this month's info
+			else{
+				result[year][month] = total;
+			}
+		}
+		//if result does not even have this years info
+ 		else{
+ 			result[year] = {}
+ 			result[year][month] = total;
+ 		}
 	}
+	return result;
+
 }
 
 by_store = function(receipts){
+	var result = {}
 	for(var i = 0; i < receipts.length; i++){
-
+		store_name = receipts[i].name;
+		total = parseFloat(receipts[i].total); 
+		if(result.hasOwnProperty(store_name)){
+			result[store_name] = result[store_name] + total;
+		}
+ 		else{
+ 			result[store_name] = total;
+ 		}
 	}
+	return result;
 }
 
 f1 = function(request, response)
@@ -75,18 +114,11 @@ f1 = function(request, response)
         if(!error)
         {
         	sc_data = body.receipts;
-        	console.log(sc_data.length);
-        	console.log(sc_data[0].total);
-			console.log(parse_date_string(sc_data[0].date_created));        	
-        	console.log(sc_data[1].total);
-        	console.log(sc_data[1].date_created);   
-        	console.log(sc_data[2].total);
-        	console.log(sc_data[2].date_created);   
-        	console.log(sc_data[12].total);
-        	console.log(sc_data[12].date_created); 
-        	console.log(sc_data[11].total);
-        	console.log(sc_data[11].date_created); 
-        	response.render("graph_data", sc_data);
+        	parsed = {};
+        	parsed.by_year = by_year(sc_data);
+        	parsed.by_month = by_month(sc_data);
+        	parsed.by_store = by_store(sc_data); 
+        	response.render("graph_data", parsed);
 
             //response.render("receipts", {receipts: body.receipts});
         }

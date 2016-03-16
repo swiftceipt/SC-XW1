@@ -2,8 +2,11 @@
 
 <% include partials/navbar-inside %>
 <p>This is the dashboard</p>
-
-
+<% if (typeof sc_data == "object") { %>
+                <div class="container">
+                	<%= JSON.stringify(parsed) %>
+                </div>
+                <% } %>
 <!-- graph data -->
 <div id = "responseArea"></div>
 
