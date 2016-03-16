@@ -7,6 +7,9 @@
 <html lang="en">
     <head>
         <% include partials/headers %>
+        <script type="text/javascript">
+                $('#forgetModal').on('shown.bs.modal', function () { $('#myInput').focus()})
+        </script>
         <title>Login</title>
     </head>
 
@@ -29,6 +32,29 @@
 
                 <br />
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+                <button type="button" class="btn btn-default btn-block" data-toggle = "modal" data-target="#forgetModal">
+                    Forgot Password ?
+                </button>
+
+                <div class="modal fade" id="forgetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <form action = "#" method = "post">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="control-label">Enter Your Email:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Submit Reset Request</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <br />
 
