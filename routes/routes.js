@@ -1,22 +1,28 @@
 var request_api = require('request');
+var validation = require('./validate');
 
 exports.init = function(app)
 {
-    app.get("/", function(request, response)
-    {
-        response.render("index");
-    });
-    
     app.get("/login",function(request, response){
         
         response.render("login");
         
     });
     app.post("/login", check_login);
-    app.get("/register", register);
-    app.get("/dashboard", is_logged_in,landing);
-    app.get("/receipts", is_logged_in, receipts);
     app.get("/logout", is_logged_in, logout);
+
+    app.get("/register", register_landing);
+    app.post("/register", register);
+    
+    app.get("/", function(request, response)
+    {
+        response.render("index");
+    });
+
+    app.get("/dashboard", is_logged_in,landing);
+
+    app.get("/receipts", is_logged_in, receipts);
+    app.get("/receipts/:receiptId", is_logged_in, receipt)
 }
 
 check_login = function(request, response)
@@ -38,7 +44,17 @@ check_login = function(request, response)
 
     request_api.post(options,function (error, api_response, body)
     {
-        if(body.errors.length > 0)
+        if(api_response.statusCode == 500)
+        {
+            response.render("login",
+            {
+                message: {
+                    type: "danger",
+                    content: "The SwiftCeipt server is currently down (500 error)"
+                }
+            });
+        }
+        else if(body.errors.length > 0)
         {
             response.render("login",
                 {
@@ -66,7 +82,7 @@ is_logged_in = function(request, response, next)
     }
     else
     {
-        response.render("login_tester",
+        response.render("login",
         {
             message: {
                 type: "danger",
@@ -82,9 +98,61 @@ logout = function(request, response)
     response.redirect('/');
 }
 
+register_landing = function(request, response)
+{
+    response.render("register", {});
+}
+
 register = function(request, response)
 {
-    response.render("register",{});
+    // create a new user based on the given parameters
+    // console.log(request.body);
+
+    // validate inputs
+    var result = validation.new_user(request.body);
+    if(result != true)
+    {
+        response.render("register", {message: {
+                                        type: "danger",
+                                        content: result.reason }});
+    }
+
+    var options = {
+        url: "https://tenv-service.swiftceipt.com/registerUser",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            firstName: request.body.firstName,
+            lastName: request.body.lastName,
+            email: request.body.email,
+            username: request.body.username,
+            password: request.body.password
+
+        }
+    };
+
+    request_api.post(options, function(error, api_response, body)
+    {
+        if(!error && body.ackValue == "SUCCESS")
+        {
+            response.render("login", {message: {
+                                        type: "success",
+                                        content: "You have been registered!" }});
+        }
+        else
+        {
+            console.log(body.errors);
+            response.render("register", {message: {
+                                        type: "danger",
+                                        content: body.errors[0].errorMessage }});
+        }
+    });
+
 }
 
 landing = function(request, response)
@@ -124,4 +192,9 @@ receipts = function(request, response)
             response.render("receipts", {receipts: "None"});
         }
     });
+}
+
+receipt = function(request, response)
+{
+    response.render("receipt", {receiptId: request.params.receiptId});
 }
