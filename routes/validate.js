@@ -59,5 +59,6 @@ new_user = function(body)
 }
 
 module.exports = {
-    new_user: new_user
+    new_user: new_user,
+    isEmail: isEmail
 };
