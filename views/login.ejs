@@ -49,18 +49,18 @@
                 <div class="modal fade" id="forgetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-body">
-                                <form action = "/forget" method = "post">
-                                    <div class="form-group">
-                                        <label for="recipient-name" class="control-label">Enter Your Email:</label>
-                                        <input type="text" class="form-control" id="recipient-name" name = "email">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Submit Reset Request</button>
-                            </div>
+                            <form action = "/forget" method = "post">
+                                <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="control-label">Enter Your Email:</label>
+                                            <input type="text" class="form-control" id="recipient-name" name = "email">
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-lg btn-primary btn-block" type = "submit">Submit Reset Request</button>
+                                    <button class="btn btn-default btn-block" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
