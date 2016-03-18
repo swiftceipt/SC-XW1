@@ -37,11 +37,20 @@
                     Forgot Password ?
                 </button>
 
+                <br />
+
+                <% if (typeof message != 'undefined') { %>
+                    <div class="alert alert-<%= message.type %>" role = "alert">
+                        <%= message.content %>
+                    </div>
+                <% } %>
+            </form>
+
                 <div class="modal fade" id="forgetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form action = "#" method = "post">
+                                <form action = "#" method = "get">
                                     <div class="form-group">
                                         <label for="recipient-name" class="control-label">Enter Your Email:</label>
                                         <input type="text" class="form-control" id="recipient-name">
@@ -56,15 +65,6 @@
                     </div>
                 </div>
 
-                <br />
-
-                <% if (typeof message != 'undefined') { %>
-                    <div class="alert alert-<%= message.type %>" role = "alert">
-                        <%= message.content %>
-                    </div>
-                <% } %>
-
-            </form>
         </div> <!-- /container -->
          <br>
         <br>
