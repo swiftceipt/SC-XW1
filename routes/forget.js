@@ -31,6 +31,15 @@ forgetPath = function(request, response)
                     }
                 });
             }
+            else // body.ackValue = "FAILURE"
+            {
+                response.render("login", {
+                    message : {
+                        type: "danger",
+                        content: body.errors[0].errorMessage
+                    }
+                });
+            }
         });
 
     }
