@@ -26,7 +26,7 @@ forgetPath = function(request, response)
             {
                 response.render("login", {
                     message : {
-                        type: "info",
+                        type: "success",
                         content: "A reset email has been sent to \n " + request.body.email
                     }
                 });
