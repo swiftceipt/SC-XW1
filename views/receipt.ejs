@@ -18,9 +18,8 @@
         <% include partials/navbar-inside %>
         <div class = "container">
             <div class = "row">
-                <div class = "col-md-8">
-                    <h2><%= receipt.name %></h2>
-                    <h3>Receipt #<%= receipt.receipt_id %></h3>
+                <div class = "col-md-6">
+                    <h1><%= receipt.name %></h1>
                     <h4><%=  new Date(receipt.date_created).toLocaleDateString() %> at <%= new Date(receipt.date_created).toLocaleTimeString() %></h4>  
                     <table class = "table table-hover">
                         <thead>
@@ -35,10 +34,12 @@
                                 <td><%= receipt.itemsList[i].mapInfo.quantity %></td>
                             </tr>
                         <% } %>
-                        <tr><td>Subtotal:</td><td> $<%= receipt.subtotal %></td>
-                        <tr><td>Sales Tax:</td><td> $<%= receipt.tax %></td>
-                        <tr><td>Grand Total:</td><td> $<%= receipt.total %></td>
+                        <tr><td><strong>Subtotal:</strong></td><td> $<%= receipt.subtotal %></td>
+                        <tr><td><strong>Sales Tax:</strong></td><td> $<%= receipt.tax %></td>
+                        <tr><td><strong>Grand Total:</strong></td><td> $<%= receipt.total %></td>
                     </table>
+                </div>
+                <div class = "col-md-6">
                     <div style = "font-family: monospace">
                         <%= JSON.stringify(receipt.coordinates) %>
                     </div>
