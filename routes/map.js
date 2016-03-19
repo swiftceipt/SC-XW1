@@ -25,7 +25,9 @@ addLatLong = function(receipt)
 	
 	request_api("https://maps.googleapis.com/maps/api/geocode/json?address=" + query_string + "&key=AIzaSyAplgHQOAr-awfM5ZsUm6X6a8aOgNH9W0Q", function(error, response, body) {
 		console.log(body);
+		// var jsonBody = JSON.parse(body);
 	});
+
 
 	return receipt;
 }
