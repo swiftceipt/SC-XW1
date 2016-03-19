@@ -39,6 +39,9 @@
                         <tr><td>Sales Tax:</td><td> $<%= receipt.tax %></td>
                         <tr><td>Grand Total:</td><td> $<%= receipt.total %></td>
                     </table>
+                    <div style = "font-family: monospace">
+                        <%= JSON.stringify(receipt.coordinates) %>
+                    </div>
                     <div id="map"></div>
                     <script>
                       var map;
