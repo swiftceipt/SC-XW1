@@ -220,8 +220,10 @@ receipt = function(request, response)
         if(!error && body.ackValue == "SUCCESS")
         {
             // add the lat and long from the Google Maps
-            google_maps.addLatLong(body.receipt);
-            response.render("receipt", {receipt: body.receipt});
+            google_maps.render_with_lat_long(body.receipt, function(receipt)
+            {
+                response.render("receipt", {receipt: receipt});
+            });
         }
         else
         {
