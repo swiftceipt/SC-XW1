@@ -13,6 +13,8 @@ render_with_lat_long = function(receipt, callback)
 		body = JSON.parse(body);
 
 		receipt.coordinates = body.results[0].geometry.location;
+		receipt.lat = body.results[0].geometry.location.lat;
+		receipt.lng = body.results[0].geometry.location.lng;
 
 		callback(receipt);
 	});
