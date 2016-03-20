@@ -1,7 +1,8 @@
 var request_api = require('request');
 var validation = require('./validate');
 var google_maps = require('./map');
-
+var forget = require('./forget');
+        
 exports.init = function(app)
 {
     app.get("/login",function(request, response){
@@ -11,6 +12,8 @@ exports.init = function(app)
     });
     app.post("/login", check_login);
     app.get("/logout", is_logged_in, logout);
+
+    app.post("/forget", forget.forgetPath);
 
     app.get("/register", register_landing);
     app.post("/register", register);
