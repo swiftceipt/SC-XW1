@@ -1,27 +1,77 @@
 <html lang="en">
     <head>
         <% include partials/headers %>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <style>
+          html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+          #map {
+            height: 50%;
+          }
+        </style>
     </head>
     <body>
         <% include partials/navbar-inside %>
         <div class = "container">
-            <div class = "col-md-8">
-                <h2>Store Name</h2>
-                <h3>Receipt #<%= receiptId %></h3>
-                <h4>Purchase Time and Date</h4>
-                <table class = "table">
-                    <thead>
-                        <th>Item</th>
-                        <th>Price</th>
-                    </thead>
-                    <tr>
-                        <td>repeat as many times</td>
-                        <td>asdf</td>
-                    </tr>
-                </table>
-                <p>Subtotal</p>
-                <p>Sales Tax</p>
-                <p>Grand Total</p>
+            <div class = "row">
+                <h1><%= receipt.name %></h1>
+            </div>
+            <div class = "row">
+                <div class = "col-md-6">
+                    <h4><%=  new Date(receipt.date_created).toLocaleDateString() %> at <%= new Date(receipt.date_created).toLocaleTimeString() %></h4>  
+                    <table class = "table table-hover">
+                        <thead>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                        </thead>
+                        <% for(var i = 0; i < receipt.itemsList.length; i++) { %>
+                            <tr>
+                                <td><%= receipt.itemsList[i].name %></td>
+                                <td>$<%= receipt.itemsList[i].mapInfo.price %></td>
+                                <td><%= receipt.itemsList[i].mapInfo.quantity %></td>
+                            </tr>
+                        <% } %>
+                        <tr><td><strong>Subtotal:</strong></td><td> $<%= receipt.subtotal %></td>
+                        <tr><td><strong>Sales Tax:</strong></td><td> $<%= receipt.tax %></td>
+                        <tr><td><strong>Grand Total:</strong></td><td> $<%= receipt.total %></td>
+                    </table>
+                </div>
+                <div class = "col-md-6">
+                    <div>
+                        <p style = "font-size:16pt">
+                            <%= receipt.address %> <%= receipt.city %>, <%= receipt.state %> <%= receipt.zipcode %>
+                        </p>
+                    </div>
+                    <!-- Code modified from Google Maps JavaScript API help found at: https://developers.google.com/maps/documentation/javascript/examples/map-simple -->
+                    <div id="map"></div>
+                    <script>
+                        function initMap() {
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                            center: {lat: <%= receipt.lat %>, lng: <%= receipt.lng %>},
+                            zoom: 15
+                            });
+                            var marker = new google.maps.Marker({
+                                position: {lat: <%= receipt.lat %>, lng: <%= receipt.lng %>},
+                                title: 'Hello World!',
+                                map: map
+                            });
+                        }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAplgHQOAr-awfM5ZsUm6X6a8aOgNH9W0Q&callback=initMap" 
+                    async defer></script> 
+                </div>
+            </div>
+            <div>
+                <% if (typeof message != 'undefined') { %>
+                        <div class="alert alert-<%= message.type %>" role = "alert">
+                            <%= message.content %>
+                        </div>
+                <% } %>
             </div>
         </div>
         <% include partials/footer %>
