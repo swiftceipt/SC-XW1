@@ -1,6 +1,8 @@
 var request_api = require('request');
 var validation = require('./validate');
-
+var google_maps = require('./map');
+var forget = require('./forget');
+        
 exports.init = function(app)
 {
     app.get("/login",function(request, response){
@@ -10,6 +12,8 @@ exports.init = function(app)
     });
     app.post("/login", check_login);
     app.get("/logout", is_logged_in, logout);
+
+    app.post("/forget", forget.forgetPath);
 
     app.get("/register", register_landing);
     app.post("/register", register);
@@ -196,5 +200,40 @@ receipts = function(request, response)
 
 receipt = function(request, response)
 {
-    response.render("receipt", {receiptId: request.params.receiptId});
+    var options = {
+        url: "https://tenv-service.swiftceipt.com/getReceiptById",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            // use the token that we're provided
+            // used date that occurs way before swiftCeipt
+            // was made to get all of them
+            authToken: request.session.authToken,
+            receiptId: request.params.receiptId
+        }
+    };
+
+    request_api.post(options, function(error, api_response, body)
+    {
+        if(!error && body.ackValue == "SUCCESS")
+        {
+            // add the lat and long from the Google Maps
+            google_maps.render_with_lat_long(body.receipt, function(receipt)
+            {
+                response.render("receipt", {receipt: receipt});
+            });
+        }
+        else
+        {
+            console.log(body);
+            response.render("receipt", {receipt: {}, message: {
+                                        type: "danger",
+                                        content: body.message }});
+        }
+    });
 }
