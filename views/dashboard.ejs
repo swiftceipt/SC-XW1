@@ -22,11 +22,12 @@ var april = <%- JSON.stringify(parsed['by_store']['2016']['4'])%>
 <section id="month">
 <h2>Monthly Spendings</h2>
 <div id="month_graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-<% if (typeof parsed == "object") { %>
+<!-- <% if (typeof parsed == "object") { %>
                 <div class="container">
-                	<%= JSON.stringify(parsed['by_month']) %>
+                  <%= JSON.stringify(parsed['by_month']) %>
                 </div>
-                <% } %>
+                <% } %> -->
+
 </section>
 
 <hr/>
@@ -49,6 +50,7 @@ var april = <%- JSON.stringify(parsed['by_store']['2016']['4'])%>
   </ul>
   <div id="tabs-1">
     <div id="janurary_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
     <% if (typeof parsed == "object") { %>
                 <ul>
                      <% for(i in parsed['by_store']['2016']['1']) { %>
@@ -144,11 +146,12 @@ var april = <%- JSON.stringify(parsed['by_store']['2016']['4'])%>
                 <% } %>
   </div>
 </div>
-<% if (typeof parsed == "object") { %>
+<!--  <% if (typeof parsed == "object") { %>
                 <div class="container">
                     <%= JSON.stringify(parsed['by_store']) %>
                 </div>
-                <% } %>
+                <% } %>-->
+
 </section>
 </div>
 
