@@ -4,7 +4,7 @@ var validation = require('./validate');
 
 exports.init = function(app)
 {
-	app.get("/graph_data", is_logged_in, f1);
+	app.get("/dashboard", is_logged_in, f1);
 }
 
 parse_date_string = function(date_str){
@@ -156,7 +156,7 @@ f1 = function(request, response)
         	parsed.by_year = by_year(sc_data);
         	parsed.by_month = by_month(sc_data);
         	parsed.by_store = by_store(sc_data); 
-        	response.render("graph_data", parsed);
+        	response.render("dashboard", parsed);
 
             //response.render("receipts", {receipts: body.receipts});
         }
@@ -164,7 +164,7 @@ f1 = function(request, response)
         {
             console.log(error);
             sc_data = none;
-            response.render("graph_data", sc_data);
+            response.render("dashboard", sc_data);
 
             //response.render("receipts", {receipts: "None"});
         }

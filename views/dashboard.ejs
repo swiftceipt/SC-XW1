@@ -1,13 +1,155 @@
+
 <% include partials/headers %>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+<script type="text/javascript">
+    var by_month = <%- JSON.stringify(parsed['by_month']['2016']) %>
+var by_store = <%- JSON.stringify(parsed['by_store']['2016']) %>
+var janurary = <%- JSON.stringify(parsed['by_store']['2016']['1']) %>
+var february = <%- JSON.stringify(parsed['by_store']['2016']['2'])%>
+var march = <%- JSON.stringify(parsed['by_store']['2016']['3'])%>
+var april = <%- JSON.stringify(parsed['by_store']['2016']['4'])%>
+</script>
+<script type="text/javascript" src="/js/script.js"></script>
+
+<!-- main content -->
 <% include partials/navbar-inside %>
-<p>This is the dashboard</p>
+<div id="wrapper">
+<% include partials/sidebar %>
+<div id="page-content-wrapper">
 
-<p>You are logged in as <%= session.email %> </p>
-<p>Your auth token is: <%= session.authToken %> </p>
+<section id="month">
+<h2>Monthly Spendings</h2>
+<div id="month_graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<% if (typeof parsed == "object") { %>
+                <div class="container">
+                	<%= JSON.stringify(parsed['by_month']) %>
+                </div>
+                <% } %>
+</section>
 
-<!-- graph data -->
-<div id = "responseArea"></div>
+<hr/>
+<section id="store">
 
-<a href = "/receipts">Receipts</a> <a href = "/logout">Logout</a>
-<a href = "/graph_data">Graph_data</a>
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Jan</a></li>
+    <li><a href="#tabs-2">Feb</a></li>
+    <li><a href="#tabs-3">March</a></li>
+    <li><a href="#tabs-4">April</a></li>
+    <li><a href="#tabs-5">May</a></li>
+    <li><a href="#tabs-6">June</a></li>
+    <li><a href="#tabs-7">July</a></li>
+    <li><a href="#tabs-8">Aug</a></li>
+    <li><a href="#tabs-9">Sept</a></li>
+    <li><a href="#tabs-10">Oct</a></li>
+    <li><a href="#tabs-11">Nov</a></li>
+    <li><a href="#tabs-12">Dec</a></li>
+  </ul>
+  <div id="tabs-1">
+    <div id="janurary_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    <% if (typeof parsed == "object") { %>
+                <ul>
+                     <% for(i in parsed['by_store']['2016']['1']) { %>
+                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['1'][i]%></li>
+
+
+                      <% } %>
+                      </ul>
+                <% } %>
+  </div>
+  <div id="tabs-2">
+  <div id="february_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    <% if (typeof parsed == "object") { %>
+                <ul>
+                     <% for(i in parsed['by_store']['2016']['2']) { %>
+                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['2'][i]%></li>
+
+
+                      <% } %>
+                      </ul>
+                <% } %>
+  </div>
+  <div id="tabs-3">
+  <div id="march_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+    <% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']['2016']['3']) %>
+                </div>
+                <% } %>
+  </div>
+   <div id="tabs-4">
+   <div id="april_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']['2016']['4']) %>
+                </div>
+                <% } %>
+  </div>
+   <div id="tabs-5">
+    <% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']['2016']['5']) %>
+                </div>
+                <% } %>
+  </div>
+   <div id="tabs-6">
+    <% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']['2016']['6']) %>
+                </div>
+                <% } %>
+  </div>
+   <div id="tabs-7">
+    <% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']['2016']['7']) %>
+                </div>
+                <% } %>
+  </div>
+   <div id="tabs-8">
+    <% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']['2016']['8']) %>
+                </div>
+                <% } %>
+  </div>
+   <div id="tabs-9">
+    <% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']['2016']['9']) %>
+                </div>
+                <% } %>
+  </div>
+   <div id="tabs-10">
+    <% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']['2016']['10']) %>
+                </div>
+                <% } %>
+  </div>
+   <div id="tabs-11">
+    <% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']['2016']['11']) %>
+                </div>
+                <% } %>
+  </div>
+   <div id="tabs-12">
+    <% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']['2016']['12']) %>
+                </div>
+                <% } %>
+  </div>
+</div>
+<% if (typeof parsed == "object") { %>
+                <div class="container">
+                    <%= JSON.stringify(parsed['by_store']) %>
+                </div>
+                <% } %>
+</section>
+</div>
+
+</div>
