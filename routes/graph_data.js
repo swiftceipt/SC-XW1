@@ -43,6 +43,24 @@ by_year = function(receipts){
 	return result;
 
 }
+//give the year object all the month spendings as 0 as initial value
+//year is a json object
+initialize_month = function(){
+	var year = {}
+	year[1] = 0;
+	year[2] = 0;
+	year[3] = 0;
+	year[4] = 0;
+	year[5] = 0;
+	year[6] = 0;
+	year[7] = 0;
+	year[8] = 0;
+	year[9] = 0;
+	year[10] = 0;
+	year[11] = 0;
+	year[12] = 0;
+	return year;
+}
 by_month = function(receipts){
 	var result = {}
 	for(var i = 0; i < receipts.length; i++){
@@ -52,36 +70,56 @@ by_month = function(receipts){
 		total = parseFloat(receipts[i].total); 
 
 		if(result.hasOwnProperty(year)){
-			//if result already have this year's information
-			if(result[year].hasOwnProperty(month)){
-				//if result already have this year's and this month's information
-				result[year][month] += total;
-			}
-			//if result have this year's info but not this month's info
-			else{
-				result[year][month] = total;
-			}
+			result[year][month] += total;
 		}
 		//if result does not even have this years info
  		else{
- 			result[year] = {}
+ 			result[year] = initialize_month();
  			result[year][month] = total;
  		}
 	}
 	return result;
 
 }
+initialize_month_store = function(){
+	var year = {}
+	year[1] = {};
+	year[2] = {};
+	year[3] = {};
+	year[4] = {};
+	year[5] = {};
+	year[6] = {};
+	year[7] = {};
+	year[8] = {};
+	year[9] = {};
+	year[10] = {};
+	year[11] = {};
+	year[12] = {};
+	return year;
+}
 
 by_store = function(receipts){
 	var result = {}
 	for(var i = 0; i < receipts.length; i++){
 		store_name = receipts[i].name;
+		date = parse_date_string(receipts[i].date_created);
+		year = date.year;
+		month = date.month;
 		total = parseFloat(receipts[i].total); 
-		if(result.hasOwnProperty(store_name)){
-			result[store_name] = result[store_name] + total;
+
+		if(result.hasOwnProperty(year)){
+			if(result[year][month].hasOwnProperty(store_name)){
+					result[year][month][store_name] += total;
+				}
+				else{
+					result[year][month][store_name] = total;
+				}
 		}
+		//if result does not even have this years info
  		else{
- 			result[store_name] = total;
+ 			result[year] = initialize_month_store();
+ 			result[year][month][store_name] = total;
+
  		}
 	}
 	return result;
