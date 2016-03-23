@@ -36,7 +36,7 @@ forgetPath = function(request, response)
                 response.render("login", {
                     message : {
                         type: "danger",
-                        content: "There is something up with the SC server"
+                        content: "There is something up with the SC server, please try again later"
                     }
                 });
             }
