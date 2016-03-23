@@ -22,7 +22,7 @@ forgetPath = function(request, response)
 
         request_api.post(options, function(error, api_response, body)
         {
-            if(body.ackValue == "SUCCESS")
+            if(!error && body.ackValue == "SUCCESS")
             {
                 response.render("login", {
                     message : {
@@ -31,15 +31,16 @@ forgetPath = function(request, response)
                     }
                 });
             }
-            else // body.ackValue = "FAILURE"
+            else
             {
                 response.render("login", {
                     message : {
                         type: "danger",
-                        content: body.errors[0].errorMessage
+                        content: "There is something up with the SC server, please try again later"
                     }
                 });
             }
+
         });
 
     }
