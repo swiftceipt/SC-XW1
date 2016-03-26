@@ -1,7 +1,6 @@
 
 <% include partials/headers %>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <script type="text/javascript">
     var by_month = <%- JSON.stringify(parsed['by_month']['2016']) %>
@@ -19,7 +18,6 @@ var oct = <%- JSON.stringify(parsed['by_store']['2016']['10'])%>
 var nov = <%- JSON.stringify(parsed['by_store']['2016']['11'])%>
 var dec = <%- JSON.stringify(parsed['by_store']['2016']['12'])%>
 </script>
-<script type="text/javascript" src="/js/script.js"></script>
 
 <!-- main content -->
 <% include partials/navbar-inside %>
@@ -29,12 +27,8 @@ var dec = <%- JSON.stringify(parsed['by_store']['2016']['12'])%>
 
 <section id="month">
 <h2>Monthly Spendings</h2>
-<div id="month_graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-<!-- <% if (typeof parsed == "object") { %>
-                <div class="container">
-                  <%= JSON.stringify(parsed['by_month']) %>
-                </div>
-                <% } %> -->
+<div id="monthly" style="width: 100%; height: 400px;">
+
 
 </section>
 
@@ -59,215 +53,60 @@ var dec = <%- JSON.stringify(parsed['by_store']['2016']['12'])%>
 <div class="tab-content">
 
     <div id="menu1" class="tab-pane fade">
-      <br>
-      <div id="janurary_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-      <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['1']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['1'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="jan" style="width: 500px; height: 400px;">
     </div>
-
-
 
     <div id="menu2" class="tab-pane fade">
-    <br>
-      <div id="february_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-    <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['2']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['2'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="feb" style="width: 500px; height: 400px;">
     </div>
-
-
-
 
     <div id="menu3" class="tab-pane fade">
-      <br>
-      <div id="april_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-      <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['4']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['4'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="mar" style="width: 500px; height: 400px;">
     </div>
-
-
-
 
     <div id="menu4" class="tab-pane fade">
-      <div id="april_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-    <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['4']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['4'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="apr" style="width: 500px; height: 400px;">
     </div>
-
-
-
 
     <div id="menu5" class="tab-pane fade">
-      <div id="may_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-    <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['5']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['5'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="may" style="width: 500px; height: 400px;">
     </div>
-
-
-
 
     <div id="menu6" class="tab-pane fade">
-      <div id="june_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-    <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['6']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['6'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="jun" style="width: 500px; height: 400px;">
     </div>
-
-
-
 
     <div id="menu7" class="tab-pane fade">
-      <div id="july_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-    <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['7']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['7'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="jul" style="width: 500px; height: 400px;">
     </div>
-
-
 
     <div id="menu8" class="tab-pane fade">
-      <div id="august_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-    <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['8']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['8'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="jan" style="width: 500px; height: 400px;">
     </div>
-
-
-
-
 
     <div id="menu9" class="tab-pane fade">
-      <div id="sept_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-    <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['9']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['9'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="jan" style="width: 500px; height: 400px;">
     </div>
-
-
-
 
     <div id="menu10" class="tab-pane fade">
-      <div id="oct_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-    <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['10']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['10'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="jan" style="width: 500px; height: 400px;">
     </div>
 
-
-
     <div id="menu11" class="tab-pane fade">
-      <div id="nov_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-    <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['11']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['11'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
+    <div id="jan" style="width: 500px; height: 400px;">
     </div>
 
 
 
     <div id="menu12" class="tab-pane fade">
-      <div id="dec_graph" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-    <% if (typeof parsed == "object") { %>
-                <ul>
-                     <% for(i in parsed['by_store']['2016']['12']) { %>
-                     <li><%=i%>:&nbsp$<%=parsed['by_store']['2016']['12'][i]%></li>
-
-
-                      <% } %>
-                      </ul>
-                <% } %>
     </div>
   </div>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-<!--  <% if (typeof parsed == "object") { %>
-                <div class="container">
-                    <%= JSON.stringify(parsed['by_store']) %>
-                </div>
-                <% } %>-->
-
 </section>
 </div>
 
 </div>
+<script type="text/javascript" src="/js/script.js"></script>
