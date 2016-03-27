@@ -42,28 +42,34 @@
                     </table>
                 </div>
                 <div class = "col-md-6">
-                    <div>
+                    <% if (typeof receipt.lat === "number") { %>
+                        <div>
+                            <p style = "font-size:16pt">
+                                <%= receipt.address %> <%= receipt.city %>, <%= receipt.state %> <%= receipt.zipcode %>
+                            </p>
+                        </div>
+                        <!-- Code modified from Google Maps JavaScript API help found at: https://developers.google.com/maps/documentation/javascript/examples/map-simple -->
+                        <div id="map"></div>
+                        <script>
+                            function initMap() {
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                center: {lat: <%= receipt.lat %>, lng: <%= receipt.lng %>},
+                                zoom: 15
+                                });
+                                var marker = new google.maps.Marker({
+                                    position: {lat: <%= receipt.lat %>, lng: <%= receipt.lng %>},
+                                    title: 'Hello World!',
+                                    map: map
+                                });
+                            }
+                        </script>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAplgHQOAr-awfM5ZsUm6X6a8aOgNH9W0Q&callback=initMap" 
+                        async defer></script>
+                    <% } else { %>
                         <p style = "font-size:16pt">
-                            <%= receipt.address %> <%= receipt.city %>, <%= receipt.state %> <%= receipt.zipcode %>
+                            No location associated with this receipt.
                         </p>
-                    </div>
-                    <!-- Code modified from Google Maps JavaScript API help found at: https://developers.google.com/maps/documentation/javascript/examples/map-simple -->
-                    <div id="map"></div>
-                    <script>
-                        function initMap() {
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                            center: {lat: <%= receipt.lat %>, lng: <%= receipt.lng %>},
-                            zoom: 15
-                            });
-                            var marker = new google.maps.Marker({
-                                position: {lat: <%= receipt.lat %>, lng: <%= receipt.lng %>},
-                                title: 'Hello World!',
-                                map: map
-                            });
-                        }
-                    </script>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAplgHQOAr-awfM5ZsUm6X6a8aOgNH9W0Q&callback=initMap" 
-                    async defer></script> 
+                    <% } %>
                 </div>
             </div>
             <div>
