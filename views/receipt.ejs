@@ -15,7 +15,9 @@
         </style>
     </head>
     <body>
-        <% include partials/navbar-inside %>
+        <% if(!popout) { %>
+            <% include partials/navbar-inside %>
+        <% } %>
         <div class = "container">
             <div class = "row">
                 <h1><%= receipt.name %></h1>
@@ -74,6 +76,11 @@
                 <% } %>
             </div>
         </div>
-        <% include partials/footer %>
+
+        <%= popout %>
+
+        <% if(!popout) { %>
+            <% include partials/footer %>
+        <% } %>
     </body>
 </html>

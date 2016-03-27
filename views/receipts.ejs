@@ -21,7 +21,7 @@
                                 <div class = "row">
                                     <div class = "col-md-4">
 
-                                        <a href = "receipts/<%= receipts[i].receipt_id %>">Link</a>
+                                        <a href = "receipts/<%= receipts[i].receipt_id %>?popout=true", target = "_blank">Popout</a>
                                         <h2>Total</h2>
                                         <p>$<%= receipts[i].total %></p>
                                     </div>
@@ -36,7 +36,6 @@
                 <% } %>
         </div>
 
-    <p><a href = "/dashboard">Dashboard</a></p>
     <% include partials/footer %>
     </body>
 </html>

@@ -220,12 +220,15 @@ receipt = function(request, response)
 
     request_api.post(options, function(error, api_response, body)
     {
+        var popout = (request.query.popout == "true");
+
         if(!error && body.ackValue == "SUCCESS")
         {
             // add the lat and long from the Google Maps
             google_maps.render_with_lat_long(body.receipt, function(receipt)
             {
-                response.render("receipt", {receipt: receipt});
+                response.render("receipt", {receipt: receipt,
+                                            popout: popout});
             });
         }
         else
