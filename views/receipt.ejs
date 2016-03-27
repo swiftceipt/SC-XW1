@@ -15,7 +15,7 @@
         </style>
     </head>
     <body>
-        <% if(!popout) { %>
+        <% if(popout) { %>
             <% include partials/navbar-inside %>
         <% } %>
         <div class = "container">
@@ -79,7 +79,7 @@
 
         <%= popout %>
 
-        <% if(!popout) { %>
+        <% if(popout) { %>
             <% include partials/footer %>
         <% } %>
     </body>
