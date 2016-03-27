@@ -8,7 +8,16 @@ window.onload = function()
     {
         list_group_items[i].onclick = function()
         {
+            // render loading icon and swap around 'active' class
             responseArea.innerHTML = "<center><img src = '/images/reload.svg'></center>";
+
+            var current = document.getElementsByClassName("active");
+            if(current.length != 0)
+            {
+                current[0].className = current[0].className.split(" ")[0];
+            }
+            this.className += " active";
+
             $.ajax({
                 type: "GET",
                 url: "/receipts/" + this.id,
