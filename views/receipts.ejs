@@ -1,63 +1,52 @@
 <html lang="en">
     <head>
         <% include partials/headers %>
-        <script type="text/javascript">
-
-
-        $( init );
- 
-    function init() {
-        $('.panel-default').draggable({
-            containment: 'wrapper',
-            cursor: 'move',
-            helper: myHelper
-        });
-        }
-    function myHelper( event ) {
-        return '<div id="draggableHelper">RECEIPT_IC</div>';
-    }
- 
-    </script>
+        <style type="text/css">
+            .list-group .glyphicon { float: right;}
+            .active .glyphicon {color: white;}
+        </style>
+        <script type="text/javascript" src = "/js/receipts_animation.js"></script>
     </head>
     <body>
         <% include partials/navbar-inside %>
-        <div id="wrapper">
         <% include partials/sidebar %>
-        <div id="page-content-wrapper">
-        <section>
-            <% if (typeof receipts == "object") { %>
-                <div class="panel-group" id="accordion"> <% for(var i = 0; i < receipts.length; i++) { %>
-                    
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= receipts[i].receipt_id %>"><%= receipts[i].name %></a>
-                            </h4>
-                            <%= receipts[i].date_created %>
+        <div class = "container">
+            <div class = "row">
+            <div id="wrapper">
+            <div id="page-content-wrapper">
+                <% if (typeof receipts == "object") { %>
+                    <ul class="list-group col-md-6"> <% for(var i = 0; i < receipts.length; i++) { %>
+                        <li class = "list-group-item" id = "<%= receipts[i].receipt_id %>">
+                            <a href = "receipts/<%= receipts[i].receipt_id %>?popout=true", target = "_blank">
+                                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+                            </a>
 
-                        </div>
-                        <div id="collapse<%= receipts[i].receipt_id %>" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <div class = "row">
-                                    <div class = "col-md-4">
-
-                                        <a href = "receipts/<%= receipts[i].receipt_id %>">Link</a>
-                                        <h2>Total</h2>
-                                        <p>$<%= receipts[i].total %></p>
-                                    </div>
-                                </div>
-                            </div>
+                            <h4><%= receipts[i].name %></h4>
+                            <p>$
+                                <%= receipts[i].total %>
+                                <%=  new Date(receipts[i].date_created).toLocaleDateString() %>
+                                 at 
+                                 <%= new Date(receipts[i].date_created).toLocaleTimeString() %>
+                             </p>
+                        </li>
+                    <% } %>
+                    </ul>
+                    <div class = "col-md-6" id = "receiptArea">
+                        <div class = "jumbotron well">
+                            <h1>Let's get started!</h1>
+                            <p>Click a receipt on the left to view it individually.</p>
+                            <p> You can also click <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> to move the receipt to a new window.</p>
                         </div>
                     </div>
+                <% } else { %>
+                    There are no receipts associated with this account 
                 <% } %>
-
-                </div> <% } else { %>
-                There are no receipts associated with this account 
-                <% } %>
-        </section>
-        </div>
+            </div>
+            </div>
+            </div>
         </div>
 
     <p><a href = "/dashboard">Dashboard</a></p>
+>>>>>>> dev
     </body>
 </html>
