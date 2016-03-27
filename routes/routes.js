@@ -22,7 +22,6 @@ exports.init = function(app)
         response.render("index");
     });
 
-    app.get("/dashboard", is_logged_in,landing);
 
     app.get("/receipts", is_logged_in, receipts);
     app.get("/receipts/:receiptId", is_logged_in, receipt)
