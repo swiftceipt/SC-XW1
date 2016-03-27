@@ -1,42 +1,30 @@
 <html lang="en">
     <head>
         <% include partials/headers %>
+        <style type="text/css">
+            .list-group .glyphicon { float: right;}
+        </style>
     </head>
     <body>
         <% include partials/navbar-inside %>
         <div class = "container">
         <div class = "row">
             <% if (typeof receipts == "object") { %>
-                <div class="panel-group col-md-6" id="accordion"> <% for(var i = 0; i < receipts.length; i++) { %>
-                    
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= receipts[i].receipt_id %>"><%= receipts[i].name %></a>
-                            </h4>
-                            <%= receipts[i].date_created %>
-
-                        </div>
-                        <div id="collapse<%= receipts[i].receipt_id %>" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <div class = "row">
-                                    <div class = "col-md-4">
-
-                                        <a href = "receipts/<%= receipts[i].receipt_id %>?popout=true", target = "_blank">Popout</a>
-                                        <h2>Total</h2>
-                                        <p>$<%= receipts[i].total %></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <ul class="list-group col-md-6"> <% for(var i = 0; i < receipts.length; i++) { %>
+                    <li class = "list-group-item">
+                        <a href = "receipts/<%= receipts[i].receipt_id %>?popout=true", target = "_blank">
+                            <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+                        </a>
+                        <h4><%= receipts[i].name %></h4>
+                        <p>$<%= receipts[i].total %> <%=  new Date(receipts[i].date_created).toLocaleDateString() %> at <%= new Date(receipts[i].date_created).toLocaleTimeString() %> </p>
+                    </li>
                 <% } %>
-                </div>
+                </ul>
                 <div class = "col-md-6" id = "receiptArea">
                     <div class = "jumbotron well">
                         <h1>Let's get started!</h1>
                         <p>Click a receipt on the left to view it individually.</p>
-                        <p> You can also click pop out to move the receipt to a new window.</p>
+                        <p> You can also click <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> to move the receipt to a new window.</p>
                     </div>
                 </div>
             <% } else { %>
