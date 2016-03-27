@@ -18,7 +18,6 @@ var createDataYear = function(x,y,xtitle,ytitle,title,domElement){
         };
     var data = [trace1];
     var layout = {
-        title: title,
         xaxis: {
             title: xtitle
         },
@@ -27,7 +26,6 @@ var createDataYear = function(x,y,xtitle,ytitle,title,domElement){
         }
     };
     Plotly.newPlot(domElement, data,layout);
-
 }
 
 var createAxisData = function(data){
@@ -56,7 +54,6 @@ var createDataMonth = function(x, y, xtitle, ytitle,title,domElement,domMsgEleme
         }
         ];
         layout = {
-            title: title,
             xaxis: {
                 title: xtitle
             },
