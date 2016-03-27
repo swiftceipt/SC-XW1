@@ -8,7 +8,7 @@ window.onload = function()
     {
         list_group_items[i].onclick = function()
         {
-            responseArea.innerHTML = "<img src = '/images/reload.svg'>";
+            responseArea.innerHTML = "<center><img src = '/images/reload.svg'></center>";
             $.ajax({
                 type: "GET",
                 url: "/receipts/" + this.id,
