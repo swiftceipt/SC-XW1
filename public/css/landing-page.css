@@ -47,12 +47,13 @@ h6 {
     }
 
 .intro-header {
-    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    margin-top: 20px;
+    padding-top: 60px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/intro-bg.jpg) no-repeat center center;
-    background-size: auto;
+    background: url(../img/intro-bg.jpg) no-repeat right top;
+    background-size: 100%;
 }
 
 .intro-message {
@@ -314,7 +315,6 @@ p.copyright {
 .navbar {
     margin-bottom: 0px;
 }
-
 
 
 
