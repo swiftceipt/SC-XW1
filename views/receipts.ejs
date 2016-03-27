@@ -5,8 +5,9 @@
     <body>
         <% include partials/navbar-inside %>
         <div class = "container">
+        <div class = "row">
             <% if (typeof receipts == "object") { %>
-                <div class="panel-group" id="accordion"> <% for(var i = 0; i < receipts.length; i++) { %>
+                <div class="panel-group col-md-6" id="accordion"> <% for(var i = 0; i < receipts.length; i++) { %>
                     
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -30,10 +31,18 @@
                         </div>
                     </div>
                 <% } %>
-
-                </div> <% } else { %>
+                </div>
+                <div class = "col-md-6" id = "receiptArea">
+                    <div class = "jumbotron well">
+                        <h1>Let's get started!</h1>
+                        <p>Click a receipt on the left to view it individually.</p>
+                        <p> You can also click pop out to move the receipt to a new window.</p>
+                    </div>
+                </div>
+            <% } else { %>
                 There are no receipts associated with this account 
-                <% } %>
+            <% } %>
+        </div>
         </div>
 
     <% include partials/footer %>
