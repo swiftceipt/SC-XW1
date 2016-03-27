@@ -15,6 +15,12 @@ window.onload = function()
                 success: function(data, status)
                 {
                     responseArea.innerHTML = data;
+                },
+                error: function(xhr, status, message)
+                {
+                    responseArea.innerHTML = "<h1>Oops: There was an error</h1>" + 
+                                    "<p style = 'font-family: monospace'>" +
+                                    message + "</p>";
                 }
             });
         }
