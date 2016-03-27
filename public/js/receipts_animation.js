@@ -27,9 +27,8 @@ window.onload = function()
                 },
                 error: function(xhr, status, message)
                 {
-                    responseArea.innerHTML = "<h1>Oops: There was an error</h1>" + 
-                                    "<p style = 'font-family: monospace'>" +
-                                    message + "</p>";
+                    window.location = "/login";
+                    window.reload();
                 }
             });
         }
