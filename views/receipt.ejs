@@ -23,7 +23,7 @@
                 <h1><%= receipt.name %></h1>
             </div>
             <div class = "row">
-                <div class = "col-md-6">
+                <div class = "well col-md-6">
                     <h4><%=  new Date(receipt.date_created).toLocaleDateString() %> at <%= new Date(receipt.date_created).toLocaleTimeString() %></h4>  
                     <table class = "table table-hover">
                         <thead>
@@ -43,6 +43,7 @@
                         <tr><td><strong>Grand Total:</strong></td><td> $<%= receipt.total %></td>
                     </table>
                 </div>
+        <% if(popout) { %>
                 <div class = "col-md-6">
                     <div>
                         <p style = "font-size:16pt">
@@ -67,17 +68,17 @@
                     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAplgHQOAr-awfM5ZsUm6X6a8aOgNH9W0Q&callback=initMap" 
                     async defer></script> 
                 </div>
-            </div>
-            <div>
-                <% if (typeof message != 'undefined') { %>
-                        <div class="alert alert-<%= message.type %>" role = "alert">
-                            <%= message.content %>
-                        </div>
-                <% } %>
-            </div>
-        </div>
-
-        <% if(popout) { %>
+                <div>
+                    <% if (typeof message != 'undefined') { %>
+                            <div class="alert alert-<%= message.type %>" role = "alert">
+                                <%= message.content %>
+                            </div>
+                    <% } %>
+                </div>
+        <% } %>
+            </div> <!-- row -->
+        </div> <!-- container -->
+        <% if (popout) { %>
             <% include partials/footer %>
         <% } %>
     </body>
