@@ -17,18 +17,34 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family:'Roboto light', sans-serif;
     font-weight: 700;
 }
 
 .topnav {
     font-size: 14px; 
+    float: left;
+}
+.container {
+    width: 100%;
+}
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
 }
 
-.lead {
-    font-size: 18px;
-    font-weight: 400;
+.navbar .navbar-collapse {
+  text-align: center;
 }
+.topnav .navbar-collapse .navbar-center > li:hover > a {
+                border-bottom: 2px solid #F95722;
+    }
+
+
+.topnav .navbar-collapse .navbar-center > li > a:active {
+                border-bottom: 2px solid #F95722;
+    }
 
 .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
@@ -36,7 +52,7 @@ h6 {
     text-align: center;
     color: #f8f8f8;
     background: url(../img/intro-bg.jpg) no-repeat center center;
-    background-size: cover;
+    background-size: auto;
 }
 
 .intro-message {

@@ -11,7 +11,7 @@ for (var i in by_month){
 }
 var createDataYear = function(x,y,xtitle,ytitle,title,domElement){
     var trace1 = {
-        x: x,
+        x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec'],
         y: y,
         type: 'scatter',
         text: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec']
@@ -69,57 +69,57 @@ var createDataMonth = function(x, y, xtitle, ytitle,title,domElement,domMsgEleme
 }
 
 //create monthly graph
-createDataYear(month,value,"Month","Spendings in dollars","Monthly Spendings",'monthly');
+createDataYear(month,value,"Month","Spendings in dollars($)","Monthly Spendings",'monthly');
 
 
 //create January Graph
 axis1 = createAxisData(janurary);
 createDataMonth(axis1["xaxis"],axis1["yaxis"],
-    "Stores","Spendings","Janurary's Spendings",'jan','jan-message')
+    "Stores","Spendings in dollars($)","Janurary's Spendings",'jan','jan-message')
 //create February Graph
 axis2 = createAxisData(february);
 createDataMonth(axis2["xaxis"],axis2["yaxis"],
-    "Stores","Spendings","February's Spendings",'feb','feb-message')
+    "Stores","Spendings in dollars($)","February's Spendings",'feb','feb-message')
 //create March Graph
 axis3 = createAxisData(march);
 createDataMonth(axis3["xaxis"],axis3["yaxis"],
-    "Stores","Spendings","March's Spendings",'mar','mar-message')
+    "Stores","Spendings in dollars($)","March's Spendings",'mar','mar-message')
 //create April Graph
 axis4 = createAxisData(april);
 createDataMonth(axis4["xaxis"],axis4["yaxis"],
-    "Stores","Spendings","April's Spendings",'apr','apr-message')
+    "Stores","Spendings in dollars($)","April's Spendings",'apr','apr-message')
 //create May Graph
 axis5 = createAxisData(may);
 createDataMonth(axis5["xaxis"],axis5["yaxis"],
-    "Stores","Spendings","May's Spendings",'may','may-message')
+    "Stores","Spendings in dollars($)","May's Spendings",'may','may-message')
 //Create June Graph
 axis6 = createAxisData(june);
 createDataMonth(axis6["xaxis"],axis6["yaxis"],
-    "Stores","Spendings","June's Spendings",'jun','jun-message')
+    "Stores","Spendings in dollars($)","June's Spendings",'jun','jun-message')
 //create July Graph
 axis7 = createAxisData(july);
 createDataMonth(axis7["xaxis"],axis7["yaxis"],
-    "Stores","Spendings","July's Spendings",'jul','jul-message')
+    "Stores","Spendings in dollars($)","July's Spendings",'jul','jul-message')
 //create August graph
 axis8 = createAxisData(august);
 createDataMonth(axis8["xaxis"],axis8["yaxis"],
-    "Stores","Spendings","August's Spendings",'aug','aug-message')
+    "Stores","Spendings in dollars($)","August's Spendings",'aug','aug-message')
 //create september graph
 axis9 = createAxisData(september);
 createDataMonth(axis9["xaxis"],axis9["yaxis"],
-    "Stores","Spendings","September's Spendings",'sep','sep-message')
+    "Stores","Spendings in dollars($)","September's Spendings",'sep','sep-message')
 //create october graph
 axis10 = createAxisData(october);
 createDataMonth(axis10["xaxis"],axis10["yaxis"],
-    "Stores","Spendings","October's Spendings",'oct','oct-message')
+    "Stores","Spendings in dollars($)","October's Spendings",'oct','oct-message')
 //create november graph
 axis11 = createAxisData(november);
 createDataMonth(axis11["xaxis"],axis11["yaxis"],
-    "Stores","Spendings","November's Spendings",'nov','nov-message')
+    "Stores","Spendings in dollars($)","November's Spendings",'nov','nov-message')
 //create december graph
 axis12 = createAxisData(december);
 createDataMonth(axis12["xaxis"],axis12["yaxis"],
-    "Stores","Spendings","December's Spendings",'dec','dec-message')
+    "Stores","Spendings in dollars($)","December's Spendings",'dec','dec-message')
 
 
 

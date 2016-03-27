@@ -5,6 +5,14 @@ var validation = require('./validate');
 exports.init = function(app)
 {
 	app.get("/dashboard", is_logged_in, f1);
+	 app.get("/how_it_works", function(request, response)
+    {
+        response.render("how_it_works");
+    });
+	 app.get("/support", function(request, response)
+    {
+        response.render("support");
+    });
 }
 
 parse_date_string = function(date_str){
