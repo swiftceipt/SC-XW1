@@ -5,10 +5,9 @@ var forget = require('./forget');
         
 exports.init = function(app)
 {
-    app.get("/login",function(request, response){
-        
+    app.get("/login",function(request, response)
+    {
         response.render("login");
-        
     });
     app.post("/login", check_login);
     app.get("/logout", is_logged_in, logout);
@@ -234,9 +233,13 @@ receipt = function(request, response)
         else
         {
             console.log(body);
-            response.render("receipt", {receipt: {}, message: {
-                                        type: "danger",
-                                        content: body.message }});
+            response.render("receipt", {
+                                            receipt: {}, 
+                                            message: {
+                                                type: "danger",
+                                                content: body.message },
+                                            popout: popout
+                                        });
         }
     });
 }
