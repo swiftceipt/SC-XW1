@@ -27,6 +27,7 @@ app.use(session({
 
 // routes
 require('./routes/routes.js').init(app);
+require('./routes/graph_data.js').init(app);
 
 // launch 
 app.listen(port, ipaddress, function() {
