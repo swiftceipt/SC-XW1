@@ -8,7 +8,15 @@ window.onload = function()
     {
         list_group_items[i].onclick = function()
         {
-            responseArea.innerHTML = this.innerHTML;
+            responseArea.innerHTML = "loading...";
+            $.ajax({
+                type: "GET",
+                url: "/receipts/" + this.id,
+                success: function(data, status)
+                {
+                    responseArea.innerHTML = data;
+                }
+            });
         }
     }
 };
