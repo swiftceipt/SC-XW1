@@ -1,10 +1,30 @@
 <html lang="en">
     <head>
         <% include partials/headers %>
+        <script type="text/javascript">
+
+
+        $( init );
+ 
+    function init() {
+        $('.panel-default').draggable({
+            containment: 'wrapper',
+            cursor: 'move',
+            helper: myHelper
+        });
+        }
+    function myHelper( event ) {
+        return '<div id="draggableHelper">RECEIPT_IC</div>';
+    }
+ 
+    </script>
     </head>
     <body>
         <% include partials/navbar-inside %>
-        <div class = "container">
+        <div id="wrapper">
+        <% include partials/sidebar %>
+        <div id="page-content-wrapper">
+        <section>
             <% if (typeof receipts == "object") { %>
                 <div class="panel-group" id="accordion"> <% for(var i = 0; i < receipts.length; i++) { %>
                     
@@ -34,9 +54,10 @@
                 </div> <% } else { %>
                 There are no receipts associated with this account 
                 <% } %>
+        </section>
+        </div>
         </div>
 
     <p><a href = "/dashboard">Dashboard</a></p>
-    <% include partials/footer %>
     </body>
 </html>
