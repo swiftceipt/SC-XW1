@@ -133,6 +133,10 @@ by_store = function(receipts){
 	return result;
 }
 
+
+
+
+
 f1 = function(request, response)
 {
 	var authToken = request.session.authToken;

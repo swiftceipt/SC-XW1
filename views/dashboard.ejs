@@ -3,8 +3,10 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <script type="text/javascript">
-    var by_month = <%- JSON.stringify(parsed['by_month']['2016']) %>
+var by_month = <%- JSON.stringify(parsed['by_month']['2016']) %>
+    //{1:308.84000000000003, 2:18.21, 3:-22.44, 4:62, 5:55.12, 6:61.13, 7:47.79, 8:11.77, 9:46.54, 10:0, 11:0, 12:0}
 var by_store = <%- JSON.stringify(parsed['by_store']['2016']) %>
+//{1:{Applebee's:93.84, Image Auto Detailing,LLC:215}, 2:{}, 3:{}, 4:{}, 5:{}, 6:{}, 7:{}, 8:{}, 9:{}, 10:{}, 11:{}, 12:{}}
 var janurary = <%- JSON.stringify(parsed['by_store']['2016']['1']) %>
 var february = <%- JSON.stringify(parsed['by_store']['2016']['2'])%>
 var march = <%- JSON.stringify(parsed['by_store']['2016']['3'])%>
