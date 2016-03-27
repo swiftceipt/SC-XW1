@@ -5,10 +5,9 @@ var forget = require('./forget');
         
 exports.init = function(app)
 {
-    app.get("/login",function(request, response){
-        
+    app.get("/login",function(request, response)
+    {
         response.render("login");
-        
     });
     app.post("/login", check_login);
     app.get("/logout", is_logged_in, logout);
@@ -23,7 +22,6 @@ exports.init = function(app)
         response.render("index");
     });
 
-    app.get("/dashboard", is_logged_in,landing);
 
     app.get("/receipts", is_logged_in, receipts);
     app.get("/receipts/:receiptId", is_logged_in, receipt)
@@ -220,20 +218,27 @@ receipt = function(request, response)
 
     request_api.post(options, function(error, api_response, body)
     {
+        var popout = (request.query.popout == "true");
+
         if(!error && body.ackValue == "SUCCESS")
         {
             // add the lat and long from the Google Maps
             google_maps.render_with_lat_long(body.receipt, function(receipt)
             {
-                response.render("receipt", {receipt: receipt});
+                response.render("receipt", {receipt: receipt,
+                                            popout: popout});
             });
         }
         else
         {
             console.log(body);
-            response.render("receipt", {receipt: {}, message: {
-                                        type: "danger",
-                                        content: body.message }});
+            response.render("receipt", {
+                                            receipt: {}, 
+                                            message: {
+                                                type: "danger",
+                                                content: body.message },
+                                            popout: popout
+                                        });
         }
     });
 }
