@@ -4,6 +4,7 @@
         <style type="text/css">
             .list-group .glyphicon { float: right;}
         </style>
+        <script type="text/javascript" src = "/js/receipts_animation.js"></script>
     </head>
     <body>
         <% include partials/navbar-inside %>
@@ -15,8 +16,14 @@
                         <a href = "receipts/<%= receipts[i].receipt_id %>?popout=true", target = "_blank">
                             <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
                         </a>
+
                         <h4><%= receipts[i].name %></h4>
-                        <p>$<%= receipts[i].total %> <%=  new Date(receipts[i].date_created).toLocaleDateString() %> at <%= new Date(receipts[i].date_created).toLocaleTimeString() %> </p>
+                        <p>$
+                            <%= receipts[i].total %>
+                            <%=  new Date(receipts[i].date_created).toLocaleDateString() %>
+                             at 
+                             <%= new Date(receipts[i].date_created).toLocaleTimeString() %>
+                         </p>
                     </li>
                 <% } %>
                 </ul>
