@@ -17,10 +17,7 @@ exports.init = function(app)
     app.get("/register", register_landing);
     app.post("/register", register);
     
-    app.get("/", function(request, response)
-    {
-        response.render("index");
-    });
+    app.get("/", landing2);
 
 
     app.get("/receipts", is_logged_in, receipts);
@@ -160,6 +157,11 @@ register = function(request, response)
 landing = function(request, response)
 {
     response.render("dashboard", {session: request.session});
+}
+
+landing2 = function(request, response)
+{
+    response.render("index", {session: request.session});
 }
 
 receipts = function(request, response)
