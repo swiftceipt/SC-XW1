@@ -315,6 +315,10 @@ p.copyright {
 .navbar {
     margin-bottom: 0px;
 }
-
-
-
+footer ul 
+{list-style-type: none; text-align: center}
+footer li 
+{display: inline-block}
+footer .copyright{
+    text-align: center
+}
