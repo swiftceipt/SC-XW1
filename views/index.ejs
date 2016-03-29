@@ -4,8 +4,11 @@
         <title>Home</title>
     </head>
     <body>
-
-        <% include partials/navbar %>
+        <% if(JSON.stringify(session) === JSON.stringify({})){%>
+            <% include partials/navbar %>
+        <% } else {%>
+            <% include partials/navbar-inside %>
+        <%}%>
         
         
         <div class="intro-header">

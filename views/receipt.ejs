@@ -18,6 +18,10 @@
         <% if(popout) { %>
             <% include partials/navbar-inside %>
         <% } %>
+        <% if(popout) { %>
+            <div id="page-content-wrapper">
+        <% } %>
+        
         <div class = "container">
             <div class = "row">
                 <h1><%= receipt.name %></h1>
@@ -88,8 +92,15 @@
         <% } %>
             </div> <!-- row -->
         </div> <!-- container -->
+        <% if(popout) { %>
+            </div>
+        <% } %> 
+        
+
+
         <% if (popout) { %>
             <% include partials/footer %>
         <% } %>
+
     </body>
 </html>
