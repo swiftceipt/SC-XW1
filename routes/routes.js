@@ -193,12 +193,12 @@ receipts = function(request, response)
     {
         if(!error)
         {
-            response.render("receipts", {receipts: body.receipts});
+            response.render("receipts", {receipts: body.receipts, session: request.session});
         }
         else
         {
             console.log(error);
-            response.render("receipts", {receipts: "None"});
+            response.render("receipts", {receipts: "None", session: request.session});
         }
     });
 }
