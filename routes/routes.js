@@ -2,6 +2,7 @@ var request_api = require('request');
 var validation = require('./validate');
 var google_maps = require('./map');
 var forget = require('./forget');
+var folder = require('./folder');
         
 exports.init = function(app)
 {
@@ -68,7 +69,11 @@ check_login = function(request, response)
             // save user info in the session
             request.session.email = body.scEmail;
             request.session.authToken = body.authToken;
-            response.redirect("dashboard");
+
+            folder.save_folder_info(response, function(response)
+            {
+                response.redirect("/dashboard");
+            });
         }
     });
 }
