@@ -70,7 +70,7 @@ check_login = function(request, response)
             request.session.email = body.scEmail;
             request.session.authToken = body.authToken;
 
-            folder.save_folder_info(response, function(response)
+            folder.save_folder_info(response, request, function(response)
             {
                 response.redirect("/dashboard");
             });
