@@ -1,5 +1,14 @@
 var request_api = require('request');
 
+init = function(app)
+{
+    app.get("/folders/:folder_name", is_logged_in, oneFolder);
+}
+
+oneFolder = function(request, response)
+{
+    response.redirect("/receipts");
+}
 
 save_folder_info = function(response, request, callback)
 {
@@ -26,7 +35,6 @@ save_folder_info = function(response, request, callback)
             {
                 request.session.folders.push(body.folders[i].name);
             }
-            console.log(request.session);
             callback(response);
         }
         else
@@ -38,5 +46,6 @@ save_folder_info = function(response, request, callback)
 }
 
 module.exports = {
-    save_folder_info: save_folder_info
+    save_folder_info: save_folder_info,
+    init: init
 }
