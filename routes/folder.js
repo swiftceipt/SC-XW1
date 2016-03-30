@@ -17,9 +17,41 @@ create_folder = function(request, response)
         	action: "CREATE",
         	folderName: request.body.folderName
         }
-	}
+	};
+}
+
+folders = function(request, response)
+{
+    var options = {
+        url: "https://tenv-service.swiftceipt.com/getAllFolders",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            // use the token that we're provided
+            authToken: request.session.authToken
+        }
+    };
+
+    request_api.post(options, function(error, api_response, body)
+    {
+        if(!error)
+        {
+            response.render("folders", {receipts: body.folders});
+        }
+        else
+        {
+            console.log(error);
+            response.render("folders", {folders: "None"});
+        }
+    })
 }
 
 module.exports = {
-    create_folder: create_folder
+    create_folder: create_folder,
+    folders: folders
 }

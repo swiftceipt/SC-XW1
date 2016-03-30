@@ -24,7 +24,8 @@ exports.init = function(app)
     app.get("/receipts", is_logged_in, receipts);
     app.get("/receipts/:receiptId", is_logged_in, receipt)
 
-    app.post("/create_folder", folder.create_folder);
+    app.post("/create_folder", is_logged_in, folder.create_folder);
+    app.get("/folders", is_logged_in, folder.folders);
 }
 
 check_login = function(request, response)
