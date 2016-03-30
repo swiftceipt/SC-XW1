@@ -16,12 +16,13 @@
 
 
                 <li><a href='#'><span>Folders</span></a>
-                    <ul>
-                        <li><a href='#'><span>Folder 1</span></a></li>
-                        <li><a href='#'><span>Folder 2</span></a></li>
-                        <li class='last'><a href='#'><span>Folder 3</span></a></li>
+                    <% if (typeof folders == "object") { %>
+                    <ul> <% for(var i = 0; i < folders.length; i++) { %>
+                        <li><a href='#'><span><%= folders[i].folderName %></span></a></li>
+                    <% } %>
                     </ul>
-                </li>               
+                </li>
+                <% } %>             
                 <li>
                     <a href = "/receipts">Add new folder</a>
                 </li>
