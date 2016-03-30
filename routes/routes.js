@@ -23,6 +23,8 @@ exports.init = function(app)
 
     app.get("/receipts", is_logged_in, receipts);
     app.get("/receipts/:receiptId", is_logged_in, receipt)
+
+    app.post("/create_folder", folder.create_folder);
 }
 
 check_login = function(request, response)

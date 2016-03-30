@@ -19,3 +19,7 @@ create_folder = function(request, response)
         }
 	}
 }
+
+module.exports = {
+    create_folder: create_folder
+}
