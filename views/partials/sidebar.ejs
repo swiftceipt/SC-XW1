@@ -25,6 +25,16 @@
                 <li>
                     <a href = "/receipts">Add new folder</a>
                 </li>
+                <li>
+                    <div id="new_folder_form">
+                        <form action="/create_folder" method="post">
+                            <input type="text" name = "folderName" placeholder="Folder Name">
+                            <button class="btn-primary" type="submit">
+                                Create Folder
+                            </button>
+                        </form>
+                    </div>
+                </li>
 
                 <li>
                     <a href = "/logout">Logout</a>
