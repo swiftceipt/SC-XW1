@@ -15,7 +15,9 @@
                 <li><a href='#'><span>Folders</span></a>
                     <ul>
                         <% for(var i = 0; i < session.folders.length; i ++){ %>
-                            <li><a href='/folders/<%= session.folders[i] %>'><span><%= session.folders[i] %></span></a></li>
+                            <li class = "folder" id = "<%= session.folders[i] %>">
+                                <a href='/folders/<%= session.folders[i] %>'><span><%= session.folders[i] %></span></a>
+                            </li>
                         <% } %>
                     </ul>
                 </li>               
