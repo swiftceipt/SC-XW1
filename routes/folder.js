@@ -8,7 +8,7 @@ init = function(app)
 create_folder = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/getFolderByName",
+        url: "https://tenv-service.swiftceipt.com/folders",
         headers:
         {
             "Accept": "application/json",
@@ -26,6 +26,9 @@ create_folder = function(request, response)
     request_api.post(options, function(error, api_response, body)
     {
         console.log(body);
+        request.session.folders.push(request.body.folderName);
+        // var redirect_url = "folders/" + request.body.folderName;
+        response.redirect("/receipts");
     });
 }
 
@@ -48,13 +51,15 @@ oneFolder = function(request, response)
 
     request_api.post(options, function(error, api_response, body)
     {
+        console.log(body);
         if(!error && body.ackValue == "SUCCESS")
         {
             response.render("receipts", {receipts: body.folder.receipts, session: request.session});
         }
         else
         {
-            // response.redirect("/receipts");
+            console.log(error);
+            response.redirect("/receipts");
         }
     });
 }
@@ -83,6 +88,7 @@ save_folder_info = function(response, request, callback)
         {
             for(var i = 0; i < body.folders.length; i ++)
             {
+                console.log(body.folders[i].name);
                 request.session.folders.push(body.folders[i].name);
             }
             callback(response);
