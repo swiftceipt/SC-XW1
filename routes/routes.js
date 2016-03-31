@@ -25,7 +25,6 @@ exports.init = function(app)
     app.get("/receipts/:receiptId", is_logged_in, receipt)
 
     app.post("/create_folder", is_logged_in, folder.create_folder);
-    app.get("/folders", is_logged_in, folder.folders);
 }
 
 check_login = function(request, response)
@@ -72,7 +71,11 @@ check_login = function(request, response)
             // save user info in the session
             request.session.email = body.scEmail;
             request.session.authToken = body.authToken;
-            response.redirect("dashboard");
+
+            folder.save_folder_info(response, request, function(response)
+            {
+                response.redirect("/dashboard");
+            });
         }
     });
 }
@@ -192,12 +195,12 @@ receipts = function(request, response)
     {
         if(!error)
         {
-            response.render("receipts", {receipts: body.receipts});
+            response.render("receipts", {receipts: body.receipts, session: request.session});
         }
         else
         {
             console.log(error);
-            response.render("receipts", {receipts: "None"});
+            response.render("receipts", {receipts: "None", session: request.session});
         }
     });
 }

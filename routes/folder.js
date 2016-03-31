@@ -1,9 +1,14 @@
 var request_api = require('request');
 
+init = function(app)
+{
+    app.get("/folders/:folder_name", is_logged_in, oneFolder);
+}
+
 create_folder = function(request, response)
 {
-	var options = {
-		url: "https://tenv-service.swiftceipt.com/folders",
+    var options = {
+        url: "https://tenv-service.swiftceipt.com/getFolderByName",
         headers:
         {
             "Accept": "application/json",
@@ -24,7 +29,38 @@ create_folder = function(request, response)
     });
 }
 
-folders = function(request, response)
+oneFolder = function(request, response)
+{
+    var options = {
+        url: "https://tenv-service.swiftceipt.com/getFolderByName",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            "authToken": request.session.authToken,
+            "folderName": request.params.folder_name
+        }
+    };
+
+    request_api.post(options, function(error, api_response, body)
+    {
+        if(!error && body.ackValue == "SUCCESS")
+        {
+            response.render("receipts", {receipts: body.folder.receipts, session: request.session});
+        }
+        else
+        {
+            // response.redirect("/receipts");
+        }
+    });
+}
+
+
+save_folder_info = function(response, request, callback)
 {
     var options = {
         url: "https://tenv-service.swiftceipt.com/getAllFolders",
@@ -36,26 +72,31 @@ folders = function(request, response)
         json: true,
         body: 
         {
-            // use the token that we're provided
-            authToken: request.session.authToken
+            "authToken": request.session.authToken
         }
     };
 
     request_api.post(options, function(error, api_response, body)
     {
-        if(!error)
+        request.session.folders = [];
+        if(!error && body.ackValue == "SUCCESS")
         {
-            response.render("folders", {receipts: body.folders});
+            for(var i = 0; i < body.folders.length; i ++)
+            {
+                request.session.folders.push(body.folders[i].name);
+            }
+            callback(response);
         }
         else
         {
-            console.log(error);
-            response.render("folders", {folders: "None"});
+            response.redirect("/logout")
         }
-    })
+    });
+
 }
 
 module.exports = {
-    create_folder: create_folder,
-    folders: folders
+    save_folder_info: save_folder_info,
+    init: init,
+    create_folder : create_folder
 }

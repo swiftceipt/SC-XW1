@@ -1,5 +1,4 @@
 <div id="sidebar-wrapper">
-
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
@@ -13,20 +12,15 @@
                     <a href = "/receipts">Receipts</a>
                 </li>
 
-
-
                 <li><a href='#'><span>Folders</span></a>
-                    <% if (typeof folders == "object") { %>
-                    <ul> <% for(var i = 0; i < folders.length; i++) { %>
-                        <li><a href='#'><span><%= folders[i].folderName %></span></a></li>
-                    <% } %>
+                    <ul>
+                        <% for(var i = 0; i < session.folders.length; i ++){ %>
+                            <li class = "folder" id = "<%= session.folders[i] %>">
+                                <a href='/folders/<%= session.folders[i] %>'><span><%= session.folders[i] %></span></a>
+                            </li>
+                        <% } %>
                     </ul>
                 </li>
-                <% } else { %>
-                <li>
-                    No folders
-                </li>
-                <% } %>
                 <li>
                     <a href = "/receipts">Add new folder</a>
                 </li>
