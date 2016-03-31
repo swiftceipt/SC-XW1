@@ -7,7 +7,32 @@ init = function(app)
 
 oneFolder = function(request, response)
 {
-    response.redirect("/receipts");
+    var options = {
+        url: "https://tenv-service.swiftceipt.com/getFolderByName",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            "authToken": request.session.authToken,
+            "folderName": request.params.folder_name
+        }
+    };
+
+    request_api.post(options, function(error, api_response, body)
+    {
+        if(!error && body.ackValue == "SUCCESS")
+        {
+            response.render("receipts", {receipts: body.folder.receipts, session: request.session});
+        }
+        else
+        {
+            // response.redirect("/receipts");
+        }
+    });
 }
 
 save_folder_info = function(response, request, callback)
