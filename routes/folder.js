@@ -18,6 +18,10 @@ create_folder = function(request, response)
         	folderName: request.body.folderName
         }
 	};
+    request_api.post(options, function(error, api_response, body)
+    {
+        console.log(body);
+    });
 }
 
 folders = function(request, response)
