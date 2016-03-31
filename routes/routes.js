@@ -2,6 +2,7 @@ var request_api = require('request');
 var validation = require('./validate');
 var google_maps = require('./map');
 var forget = require('./forget');
+var folder = require('./folder');
         
 exports.init = function(app)
 {
@@ -68,7 +69,11 @@ check_login = function(request, response)
             // save user info in the session
             request.session.email = body.scEmail;
             request.session.authToken = body.authToken;
-            response.redirect("dashboard");
+
+            folder.save_folder_info(response, request, function(response)
+            {
+                response.redirect("/dashboard");
+            });
         }
     });
 }
@@ -188,12 +193,12 @@ receipts = function(request, response)
     {
         if(!error)
         {
-            response.render("receipts", {receipts: body.receipts});
+            response.render("receipts", {receipts: body.receipts, session: request.session});
         }
         else
         {
             console.log(error);
-            response.render("receipts", {receipts: "None"});
+            response.render("receipts", {receipts: "None", session: request.session});
         }
     });
 }
