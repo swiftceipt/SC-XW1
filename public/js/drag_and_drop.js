@@ -10,7 +10,7 @@ function init() {
   	cursorAt: { top: 30, left: 20 },
   	//stop:handleDragStop
   });
-  $('.folder-group-item').droppable( {
+  $('.folder').droppable( {
     drop: handleDropStop,
     accept: ".list-group-item",
     hoverClass: "ui-state-hover",
