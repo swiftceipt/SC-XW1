@@ -26,7 +26,14 @@ oneFolder = function(request, response)
     {
         if(!error && body.ackValue == "SUCCESS")
         {
-            response.render("receipts", {receipts: body.folder.receipts, session: request.session});
+            if(body.folder != null)
+            {
+                response.render("receipts", {receipts: body.folder.receipts, session: request.session});
+            }
+            else
+            {
+                response.render("receipts", {receipts: null, session: request.session});
+            }
         }
         else
         {
