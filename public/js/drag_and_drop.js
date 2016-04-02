@@ -8,6 +8,12 @@ function init() {
   	cursor: "move", 
   	opacity: 0.65,
   	cursorAt: { top: 30, left: 20 },
+    start: function( event, ui ) {
+      $('#delete').show();
+    },
+    stop: function( event, ui ) {
+      $('#delete').hide();
+    }
   	//stop:handleDragStop
   });
   $('.folder').droppable( {
@@ -15,9 +21,61 @@ function init() {
     accept: ".list-group-item",
     hoverClass: "ui-state-hover",
   } );
+  $('#delete').droppable({
+    drop: handleRemove,
+    accept: ".list-group-item",
+    hoverClass: "ui-state-hover",
+  })
 }
 function handleDropStop( event, ui ) {
   var element_id = ui.draggable.attr("id");
   var element_drop_id = event.target.id;
-  alert( "you have dragged"+ " "+ element_id + " on to " +element_drop_id );
+    $.ajax({
+      type: "GET",
+      url: "/add/" + element_id +"/" + element_drop_id,
+      success: function(data, status)
+      {
+        //window.reload();
+        toastr.success( "you have dragged&nbsp"+ element_id + "&nbspon to" +element_drop_id);
+      },
+      error: function(xhr, status, message)
+      {
+        console.log("frontend error");
+        console.log(xhr);
+        toastr.success( "something was wrong, please try again! ");
+          //toast
+      }
+    });
+    
+    toastr.success( "you have dragged&nbsp"+ element_id + "&nbspon to" +element_drop_id);
+
+
 }
+function handleRemove(event,ui){
+  var element_id = ui.draggable.attr("id");
+  //handle the case when user are under /receipts
+  //handle reload to get the most updated version of folder
+  var url = window.location.href.split("/");
+  var folder_id = url[url.length-1];
+  toastr.warning( "you have deleted"+ element_id + " from" + folder_id);
+  $.ajax({
+      type: "GET",
+      url: "/remove/" + element_id + "/"+folder_id,
+      success: function(data, status)
+      {
+        location.reload();
+        toastr.success( "you have removed "+ element_id + "from" +folder_id);
+
+      },
+      error: function(xhr, status, message)
+      {
+        toastr.success( "something was wrong, please try again! ");
+          //toast
+      }
+    });
+}
+
+
+
+
+

@@ -2,11 +2,13 @@
     <head>
         <% include partials/headers %>
         <script type="text/javascript" src="/js/drag_and_drop.js"></script>
+        
         <style type="text/css">
             .list-group .glyphicon { float: right;}
             .active .glyphicon {color: white;}
         </style>
         <script type="text/javascript" src = "/js/receipts_animation.js"></script>
+
     </head>
     <body>
         <% include partials/navbar-inside %>
@@ -16,6 +18,7 @@
             <div id="wrapper">
             <div id="page-content-wrapper">
                 <% if (typeof receipts == "object") { %>
+                <!-- handle the case when receipts are null -->
                     <ul class="list-group col-md-6"> <% for(var i = 0; i < receipts.length; i++) { %>
                         <li class = "list-group-item" id = "<%= receipts[i].receipt_id %>">
                             <a href = "receipts/<%= receipts[i].receipt_id %>?popout=true", target = "_blank">
