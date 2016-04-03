@@ -3,7 +3,7 @@ var app      = express();
 var morgan   = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('client-sessions');
-var Chance = require('Chance');
+var Chance = require('chance');
 var chance = new Chance();
 
 // set for local development, change when deploying

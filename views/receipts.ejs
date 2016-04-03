@@ -17,8 +17,10 @@
             <div class = "row">
             <div id="wrapper">
             <div id="page-content-wrapper">
-                <% if (typeof receipts == "object") { %>
-                <!-- handle the case when receipts are null -->
+
+
+                <% if (typeof receipts == "object" && receipts != null) { %>
+
                     <ul class="list-group col-md-6"> <% for(var i = 0; i < receipts.length; i++) { %>
                         <li class = "list-group-item" id = "<%= receipts[i].receipt_id %>">
                             <a href = "receipts/<%= receipts[i].receipt_id %>?popout=true", target = "_blank">
@@ -43,7 +45,13 @@
                         </div>
                     </div>
                 <% } else { %>
-                    There are no receipts associated with this account 
+                    <div class = "col-md-12" id = "receiptArea">
+                        <div class = "jumbotron well">
+                            <h1>No receipts</h1>
+                            <p>There are no receipts according to your selection</p>
+                            <p>Please either add some new ones from your email, or add some to folder</p>
+                        </div>
+                    </div>
                 <% } %>
             </div>
             </div>
@@ -51,7 +59,7 @@
         </div>
 
     <p><a href = "/dashboard">Dashboard</a></p>
->>>>>>> dev
+
     <br>
     <% include partials/footer %>
 
