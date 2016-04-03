@@ -6,7 +6,9 @@ function init() {
   	zIndex: 999999999,
   	stack: "#container",
   	cursor: "move", 
-  	opacity: 0.65,
+  	opacity: 0.75,
+    scroll: false,
+    appendTo: "body",
   	cursorAt: { top: 30, left: 20 },
     start: function( event, ui ) {
       $('#delete').show();
@@ -33,10 +35,13 @@ function handleDropStop( event, ui ) {
     $.ajax({
       type: "GET",
       url: "/add/" + element_id +"/" + element_drop_id,
+      contentType: "application/json",
+      dataType: "json",
       success: function(data, status)
       {
         //window.reload();
-        toastr.success( "you have dragged&nbsp"+ element_id + "&nbspon to" +element_drop_id);
+        toastr.success( "you have successfully dragged receipt"+ " " + element_id 
+          + " " +"on to" + " " + "folder"+ " " + element_drop_id);
       },
       error: function(xhr, status, message)
       {
@@ -46,8 +51,7 @@ function handleDropStop( event, ui ) {
           //toast
       }
     });
-    
-    toastr.success( "you have dragged&nbsp"+ element_id + "&nbspon to" +element_drop_id);
+    //toastr.success( "you have successfullly dragged "+ element_id + "&nbspon to" +element_drop_id);
 
 
 }
@@ -57,14 +61,15 @@ function handleRemove(event,ui){
   //handle reload to get the most updated version of folder
   var url = window.location.href.split("/");
   var folder_id = url[url.length-1];
-  toastr.warning( "you have deleted"+ element_id + " from" + folder_id);
   $.ajax({
       type: "GET",
       url: "/remove/" + element_id + "/"+folder_id,
       success: function(data, status)
       {
+        toastr.success( "you have successfully removed receipt" + " " 
+          + element_id + "from folder" + " " + folder_id);
+        console.log(location.href);
         location.reload();
-        toastr.success( "you have removed "+ element_id + "from" +folder_id);
 
       },
       error: function(xhr, status, message)

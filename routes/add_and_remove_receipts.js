@@ -30,14 +30,11 @@ add = function(request,response){
     {
         if(!error && body.ackValue == "SUCCESS")
         {	
-        	console.log(body.ackValue);
+            response.status(200).send({ status: 'success' });
         }
         else
         {
-        	console.log(body.ackValue);
-        	console.log()
-        	console.log(body.errors);
-        	console.log("backend error");
+        	response.status(500).send({ error: 'something blew up' });
             // response.redirect("/receipts");
         }
     });
@@ -67,14 +64,12 @@ remove = function(request,response){
     request_api.post(options, function(error, api_response, body)
     {
         if(!error && body.ackValue == "SUCCESS")
-        {
-        	console.log("success");
+        {   
+        	response.status(200).send({ status: 'success' });
         }
         else
         {
-        	console.log("backend error");
-        	console.log(body.ackValue);
-        	console.log(body.errors);
+        	response.status(500).send({ error: 'something blew up' });
             // response.redirect("/receipts");
         }
     });
