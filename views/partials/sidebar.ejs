@@ -20,10 +20,15 @@
 
                                         <form style="float: right;" action="/delete_folder">
                                             <input type="image" src="images/delete.png" name=<%=session.folders[i] %>></input>  
-                                        </form>                               
-                                        <form style="float: right;">
-                                            <input type="image" src="images/edit.png"></input>
                                         </form>
+                              
+                                        <img src="images/edit.png" onclick="javascript:renameForm()">
+                                        <script>
+                                        function renameForm() {
+                                            // document.getElementById("<%= session.folders[i] %>").innerHTML
+                                            console.log("ayy");
+                                        }
+                                        </script>
                                     </span>
                                     <a href='/folders/<%= session.folders[i] %>'><span><%= session.folders[i] %></span></a>
                                 </li>
