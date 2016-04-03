@@ -17,8 +17,13 @@
                         <% for(var i = 0; i < session.folders.length; i ++){ %>
                                 <li class = "folder" id = "<%= session.folders[i] %>">
                                     <span class="ico-pull pull-right">
-                                        <img src="images/edit.png"></img>
-                                        <img src="images/delete.png"></img>
+
+                                        <form style="float: right;" action="/delete_folder">
+                                            <input type="image" src="images/delete.png" name=<%=session.folders[i] %>></input>  
+                                        </form>                               
+                                        <form style="float: right;">
+                                            <input type="image" src="images/edit.png"></input>
+                                        </form>
                                     </span>
                                     <a href='/folders/<%= session.folders[i] %>'><span><%= session.folders[i] %></span></a>
                                 </li>

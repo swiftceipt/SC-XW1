@@ -32,6 +32,32 @@ create_folder = function(request, response)
     });
 }
 
+delete_folder = function(request, response)
+{
+    var options = {
+        url: "https://tenv-service.swiftceipt.com/folders",
+        headers:
+        {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        json: true,
+        body: 
+        {
+            // use the token that we're provided
+            authToken: request.session.authToken,
+            action: "DELETE",
+            folderName: request.body.folderName
+        }
+    };
+    console.log(request.body)
+    request_api.post(options, function(error, api_response, body)
+    {
+        console.log(body);
+        response.redirect("/receipts");
+    });
+}
+
 oneFolder = function(request, response)
 {
     var options = {
@@ -104,5 +130,6 @@ save_folder_info = function(response, request, callback)
 module.exports = {
     save_folder_info: save_folder_info,
     init: init,
-    create_folder : create_folder
+    create_folder: create_folder,
+    delete_folder: delete_folder
 }
