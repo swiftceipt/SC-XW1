@@ -47,7 +47,8 @@ rename_folder = function(request, response)
             // use the token that we're provided
             authToken: request.session.authToken,
             action: "RENAME",
-            folderName: request.body.folderName
+            folderName: request.params.folderId,
+            newFolderName: request.body.newFolderName
         }
     };
     request_api.post(options, function(error, api_response, body)
@@ -72,9 +73,10 @@ delete_folder = function(request, response)
             // use the token that we're provided
             authToken: request.session.authToken,
             action: "DELETE",
-            folderName: request.body.folderName
+            folderName: request.params.folderId
         }
     };
+    console.log(request.body.folderName);
     request_api.post(options, function(error, api_response, body)
     {
         console.log(body);
