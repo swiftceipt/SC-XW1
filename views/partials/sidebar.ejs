@@ -15,18 +15,18 @@
                 <li><a href='#'><span>Folders</span></a>
                     <ul>
                         <% for(var i = 0; i < session.folders.length; i ++){ %>
-                                <li class = "folder" id = "<%= session.folders[i] %>">
+                                <li class = "folder" id = "folder_<%= i %>">
                                     <span class="ico-pull pull-right">
 
                                         <form style="float: right;" action="/delete_folder">
                                             <input type="image" src="images/delete.png" name=<%=session.folders[i] %>></input>  
                                         </form>
-                              
-                                        <img src="images/edit.png" onclick="javascript:renameForm()">
+
+                                        <img src="images/edit.png" onclick="renameForm()">
                                         <script>
                                         function renameForm() {
-                                            // document.getElementById("<%= session.folders[i] %>").innerHTML
-                                            console.log("ayy");
+                                            console.log("folder_<%= i %>");
+                                            $("#folder_<%= i %>").replaceWith("<p>hi</p>")
                                         }
                                         </script>
                                     </span>

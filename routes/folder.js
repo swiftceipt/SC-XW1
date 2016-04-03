@@ -155,5 +155,6 @@ module.exports = {
     save_folder_info: save_folder_info,
     init: init,
     create_folder: create_folder,
-    delete_folder: delete_folder
+    delete_folder: delete_folder,
+    rename_folder: rename_folder
 }
