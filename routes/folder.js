@@ -85,6 +85,8 @@ delete_folder = function(request, response)
     {
         if(!error){
             console.log(body);
+            var i = request.session.folders.indexOf(request.params.folderId);
+            request.session.folders.splice(i, 1);
             response.redirect("/receipts");
         }
     });
