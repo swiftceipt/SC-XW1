@@ -27,7 +27,6 @@ create_folder = function(request, response)
     {
         console.log(body);
         request.session.folders.push(request.body.folderName);
-        // var redirect_url = "folders/" + request.body.folderName;
         response.redirect("/receipts");
     });
 }
@@ -51,10 +50,16 @@ rename_folder = function(request, response)
             newFolderName: request.body.newFolderName
         }
     };
+    console.log(request.params.folderId);
     request_api.post(options, function(error, api_response, body)
     {
-        console.log(body);
-        response.redirect("/receipts");
+        if (!error){
+            var i = request.session.folders.indexOf(request.params.folderId);
+            request.session.folders[i] = request.body.newFolderName
+            response.redirect("/receipts");
+            console.log(request.session);
+
+        }
     });
 }
 
@@ -76,11 +81,12 @@ delete_folder = function(request, response)
             folderName: request.params.folderId
         }
     };
-    console.log(request.body.folderName);
     request_api.post(options, function(error, api_response, body)
     {
-        console.log(body);
-        response.redirect("/receipts");
+        if(!error){
+            console.log(body);
+            response.redirect("/receipts");
+        }
     });
 }
 
