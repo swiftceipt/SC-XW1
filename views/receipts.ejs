@@ -17,7 +17,7 @@
                 <% if (typeof receipts == "object" && receipts != null) { %>
                     <ul class="list-group col-md-6"> <% for(var i = 0; i < receipts.length; i++) { %>
                         <li class = "list-group-item" id = "<%= receipts[i].receipt_id %>">
-                            <a href = "receipts/<%= receipts[i].receipt_id %>?popout=true", target = "_blank">
+                            <a href = "/receipts/<%= receipts[i].receipt_id %>?popout=true", target = "_blank">
                                 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
                             </a>
 
