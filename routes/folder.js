@@ -63,9 +63,12 @@ save_folder_info = function(response, request, callback)
         request.session.folders = [];
         if(!error && body.ackValue == "SUCCESS")
         {
-            for(var i = 0; i < body.folders.length; i ++)
+            if(body.folders != null) // add folders if you have them
             {
-                request.session.folders.push(body.folders[i].name);
+                for(var i = 0; i < body.folders.length; i ++)
+                {
+                    request.session.folders.push(body.folders[i].name);
+                }
             }
             callback(response);
         }
