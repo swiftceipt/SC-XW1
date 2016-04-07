@@ -19,10 +19,10 @@
                                     <span class="ico-pull pull-right">
 
                                         <form style="float: right;" action="/delete_folder/<%= session.folders[i] %>" method="post">
-                                            <input type="image" src="images/delete.png" name="<%=session.folders[i] %>"></input>  
+                                            <input type="image" src="/images/glyphicons-208-remove.png" name="<%=session.folders[i] %>"></input>  
                                         </form>
 
-                                        <img src="images/edit.png" onclick="renameForm(<%= i %>, '<%=session.folders[i] %>')">
+                                        <img src="/images/glyphicons-31-pencil.png" onclick="renameForm(<%= i %>, '<%=session.folders[i] %>')" style="cursor: pointer;">
                                     </span>
                                     <a href='/folders/<%= session.folders[i] %>'><span><%= session.folders[i] %></span></a>
                                 </li>
