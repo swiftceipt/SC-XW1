@@ -51,6 +51,7 @@
                         <tr><td><strong>Sales Tax:</strong></td><td> $<%= receipt.tax %></td>
                         <tr><td><strong>Grand Total:</strong></td><td> $<%= receipt.total %></td>
                         <tr><td>
+                            <a href = "/receipts/<%= receipt.receipt_id%>?html=true" target = "_blank">Original Email</a>
                         </td></tr>
                     </table>
                 </div>
