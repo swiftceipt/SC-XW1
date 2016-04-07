@@ -239,13 +239,7 @@ receipt = function(request, response)
         else
         {
             console.log(body);
-            response.render("receipt", {
-                                            receipt: {}, 
-                                            message: {
-                                                type: "danger",
-                                                content: body.message },
-                                            popout: popout
-                                        });
+            response.redirect("/logout");
         }
     });
 }
