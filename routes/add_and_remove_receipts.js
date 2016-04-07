@@ -26,6 +26,7 @@ add = function(request,response){
             receiptId: parseInt(request.params.receiptId)
         }
     };
+    console.log(options);
     request_api.post(options, function(error, api_response, body)
     {
         if(!error && body.ackValue == "SUCCESS")
@@ -34,6 +35,7 @@ add = function(request,response){
         }
         else
         {
+            console.log(body.errors);
         	response.status(500).send({ error: 'something blew up' });
             // response.redirect("/receipts");
         }
@@ -60,7 +62,7 @@ remove = function(request,response){
             receiptId: parseInt(request.params.receiptId)
         }
     };
-    console.log(options.url);
+    console.log(options);
     request_api.post(options, function(error, api_response, body)
     {
         if(!error && body.ackValue == "SUCCESS")
@@ -69,6 +71,7 @@ remove = function(request,response){
         }
         else
         {
+            console.log(body.errors);
         	response.status(500).send({ error: 'something blew up' });
             // response.redirect("/receipts");
         }

@@ -46,7 +46,7 @@ function handleDropStop( event, ui ) {
       error: function(xhr, status, message)
       {
         console.log("frontend error");
-        console.log(xhr);
+        console.log(message);
         toastr.success( "something was wrong, please try again! ");
           //toast
       }
@@ -66,10 +66,11 @@ function handleRemove(event,ui){
       url: "/remove/" + element_id + "/"+folder_id,
       success: function(data, status)
       {
-        toastr.success( "you have successfully removed receipt" + " " 
-          + element_id + "from folder" + " " + folder_id);
+        toastr.success( "you have successfully removed receipt " 
+          + element_id + " from folder " + folder_id);
         console.log(location.href);
-        location.reload();
+
+        window.location = "/folders/" + folder_id;
 
       },
       error: function(xhr, status, message)
