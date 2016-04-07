@@ -1,3 +1,4 @@
+<% if(typeof html == "undefined" || !html) { %>
 <html lang="en">
     <head>
         <% include partials/headers %>
@@ -49,6 +50,11 @@
                         <tr><td><strong>Subtotal:</strong></td><td> $<%= receipt.subtotal %></td>
                         <tr><td><strong>Sales Tax:</strong></td><td> $<%= receipt.tax %></td>
                         <tr><td><strong>Grand Total:</strong></td><td> $<%= receipt.total %></td>
+                        <tr><td>
+                        <iframe src="">
+                            <%= receipt.html %>
+                        </iframe>
+                        </td></tr>
                     </table>
                 </div>
         <% if(popout) { %>
@@ -104,3 +110,9 @@
 
     </body>
 </html>
+
+<% } else { %>
+
+<%- receipt.html %>
+
+<% } %>
