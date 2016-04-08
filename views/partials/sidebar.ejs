@@ -28,29 +28,10 @@
                                     <a href='/folders/<%= session.folders[i] %>'><span><%= session.folders[i] %></span></a>
                                 </li>
                         <% } %>
-                        <li id="delete" hidden>REMOVE</li>
                     </ul>
                 </li>
                 <li>
-                    <!-- <script>
-                    function nameFolder() {
-                        document.getElementById("#nameFolder").innerHTML = "<form action='/create_folder' method='post'>
-                                <input type='text' name='folderName' placeholder='Folder Name'>"
-                    }
-                    </script> -->
-                    <!-- <a href = "/receipts">Add new folder</a> -->
-                    <button id="nameFolder" onclick="nameFolder()">Add new folder</button>
-
-                </li>
-                <li>
-                    <div id="new_folder_form">
-                        <form action="/create_folder" method="post">
-                            <input type="text" name = "folderName" placeholder="Folder Name">
-                            <button class="btn-primary" type="submit">
-                                Create Folder
-                            </button>
-                        </form>
-                    </div>
+                    <button id="nameFolder" onclick="nameFolder()" class="btn btn-primary">Create Folder</button>
                 </li>
 
                 <li>
