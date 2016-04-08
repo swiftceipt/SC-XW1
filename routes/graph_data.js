@@ -166,7 +166,8 @@ f1 = function(request, response)
     request_api.post(options, function(error, api_response, body)
     {
         if(!error)
-        {
+        {//need to handle the case when the response (body.receipts) is null;
+        	//i dont know when it will be null but we need to handle this to prevent the app from crashing
         	sc_data = body.receipts;
         	parsed = {};
             try

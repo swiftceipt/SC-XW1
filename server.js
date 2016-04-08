@@ -33,6 +33,7 @@ app.use(session({
 require('./routes/routes.js').init(app);
 require('./routes/graph_data.js').init(app);
 require('./routes/folder.js').init(app);
+require('./routes/add_and_remove_receipts.js').init(app);
 
 // launch 
 app.listen(port, ipaddress, function() {
