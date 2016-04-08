@@ -20,8 +20,12 @@ app.use(bodyParser());
 app.use(session({
   cookieName: 'session',
   secret: chance.word({length: 30}),
+  /* restore when iOS testing is done
   duration: 180 * 60 * 1000, // 180 minutes or 3 hours
   activeDuration: 30 * 60 * 1000, // 30 minutes
+  */
+  duration: 2 * 60 * 1000, // 2 minutes
+  activeDuration: 1 * 60 * 1000, // 1 minute
   secure: true, // ensures cookies are only used via HTTPS
 }));
 

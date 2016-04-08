@@ -69,7 +69,6 @@ check_login = function(request, response)
             // save user info in the session
             request.session.email = body.scEmail;
             request.session.authToken = body.authToken;
-            request.session.login_timestamp = Date.now();
 
             folder.save_folder_info(response, request, function(response)
             {
@@ -81,23 +80,6 @@ check_login = function(request, response)
 
 is_logged_in = function(request, response, next)
 {
-    /*
-        - Check if the user is logged in
-        - Check if token has expired
-
-        - in future: 120,000 will refer to a configuration-loaded variable
-    */
-    if((Date.now() - request.session.login_timestamp > 120 * 1000))
-    {
-        response.render("login",
-        {
-            message: {
-                type: "warning",
-                content: "Your session has expired"
-            }
-        });
-    }
-
 
     if(request.session && request.session.email)
     {  
