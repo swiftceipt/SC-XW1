@@ -75,7 +75,7 @@ function handleRemove(event,ui){
       },
       error: function(xhr, status, message)
       {
-        toastr.success( "something was wrong, please try again! ");
+        toastr.error( "something was wrong, please try again! ");
           //toast
       }
     });
