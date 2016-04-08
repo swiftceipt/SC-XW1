@@ -37,7 +37,8 @@ parse_date_string = function(date_str){
 	result.sec = sec;
 	return result;
 }
-by_year = function(receipts){
+by_year = function(receipts)
+{
 	var result = {}
 	for(var i = 0; i < receipts.length; i++){
 		date = parse_date_string(receipts[i].date_created);
@@ -165,20 +166,28 @@ f1 = function(request, response)
     request_api.post(options, function(error, api_response, body)
     {
         if(!error)
-        {
+        {//need to handle the case when the response (body.receipts) is null;
+        	//i dont know when it will be null but we need to handle this to prevent the app from crashing
         	sc_data = body.receipts;
         	parsed = {};
-        	parsed.by_year = by_year(sc_data);
-        	parsed.by_month = by_month(sc_data);
-        	parsed.by_store = by_store(sc_data); 
-        	response.render("dashboard", {parsed: parsed, session: request.session} );
-
-            //response.render("receipts", {receipts: body.receipts});
+            try
+            {
+                parsed.by_year = by_year(sc_data);
+                parsed.by_month = by_month(sc_data);
+                parsed.by_store = by_store(sc_data); 
+            	response.render("dashboard", {parsed: parsed, session: request.session} );
+            }
+            catch(err)
+            {
+                console.log(error);
+                sc_data = null;
+                response.render("dashboard", {sc_data: sc_data, session: request.session} );
+            }
         }
         else
         {
             console.log(error);
-            sc_data = none;
+            sc_data = null;
             response.render("dashboard", {sc_data: sc_data, session: request.session} );
 
             //response.render("receipts", {receipts: "None"});
