@@ -15,6 +15,8 @@
     "method-override": "~1.0.0",
     "mongodb": "^2.0.48",
     "morgan": "~1.0.0",
+    "request": "latest",
+    "toastr": "^2.1.2"
     "request": "latest"
   },
   "repository": {
