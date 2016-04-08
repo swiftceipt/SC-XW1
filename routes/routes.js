@@ -80,8 +80,9 @@ check_login = function(request, response)
 
 is_logged_in = function(request, response, next)
 {
+
     if(request.session && request.session.email)
-    {
+    {  
         next();
     }
     else
@@ -239,13 +240,7 @@ receipt = function(request, response)
         else
         {
             console.log(body);
-            response.render("receipt", {
-                                            receipt: {}, 
-                                            message: {
-                                                type: "danger",
-                                                content: body.message },
-                                            popout: popout
-                                        });
+            response.redirect("/logout");
         }
     });
 }
