@@ -25,9 +25,22 @@ create_folder = function(request, response)
 	};
     request_api.post(options, function(error, api_response, body)
     {
-        console.log(body);
-        request.session.folders.push(request.body.folderName);
-        response.redirect("/receipts");
+        if(!error && body.ackValue == "SUCCESS")
+        {
+            console.log(body);
+            request.session.folders.push(request.body.folderName);
+            response.status(200).send({ status: 'success' });
+        }
+        else if (api_response.statusCode == 409)
+        {
+            console.log(body);
+            response.status(500).send({ error: 'This folder already exists' });
+        }
+        else
+        {
+            console.log(body);
+            response.status(500).send({ error: 'something blew up'});
+        }
     });
 }
 
@@ -83,10 +96,16 @@ delete_folder = function(request, response)
     };
     request_api.post(options, function(error, api_response, body)
     {
-        if(!error){
+        if(!error && body.ackValue =="SUCCESS")
+        {
             console.log(body);
             var i = request.session.folders.indexOf(request.params.folderId);
             request.session.folders.splice(i, 1);
+            response.redirect("/receipts");
+        }
+        else
+        {
+            console.log(body);
             response.redirect("/receipts");
         }
     });

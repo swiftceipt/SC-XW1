@@ -17,7 +17,6 @@
     "morgan": "~1.0.0",
     "request": "latest",
     "toastr": "^2.1.2"
-    "request": "latest"
   },
   "repository": {
     "type": "git",
