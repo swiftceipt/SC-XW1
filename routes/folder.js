@@ -66,12 +66,22 @@ rename_folder = function(request, response)
     console.log(request.params.folderId);
     request_api.post(options, function(error, api_response, body)
     {
-        if (!error){
+        if (!error && body.ackValue == "SUCCESS")
+        {
             var i = request.session.folders.indexOf(request.params.folderId);
             request.session.folders[i] = request.body.newFolderName
-            response.redirect("/receipts");
-            console.log(request.session);
+            response.status(200).send({ status: 'success' });
 
+        }
+        else if (api_response.statusCode == 409)
+        {
+            console.log(body);
+            response.status(500).send({ status: 'already exists' });
+        }
+        else
+        {
+            console.log(body);
+            response.status(500).send({ status: 'something blew up' });
         }
     });
 }
