@@ -409,6 +409,14 @@ p.copyright {
 .form-bottom form .input-error {
     border-color: #d05a4e;
 }
+
+.form-bottom .form-control:focus
+{
+  z-index: 2;
+    border-color: #F95722;
+  box-shadow: inset 0 1px 1px rgba(249, 87, 34, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
 /*end of contact us style*/
 
 /*receipt second column*/
