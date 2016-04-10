@@ -11,6 +11,7 @@ html {
     background-color: #eee;
     position: relative;
     overflow: auto;
+    color: rgb(88,88,88)
 }
 
 body,
@@ -232,13 +233,14 @@ p.copyright {
 .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px;
+    color: rgb(88,88,88);
 }
 
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
     color: #000;
-}
+}   
 
 .sidebar-nav li a:hover {
     text-decoration: none;
@@ -403,6 +405,25 @@ p.copyright {
     border-color: #d05a4e;
 }
 /*end of contact us style*/
+
+/*receipt second column*/
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: rgb(249,87,34);
+    border-color: rgb(249,87,34);
+}
+/*end of receipt second column*/
+/*receipt third column*/
+#receiptArea p{
+    font-size: 15px;
+}
+.table thead{
+    font-size: 15px;
+}
+.table tr td{
+    font-size: 13px;
+}
+/*end of receipt third column*/
 footer ul 
 {list-style-type: none; text-align: center}
 footer li 
