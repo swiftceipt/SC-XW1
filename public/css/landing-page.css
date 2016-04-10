@@ -27,8 +27,8 @@ h6 {
 }
 .navbar {
     margin-bottom: 0px;
-    background: rgba(248,248,248,0.8);
-    border-color: rgba(248,248,248,0.8);
+    background: rgba(248,248,248,1);
+    border-color: rgba(248,248,248,1);
 }
 
 .topnav {
@@ -71,6 +71,7 @@ h6 {
 
 
 .intro-header {
+    margin-top: 50px;
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
     text-align: center;
