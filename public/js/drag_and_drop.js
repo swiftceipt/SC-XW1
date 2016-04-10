@@ -11,7 +11,11 @@ function init() {
     appendTo: "body",
   	cursorAt: { top: 30, left: 20 },
     start: function( event, ui ) {
-      $('#delete').show();
+      var url = window.location.href.split("/");
+      var folder_id = url[url.length-1];
+      if(folder_id != "receipts"){
+        $('#delete').show();
+      }
     },
     stop: function( event, ui ) {
       $('#delete').hide();
@@ -27,7 +31,8 @@ function init() {
     drop: handleRemove,
     accept: ".list-group-item",
     hoverClass: "ui-state-hover",
-  })
+  });
+  
 }
 function handleDropStop( event, ui ) {
   var element_id = ui.draggable.attr("id");

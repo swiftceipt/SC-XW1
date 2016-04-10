@@ -296,6 +296,10 @@ p.copyright {
         margin-right: 0;
     }
 }
+.sidebar-nav #delete{
+    background-color: rgb(249,87,34);
+    color: #FFF;
+}
 /*end of side bar styling*/
 /*form styling*/
 
