@@ -179,9 +179,7 @@ f1 = function(request, response)
             }
             catch(err)
             {
-                console.log(error);
-                sc_data = null;
-                response.render("dashboard", {sc_data: sc_data, session: request.session} );
+                response.redirect("/logout");
             }
         }
         else

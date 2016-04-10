@@ -39,12 +39,13 @@ var createAxisData = function(data){
 
 
 var createDataMonth = function(x, y, xtitle, ytitle,title,domElement,domMsgElement){
-    if (x.length==0 && y.length==0){
-        //display message saying there is no spendings for this month
-        console.log("empty");
-         document.getElementById(domMsgElement).innerHTML = "You did not spend any money this month";
+    if (x.length==0 && y.length==0)
+    {
+        // display message saying there is no spendings for this month
+        document.getElementById(domMsgElement).innerHTML = "You did not spend any money this month";
     }
-    else{
+    else
+    {
         var data = [
         {
             x: x,
