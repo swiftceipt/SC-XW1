@@ -228,7 +228,7 @@ receipt = function(request, response)
     {
         var popout = (request.query.popout == "true");
 
-        if(!error && body.ackValue == "SUCCESS")
+        if(!error && body.ackValue == "SUCCESS" && request.query.html != "true")
         {
             // add the lat and long from the Google Maps
             google_maps.render_with_lat_long(body.receipt, function(receipt)
@@ -236,6 +236,10 @@ receipt = function(request, response)
                 response.render("receipt", {receipt: receipt,
                                             popout: popout});
             });
+        }
+        else if (!error && body.ackValue == "SUCCESS" && request.query.html == "true")
+        {
+            response.render("receipt", {receipt: body.receipt, html: true});
         }
         else
         {
