@@ -22,6 +22,7 @@ h5,
 h6 {
     font-family:'Roboto light', sans-serif;
     font-weight: 600;
+    color: rgb(88,88,88)
 }
 .navbar {
     margin-bottom: 0px;
@@ -220,6 +221,7 @@ p.copyright {
 
 .sidebar-nav {
     position: absolute;
+    padding-top: 20px;
     top: 0;
     width: 250px;
     margin: 0;
@@ -367,6 +369,40 @@ p.copyright {
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
     background: #ff3333;
 }
+
+/*contact us style*/
+
+
+.form-top h3{text-align: center}
+.contact-form button{
+    text-align: center;
+}
+.form-box {
+    padding-top: 40px;
+}
+ 
+.form-top {
+    padding: 25px 25px 15px 25px;
+    background: #f7f4ed;
+    text-align: left;
+}
+ 
+.form-top h3 { margin-top: 0; }
+ 
+.form-bottom {
+    padding: 25px 25px 30px 25px;
+    background: #ebe6e0;
+    text-align: left;
+}
+ 
+.form-bottom form textarea {
+    height: 100px;
+}
+ 
+.form-bottom form .input-error {
+    border-color: #d05a4e;
+}
+/*end of contact us style*/
 footer ul 
 {list-style-type: none; text-align: center}
 footer li 
