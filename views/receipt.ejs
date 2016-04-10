@@ -1,3 +1,4 @@
+<% if(typeof html == "undefined" || !html) { %>
 <html lang="en">
     <head>
         <% include partials/headers %>
@@ -50,6 +51,11 @@
                         <tr><td><strong>Sales Tax:</strong></td><td> $<%= receipt.tax %></td>
                         <tr><td><strong>Grand Total:</strong></td><td> $<%= receipt.total %></td>
                     </table>
+                    <a href = "/receipts/<%= receipt.receipt_id%>?html=true" target = "_blank">
+                        <button type="button" class="btn btn-default">
+                            Original Email
+                        </button>
+                    </a>
                 </div>
         <% if(popout) { %>
                 <div class = "col-md-6">
@@ -104,3 +110,9 @@
 
     </body>
 </html>
+
+<% } else { %>
+
+<%- receipt.html %>
+
+<% } %>
