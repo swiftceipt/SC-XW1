@@ -1,9 +1,6 @@
 <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        Dashboard
-                    </a>
                 </li>
                 <li>
                     <a href="/dashboard">Charts</a>
@@ -16,7 +13,7 @@
                     <ul>
 
                         <% for(var i = 0; i < session.folders.length; i ++){ %>
-                                <li class = "folder" id = "folder_<%= i %>" style="padding-right: 10px;">
+                                <li class = "folder" id = "<%= session.folders[i] %>" style="padding-right: 10px;">
                                     <span class="ico-pull pull-right">
                                      
                                         <img src="/images/glyphicons-31-pencil.png" onclick="renameForm(<%= i %>, '<%=session.folders[i] %>')" style="cursor: pointer;">
@@ -27,6 +24,8 @@
                                     <a href='/folders/<%= session.folders[i] %>'><span><%= session.folders[i] %></span></a>
                                 </li>
                         <% } %>
+                        <li id="delete" hidden>REMOVE</li>
+                        <br>
                     </ul>
                 </li>
                 <li>

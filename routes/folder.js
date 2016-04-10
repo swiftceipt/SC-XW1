@@ -153,7 +153,6 @@ oneFolder = function(request, response)
         }
         else
         {
-            console.log(error);
             response.redirect("/receipts");
         }
     });
