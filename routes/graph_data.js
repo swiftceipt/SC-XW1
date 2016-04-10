@@ -7,7 +7,12 @@ exports.init = function(app)
 	app.get("/dashboard", is_logged_in, f1);
 	 app.get("/how_it_works", how_it_works);
 	 app.get("/support", support);
+	 app.get("/services", services);
+	 app.get("/contact", contact);
+	 app.get("/about", about);
 }
+
+// out side login pages
 support = function(request, response)
 {
     response.render("support", {session: request.session});
@@ -17,6 +22,21 @@ how_it_works = function(request, response)
 {
     response.render("how_it_works", {session: request.session});
 }
+about = function(request,response)
+{
+	response.render("about",{session: request.session});
+}
+contact = function(request,response)
+{
+	response.render("contact",{session: request.session});
+}
+services = function(request,response)
+{
+	response.render("services",{session: request.session});
+}
+
+//end of other pages
+
 
 parse_date_string = function(date_str){
 	result = {};

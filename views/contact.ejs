@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <% include partials/headers %>
+        <title>Contact Us</title>
+    </head>
+    <body>
+        <% if(JSON.stringify(session) === JSON.stringify({})){%>
+            <% include partials/navbar %>
+        <% } else {%>
+            <% include partials/navbar-inside %>
+        <%}%>
+        <div class="intro-header" style="background: url(images/city-people-street-sun.jpg) no-repeat center center;">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Give us your opinion!</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    </div>
+
+
+    <div class="content-section-a">
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 form-box">
+            <div class="form-top">
+                <h3>Contact us</h3>
+            </div>
+            <div class="form-bottom contact-form">
+                <form role="form" action="assets/contact.php" method="post">
+                    <div class="form-group">
+                        <label class="sr-only" for="contact-email">Email</label>
+                        <input type="text" name="email" placeholder="Email..." class="contact-email form-control" id="contact-email">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="contact-subject">Subject</label>
+                        <input type="text" name="subject" placeholder="Subject..." class="contact-subject form-control" id="contact-subject">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="contact-message">Message</label>
+                        <textarea name="message" placeholder="Message..." class="contact-message form-control" id="contact-message"></textarea>
+                    </div>
+                    <button class="btn btn-primary center-block">Send message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+
+        <% include partials/footer %>
+    </body>
+    
+</html>
