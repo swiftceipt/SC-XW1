@@ -37,7 +37,7 @@ oneFolder = function(request, response)
         }
         else
         {
-            // response.redirect("/receipts");
+            response.redirect("/receipts");
         }
     });
 }
