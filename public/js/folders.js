@@ -39,6 +39,7 @@ function renameForm(i, name) {
 
 function nameFolder() {
     var nameForm = $("<form><input type='text' name='folderName' placeholder='Folder Name'></form>");
+    console.log(nameForm);
     // turns the 'create folder' button into a text box
     $("#nameFolder").replaceWith(nameForm);
     nameForm.submit(function() {
@@ -74,6 +75,7 @@ function nameFolder() {
 }
 
 function deleteFolder(folderName) {
+    console.log('asdf');
     $.ajax({
         type: "POST",
         url: "/delete_folder/" + folderName,
@@ -91,4 +93,10 @@ function deleteFolder(folderName) {
         }
     });
     return false;
+}
+
+function showModal(folderName) {
+    var replacementButton = $("<button id='confirmDelete' onclick='deleteFolder(&quot;" + folderName + "&quot;)' type='button' class='btn btn-danger'>Confirm</button>")
+    $("#confirmDelete").replaceWith(replacementButton);
+    $("#modal").modal('show');
 }
