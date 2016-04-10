@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <% include partials/headers %>
+        <title>Services</title>
+    </head>
+    <body>
+        <% if(JSON.stringify(session) === JSON.stringify({})){%>
+            <% include partials/navbar %>
+        <% } else {%>
+            <% include partials/navbar-inside %>
+        <%}%>
+
+
+
+
+
+
+
+
+
+        <% include partials/footer %>
+    </body>
+    
+</html>
