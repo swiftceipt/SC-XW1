@@ -9,7 +9,7 @@ window.onload = function()
         list_group_items[i].onclick = function()
         {
             // render loading icon and swap around 'active' class
-            responseArea.innerHTML = "<center><img src = '/images/reload.svg'></center>";
+            responseArea.innerHTML = "<center><span class='glyphicon glyphicon-repeat' aria-hidden='true'></span></center>";
 
             var current = document.getElementsByClassName("active");
             if(current.length != 0)
