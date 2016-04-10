@@ -174,15 +174,12 @@ f1 = function(request, response)
             {
                 parsed.by_year = by_year(sc_data);
                 parsed.by_month = by_month(sc_data);
-                parsed['by_month']['2016'];
                 parsed.by_store = by_store(sc_data); 
             	response.render("dashboard", {parsed: parsed, session: request.session} );
             }
             catch(err)
             {
-                console.log(error);
-                sc_data = null;
-                response.render("dashboard", {sc_data: sc_data, session: request.session} );
+                response.redirect("/logout");
             }
         }
         else
