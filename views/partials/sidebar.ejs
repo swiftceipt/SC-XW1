@@ -24,12 +24,12 @@
                                     <a href='/folders/<%= session.folders[i] %>'><span><%= session.folders[i] %></span></a>
                                 </li>
                         <% } %>
-                        <li id="delete" hidden>REMOVE</li>
+                        <li id="delete" hidden><span class="glyphicon glyphicon-trash"></span> REMOVE</li>
                         <br>
                     </ul>
                 </li>
                 <li>
-                    <button id="nameFolder" onclick="nameFolder()" class="btn btn-primary">Create Folder</button>
+                    <button id="nameFolder" onclick="nameFolder()" class="btn btn-success">Create Folder</button>
                 </li>
 
                 <li>
