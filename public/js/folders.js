@@ -72,3 +72,23 @@ function nameFolder() {
         return false;
     })
 }
+
+function deleteFolder(folderName) {
+    $.ajax({
+        type: "POST",
+        url: "/delete_folder/" + folderName,
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data, status)
+        {
+            //window.reload();
+            window.location.href = '/receipts';
+            toastr.success( "Deleted folder successfully");
+        },
+        error: function(xhr, status, message)
+        {
+            toastr["error"]( "Sorry, something went wrong.");
+        }
+    });
+    return false;
+}

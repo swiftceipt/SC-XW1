@@ -111,12 +111,11 @@ delete_folder = function(request, response)
             console.log(body);
             var i = request.session.folders.indexOf(request.params.folderId);
             request.session.folders.splice(i, 1);
-            response.redirect("/receipts");
+            response.status(200).send({ status: 'success' });
         }
         else
         {
-            console.log(body);
-            response.redirect("/receipts");
+            response.status.send({ status: 'something blew up' });
         }
     });
 }
