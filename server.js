@@ -3,7 +3,7 @@ var app      = express();
 var morgan   = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('client-sessions');
-var Chance = require('Chance');
+var Chance = require('chance');
 var chance = new Chance();
 
 // set for local development, change when deploying
@@ -20,13 +20,20 @@ app.use(bodyParser());
 app.use(session({
   cookieName: 'session',
   secret: chance.word({length: 30}),
+  /* restore when iOS testing is done
   duration: 180 * 60 * 1000, // 180 minutes or 3 hours
   activeDuration: 30 * 60 * 1000, // 30 minutes
+  */
+  duration: 2 * 60 * 1000, // 2 minutes
+  activeDuration: 1 * 60 * 1000, // 1 minute
   secure: true, // ensures cookies are only used via HTTPS
 }));
 
 // routes
 require('./routes/routes.js').init(app);
+require('./routes/graph_data.js').init(app);
+require('./routes/folder.js').init(app);
+require('./routes/add_and_remove_receipts.js').init(app);
 
 // launch 
 app.listen(port, ipaddress, function() {

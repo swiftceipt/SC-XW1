@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <% include partials/headers %>
+        <title>Home</title>
+    </head>
+    <body>
+        <% if(JSON.stringify(session) === JSON.stringify({})){%>
+            <% include partials/navbar %>
+        <% } else {%>
+            <% include partials/navbar-inside %>
+        <%}%>
+        
+        
+        <div class="intro-header" style="background: url(images/dark-table-detail.png) no-repeat center center;">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>SwiftCeipt. All in one spot.</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    </div>
+     <a id="how_it_works"></a>
+
+     <div class="content-section-a">
+         <hr>
+         <div class="row">
+         <div class="col-md-1"></div>
+         <div class="col-md-10">
+         <img class="img-responsive" style="width:100%" src="images/SC_HowItWorks.png" alt="">
+         </div>
+         <div class="col-md-1"></div>
+         </div>
+     </div>
+
+        <% include partials/footer %>
+    </body>
+    
+</html>

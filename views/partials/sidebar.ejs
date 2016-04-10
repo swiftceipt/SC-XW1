@@ -1,0 +1,31 @@
+<div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                </li>
+                <li>
+                    <a href="/dashboard">Charts</a>
+                </li>
+                <li>
+                    <a href = "/receipts">Receipts</a>
+                </li>
+
+                <li><a href='#'><span>Folders</span></a>
+                    <ul>
+
+                        <% for(var i = 0; i < session.folders.length; i ++){ %>
+                            <li class = "folder" id = "<%= session.folders[i] %>">
+                                <a href='/folders/<%= session.folders[i] %>'><span><%= session.folders[i] %></span></a>
+                            </li>
+                        <% } %>
+                        <li id="delete" hidden>REMOVE</li>
+                    </ul>
+                </li>               
+                <li>
+                    <a href = "/receipts">Add new folder</a>
+                </li>
+
+                <li>
+                    <a href = "/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
