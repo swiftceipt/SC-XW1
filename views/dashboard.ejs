@@ -1,5 +1,22 @@
+<html lang="en">
+    <head>
+        <% include partials/headers %>
+    </head>
+    <body>
+        <% include partials/navbar-inside %>
+        <% include partials/sidebar %>
+        <div class = "container">
+            <div class = "row">
+            <div id="wrapper">
+            <div id="page-content-wrapper">
 
-<% include partials/headers %>
+<% 
+
+var buster = new Date();
+if (typeof parsed['by_store'][buster.getFullYear()] != 'undefined'){ 
+
+%>
+
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <script type="text/javascript">
@@ -122,5 +139,23 @@ var december = <%- JSON.stringify(parsed['by_store']['2016']['12'])%>
 </div>
 
 </div>
-<% include partials/footer %>
+
 <script type="text/javascript" src="/js/script.js"></script>
+
+<% } else { %>
+                    <div class = "col-md-12" id = "receiptArea">
+                        <div class = "jumbotron well">
+                            <h3>No receipts</h3>
+                            <p>We have not pulled any receipts from your email yet.</p>
+                            <p>Please follow <a href = "#">this tutorial</a> to get some receipts from your email</p>
+                        </div>
+                    </div>
+<% } %>
+<% include partials/footer %>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
