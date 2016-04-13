@@ -44,33 +44,42 @@ function nameFolder() {
     // turns the 'create folder' button into a text box
     $("#nameFolder").replaceWith(nameForm);
     nameForm.submit(function() {
-        $.ajax({
-            type: "POST",
-            url: "/create_folder",
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({
-                folderName: nameForm.find("input").val()
-            }),
-            success: function(data, status)
-            {
-                //window.reload();
-                window.location.href = '/receipts';
-                toastr.success( "Created folder successfully");
-            },
-            error: function(xhr, status, message)
-            {
-                if(xhr.responseJSON.error == 'This folder already exists')
+        folderName = nameForm.find("input").val();
+        console.log(nameForm.find("input").val());
+        if (!isValidFolderName(folderName))
+        {
+            toastr["warning"]("Please choose a folder name that contains only letters, numbers, and is less than 40 characters long.")
+        }
+        else
+        {
+            $.ajax({
+                type: "POST",
+                url: "/create_folder",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({
+                    folderName: folderName
+                }),
+                success: function(data, status)
                 {
-                    toastr["warning"]("A folder with this name already exists! Please choose a new name.");
-                }
-                else
+                    //window.reload();
+                    window.location.href = '/receipts';
+                    toastr.success( "Created folder successfully");
+                },
+                error: function(xhr, status, message)
                 {
-                    toastr["error"]( "Sorry, something went wrong.");
+                    if(xhr.responseJSON.error == 'This folder already exists')
+                    {
+                        toastr["warning"]("A folder with this name already exists! Please choose a new name.");
+                    }
+                    else
+                    {
+                        toastr["error"]( "Sorry, something went wrong.");
+                    }
+                      
                 }
-                  
-            }
-        });
+            });
+        }
         return false;
     })
 }
@@ -100,4 +109,9 @@ function showModal(folderName) {
     var replacementButton = $("<button id='confirmDelete' onclick='deleteFolder(&quot;" + folderName + "&quot;)' type='button' class='btn btn-danger'>Confirm</button>")
     $("#confirmDelete").replaceWith(replacementButton);
     $("#modal").modal('show');
+}
+
+function isValidFolderName(folderName) {
+    var regex = /^[a-zA-Z0-9][a-zA-Z0-9 ]{0,40}$/
+    return regex.test(folderName);
 }
