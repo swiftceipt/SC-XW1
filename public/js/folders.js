@@ -1,7 +1,8 @@
 function renameForm(i, name) {
     // turns the folder li into a text box to rename the folder
     var renameForm = $("<form><input type='text' name='newFolderName' placeholder='" + name + "'></form>");
-    $("#" + name).replaceWith(renameForm);
+    var selector = "[id='" + name + "']"
+    $(selector).replaceWith(renameForm);
     renameForm.submit(function()
     {
         $.ajax({
