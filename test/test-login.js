@@ -1,14 +1,15 @@
 var assert = require('chai').assert;
 var request = require('request');
+var config = require('../config.json');
 
 var validate_module = require('../routes/validate');
 
-describe('SC Server Status', function()
+describe('SC Server', function()
 {
-    it("Should allow you to login", function(done)
+    it("should accept valid login credientials", function(done)
     {
         var options = {
-            url: "https://tenv-service.swiftceipt.com/signIn",
+            url: config.endpoint + "/signIn",
             headers:
             {
                 "Accept": "application/json",
