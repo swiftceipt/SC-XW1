@@ -15,7 +15,6 @@
     "express-session": "~1.0.0",
     "method-override": "~1.0.0",
     "mocha": "^2.4.5",
-    "mongodb": "^2.0.48",
     "morgan": "~1.0.0",
     "request": "latest",
     "toastr": "^2.1.2"
