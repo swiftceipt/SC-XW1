@@ -43,5 +43,17 @@ describe("new_user(body)", function()
     assert.isNotTrue(validate_module.new_user(body));
     body.username = "!@$@#!";
     assert.isNotTrue(validate_module.new_user(body));
+    body.username = "MehtaWorldPeace"
+
+    body.password = undefined;
+    assert.isNotTrue(validate_module.new_user(body));
+    body.password = "";
+    assert.isNotTrue(validate_module.new_user(body));
+    body.password = "laskdjfhladskjhfkljashdflkjahslkjdfhalkjsdfhlkajshdflkjahsflkdjhaslkjdfhlaksjhdflkajhsdflkjhasldkjfhalksdjhflakjsdhflkjhasldkfjhalkjfhd";
+    assert.isNotTrue(validate_module.new_user(body));
+    body.password = "totally secure";
+
+    assert.isTrue(validate_module.new_user(body));
+
 
 });
