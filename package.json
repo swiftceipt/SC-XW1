@@ -6,6 +6,7 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "~1.0.0",
+    "chai": "^3.5.0",
     "chance": "latest",
     "client-sessions": "latest",
     "cookie-parser": "~1.0.0",
@@ -13,18 +14,19 @@
     "express": "~4.0.0",
     "express-session": "~1.0.0",
     "method-override": "~1.0.0",
+    "mocha": "^2.4.5",
     "mongodb": "^2.0.48",
     "morgan": "~1.0.0",
     "request": "latest",
-    "toastr": "^2.1.2",
-    "request": "latest"
+    "toastr": "^2.1.2"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/swiftceipt/SC-XW1"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test" : "mocha"
   },
   "engines": {
     "node": ">= 0.6.0",
