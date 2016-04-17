@@ -1,6 +1,6 @@
 var assert = require('chai').assert;
 var request = require('request');
-var config = require('../config.json');
+var config = require('../config');
 
 var validate_module = require('../routes/validate');
 
@@ -9,7 +9,7 @@ describe('SC Server', function()
     it("should accept valid login credientials", function(done)
     {
         var options = {
-            url: config.endpoint + "/signIn",
+            url: config.api_endpoint + "/signIn",
             headers:
             {
                 "Accept": "application/json",
