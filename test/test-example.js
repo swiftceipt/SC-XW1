@@ -1,12 +1,18 @@
 var assert = require('chai').assert;
-describe('Array', function()
+
+
+var validate_module = require('../routes/validate');
+describe('Validate', function()
 {
-  describe('#indexOf()', function ()
+  describe('isEmail(str)', function ()
   {
-    it('should return -1 when the value is not present', function ()
+    it('should allow valid emails', function ()
     {
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
+      assert.isTrue(validate_module.isEmail("jack@cirno.de"));
+      assert.isTrue(validate_module.isEmail("skmehta@andrew.cmu.edu"));
+      assert.isTrue(validate_module.isEmail("kevin@swiftceipt.com"));
+      assert.isTrue(validate_module.isEmail("joemertz@cmu.edu"));
+
     });
   });
 });
