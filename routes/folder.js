@@ -1,4 +1,6 @@
 var request_api = require('request');
+var config = require("../config.json");
+
 
 init = function(app)
 {
@@ -8,7 +10,7 @@ init = function(app)
 create_folder = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/folders",
+        url: config.api_endpoint + "/folders",
         headers:
         {
             "Accept": "application/json",
@@ -47,7 +49,7 @@ create_folder = function(request, response)
 rename_folder = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/folders",
+        url: config.api_endpoint + "/folders",
         headers:
         {
             "Accept": "application/json",
@@ -89,7 +91,7 @@ rename_folder = function(request, response)
 delete_folder = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/folders",
+        url: config.api_endpoint + "/folders",
         headers:
         {
             "Accept": "application/json",
@@ -123,7 +125,7 @@ delete_folder = function(request, response)
 oneFolder = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/getFolderByName",
+        url: config.api_endpoint + "/getFolderByName",
         headers:
         {
             "Accept": "application/json",
@@ -162,7 +164,7 @@ oneFolder = function(request, response)
 save_folder_info = function(response, request, callback)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/getAllFolders",
+        url: config.api_endpoint + "/getAllFolders",
         headers:
         {
             "Accept": "application/json",
