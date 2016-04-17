@@ -1,15 +1,16 @@
-
 var request_api = require('request');
 var validation = require('./validate');
+var config = require('../config.json');
+
 
 exports.init = function(app)
 {
-	app.get("/dashboard", is_logged_in, f1);
-	 app.get("/how_it_works", how_it_works);
-	 app.get("/support", support);
-	 app.get("/services", services);
-	 app.get("/contact", contact);
-	 app.get("/about", about);
+    app.get("/dashboard", is_logged_in, dashboard);
+    app.get("/how_it_works", how_it_works);
+    app.get("/support", support);
+    app.get("/services", services);
+    app.get("/contact", contact);
+    app.get("/about", about);
 }
 
 // out side login pages
@@ -157,16 +158,12 @@ by_store = function(receipts){
 	return result;
 }
 
-
-
-
-
-f1 = function(request, response)
+dashboard = function(request, response)
 {
 	var authToken = request.session.authToken;
 
 	var options = {
-        url: "https://tenv-service.swiftceipt.com/getNewReceipts",
+        url: config.api_endpoint + "/getNewReceipts",
         headers:
         {
             "Accept": "application/json",
