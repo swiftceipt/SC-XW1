@@ -7,5 +7,7 @@
 
     "api_endpoint": "https://tenv-service.swiftceipt.com",
     "session_duration": 120000,
-    "activeDuration": 60000
+    "activeDuration": 60000,
+
+    "google_maps_api_key" : "AIzaSyAplgHQOAr-awfM5ZsUm6X6a8aOgNH9W0Q"
 }
