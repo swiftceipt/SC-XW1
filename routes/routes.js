@@ -3,7 +3,7 @@ var validation = require('./validate');
 var google_maps = require('./map');
 var forget = require('./forget');
 var folder = require('./folder');
-var config = require("../config.json")
+var config = require("../config/config.json")
         
 exports.init = function(app)
 {

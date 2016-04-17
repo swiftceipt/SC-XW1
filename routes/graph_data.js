@@ -1,6 +1,6 @@
 var request_api = require('request');
 var validation = require('./validate');
-var config = require('../config.json');
+var config = require('../config/config.json');
 
 
 exports.init = function(app)

@@ -1,6 +1,6 @@
 var validate = require("./validate");
 var request_api = require('request');
-var config = require('../config.json');
+var config = require('../config/config.json');
 
 
 forgetPath = function(request, response)

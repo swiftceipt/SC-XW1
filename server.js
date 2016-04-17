@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var session = require('client-sessions');
 var Chance = require('chance');
 var chance = new Chance();
-var config = require('./config.json');
+var config = require('./config/config.json');
 
 var port     = config.server.port;
 var ipaddress = config.server.ipaddress;
