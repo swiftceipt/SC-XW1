@@ -48,6 +48,7 @@ check_login = function(request, response)
 
     request_api.post(options,function (error, api_response, body)
     {
+        console.log(error);
         if(api_response.statusCode == 500)
         {
             response.render("login",
