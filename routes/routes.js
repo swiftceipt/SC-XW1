@@ -3,6 +3,7 @@ var validation = require('./validate');
 var google_maps = require('./map');
 var forget = require('./forget');
 var folder = require('./folder');
+var config = require("../config.json")
         
 exports.init = function(app)
 {
@@ -32,7 +33,7 @@ exports.init = function(app)
 check_login = function(request, response)
 {
    var options = {
-        url: "https://tenv-service.swiftceipt.com/signIn",
+        url: config.api_endpoint + "/signIn",
         headers:
         {
             "Accept": "application/json",
@@ -127,7 +128,7 @@ register = function(request, response)
     }
 
     var options = {
-        url: "https://tenv-service.swiftceipt.com/registerUser",
+        url: config.api_endpoint + "/registerUser",
         headers:
         {
             "Accept": "application/json",
@@ -177,7 +178,7 @@ landing2 = function(request, response)
 receipts = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/getNewReceipts",
+        url: config.api_endpoint + "/getNewReceipts",
         headers:
         {
             "Accept": "application/json",
@@ -211,7 +212,7 @@ receipts = function(request, response)
 receipt = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/getReceiptById",
+        url: config.api_endpoint + "/getReceiptById",
         headers:
         {
             "Accept": "application/json",
