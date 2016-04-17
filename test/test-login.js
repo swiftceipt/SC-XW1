@@ -3,8 +3,6 @@ var request = require('request');
 var config = require('../config/config.json');
 var api_wrapper = require('../config/api_wrapper');
 
-var validate_module = require('../routes/validate');
-
 describe('SC Server', function()
 {
     it("should accept valid login credientials", function(done)
