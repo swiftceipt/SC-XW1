@@ -1,5 +1,5 @@
 var request_api = require('request');
-var config = require('./config.json');
+var config = require('../config.json');
 
 /*
 Takes a receipt and adds lat and long to it
