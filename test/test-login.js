@@ -1,6 +1,6 @@
 var assert = require('chai').assert;
 var request = require('request');
-var config = require('../config');
+var config = require('../config.json');
 
 var validate_module = require('../routes/validate');
 

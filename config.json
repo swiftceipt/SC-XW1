@@ -1,12 +1,11 @@
-var config = {
+{
     "server":
     {
         "port": 50000,
-        "ipaddress" : "localhost",
+        "ipaddress" : "localhost"
     },
 
     "api_endpoint": "https://tenv-service.swiftceipt.com",
-    "session-length": 2 * 60 * 1000
+    "session_duration": 120000,
+    "activeDuration": 60000
 }
-
-module.exports = config;
