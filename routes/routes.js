@@ -48,13 +48,13 @@ check_login = function(request, response)
 
     request_api.post(options,function (error, api_response, body)
     {
-        if(api_response.statusCode == 500)
+        if(api_response == undefined || api_response.statusCode == 500)
         {
             response.render("login",
             {
                 message: {
                     type: "danger",
-                    content: "The SwiftCeipt server is currently down (500 error)"
+                    content: "The SwiftCeipt server is currently down"
                 }
             });
         }
