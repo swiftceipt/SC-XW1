@@ -1,4 +1,5 @@
 var request_api = require('request');
+var config = require("../config.json");
 
 exports.init = function(app)
 {
@@ -8,7 +9,7 @@ exports.init = function(app)
 
 add = function(request,response){
 	 var options = {
-        url: "https://tenv-service.swiftceipt.com/folders",
+        url: config.api_endpoint + "/folders",
         headers:
         {
             "Accept": "application/json",
@@ -44,7 +45,7 @@ add = function(request,response){
 
 remove = function(request,response){
 	 var options = {
-        url: "https://tenv-service.swiftceipt.com/folders/"+request.params.folderName+"/"+request.params.receiptId,
+        url: config.api_endpoint + "/folders/"+request.params.folderName+"/"+request.params.receiptId,
         headers:
         {
             "Accept": "application/json",
