@@ -1,6 +1,4 @@
 var assert = require('chai').assert;
-var request = require('request');
-var config = require('../config/config.json');
 var api_wrapper = require('../config/api_wrapper');
 
 describe('SC Server', function()
