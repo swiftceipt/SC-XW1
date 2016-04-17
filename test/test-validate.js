@@ -1,8 +1,10 @@
 var assert = require('chai').assert;
 var validate_module = require('../routes/validate');
 
-describe('isEmail(str)', function()
+describe('routes/validate.js', function()
 {
+    describe('isEmail(str)', function()
+    {
     it('should allow valid emails', function()
     {
         assert.isTrue(validate_module.isEmail("jack@cirno.de"));
@@ -19,10 +21,10 @@ describe('isEmail(str)', function()
         assert.isFalse(validate_module.isEmail("!@%$$@cirno.de"));
         assert.isFalse(validate_module.isEmail("lasdkjfhlajfhd"));
     });
-});
+    });
 
-describe("new_user(body)", function()
-{
+    describe("new_user(body)", function()
+    {
     var body = {};
 
     it('should not allow an invalid email', function()
@@ -67,6 +69,6 @@ describe("new_user(body)", function()
     {
         assert.isTrue(validate_module.new_user(body));
     });
-
+    });
 
 });
