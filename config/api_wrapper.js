@@ -1,7 +1,8 @@
 var request = require('request');
 var config = require('./config.json');
 
-
+// this function streamlines all of the api calls that we make throughout the project
+// removing about 10 lines of code from each API call
 make_api_call = function(endpoint, body, callback, method)
 {
     var options = {
