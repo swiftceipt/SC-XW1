@@ -15,6 +15,7 @@ describe('SC Server', function()
             assert.isTrue(body != undefined);
             assert.isTrue(body.ackValue != undefined);
             assert.isTrue(body.ackValue == "SUCCESS");
+            assert.isTrue(typeof body.authToken == 'string');
             done();
         });
     });
