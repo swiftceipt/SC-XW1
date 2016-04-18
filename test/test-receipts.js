@@ -44,7 +44,7 @@ describe("Looking through receipts", function()
         }).then(done, done);
     })
 
-    it("should be able to click on a receipt to see its information ", function(done)
+    it("should be able to click on a receipt to see its information", function(done)
     {
         assert.isBelow(browser.query("#receiptArea").innerHTML.indexOf("The Home Depot"), 0);
 
@@ -55,4 +55,15 @@ describe("Looking through receipts", function()
 
         done();
     });
+
+    it("should be able to see the Original HTML page", function(done)
+    {
+        var button = '<button type="button" class="btn btn-default">Original Email</button>'
+        browser.window.$(browser.document).on("click", "#840", function()
+        {
+            assert.isAbove(browser.query("#receiptArea").innerHTML.indexOf(button), -1);
+        });
+        
+        done();
+    })
 });
