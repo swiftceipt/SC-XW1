@@ -1,35 +1,47 @@
+var Browser = require("zombie");
+var config = require("../config/config.json");
+var browser = new Browser();
 var assert = require('chai').assert;
-var api_wrapper = require('../config/api_wrapper');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-describe('SC Server', function()
+describe("Walking through the login process", function()
 {
-    it("should accept valid login credentials", function(done)
+    it("should have defined headless browser", function(done)
     {
-        api_wrapper.make_api_call("/signIn",
+        assert.isTrue(typeof browser != "undefined");
+        assert.isTrue(browser instanceof Browser);
+        done();
+    });
+
+    it("should visit the site and see the login form", function(done)
+    {
+        browser.visit("https://" + config.server.ipaddress + ":" + config.server.port + "/login").then(function()
         {
-            "email": "jack@cirno.de", 
-            "password": 1234
-        },
-        function (error, response, body)
+            assert.isTrue(browser.success);
+            assert.isTrue(browser.query("button[type='submit']").innerHTML == "Sign in");
+        }).then(done, done);
+    });
+
+    it("should not be able to login with wrong credentials", function(done)
+    {
+        browser
+        .fill('input[name="email"]', "wrongname")
+        .fill('input[name="password"]', "wrongpassword")
+        .pressButton('button[type="submit"]', function()
         {
-            assert.isTrue(body != undefined);
-            assert.isTrue(body.ackValue != undefined);
-            assert.isTrue(body.ackValue == "SUCCESS");
-            assert.isTrue(typeof body.authToken == 'string');
+            assert.isTrue(browser.query("button[type='submit']").innerHTML == "Sign in");
             done();
         });
     });
 
-    it("should not accept invalid login credentials", function(done)
+    it("should be able to login with valid credentials", function(done)
     {
-        api_wrapper.make_api_call("/signIn",
+        browser
+        .fill('input[name="email"]', "jack@cirno.de")
+        .fill('input[name="password"]', "1234")
+        .pressButton('button[type="submit"]', function()
         {
-            "email": "lskfjhglksjdhfglkjshdflkhjgf",
-            "password": 42908750
-        },
-        function (error, response, body)
-        {
-            assert.notEqual(body.ackValue, "SUCCESS");
+            assert.isTrue(browser.query("h2").innerHTML == "Yearly Spendings");
             done();
         });
     });
