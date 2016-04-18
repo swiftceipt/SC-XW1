@@ -40,3 +40,6 @@ https.createServer({
     }, app).listen(port);
 
 console.log('%s: Server started on https://%s:%d ...', Date(Date.now()), ipaddress, port);
+
+// export for testing
+module.exports = app;
