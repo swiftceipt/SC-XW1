@@ -16,7 +16,7 @@ make_api_call = function(endpoint, body, callback, method)
         body: body.body
     };
 
-    console.log(options);
+    // console.log(options);
 
     method = method || "post";
     request[method](options, callback);
