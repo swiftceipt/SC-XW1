@@ -130,7 +130,7 @@ register = function(request, response)
     },
     function(error, api_response, body)
     {
-        if(body != undefined && body.ackValue == "SUCCESS")
+        if((body != undefined && body.ackValue == "SUCCESS") || typeof body == 'string')
         {
             response.render("login", {message: {
                                         type: "success",

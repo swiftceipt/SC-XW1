@@ -6,6 +6,8 @@ var session = require('client-sessions');
 var Chance = require('chance');
 var chance = new Chance();
 var config = require('./config/config.json');
+var fs = require('fs');
+var https = require('https');
 
 var port     = config.server.port;
 var ipaddress = config.server.ipaddress;
@@ -31,7 +33,10 @@ require('./routes/graph_data.js').init(app);
 require('./routes/folder.js').init(app);
 require('./routes/add_and_remove_receipts.js').init(app);
 
-// launch 
-app.listen(port, ipaddress, function() {
-  console.log('%s: Server started on %s:%d ...', Date(Date.now()), ipaddress, port);
-});
+// launch with https
+https.createServer({
+      key: fs.readFileSync('./config/key.pem'),
+      cert: fs.readFileSync('./config/cert.pem')
+    }, app).listen(port);
+
+console.log('%s: Server started on https://%s:%d ...', Date(Date.now()), ipaddress, port);

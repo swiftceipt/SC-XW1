@@ -21,13 +21,14 @@ describe("/routes/routes.js", function()
         it("should be able to be able to register a new user", function(done)
         {
             var options = {
-                url: "http://" + config.server.ipaddress + ":" + config.server.port + "/register",
+                url: "https://" + config.server.ipaddress + ":" + config.server.port + "/register",
                 headers:
                 {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
                 json: true,
+                rejectUnauthorized: false,
                 body: buster
             };
 
