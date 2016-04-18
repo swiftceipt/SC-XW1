@@ -119,7 +119,7 @@ register = function(request, response)
                                         content: result.reason }});
     }
 
-    api_response.make_api_call("/registerUser",
+    api_wrapper.make_api_call("/registerUser",
     {
         firstName: request.body.firstName,
         lastName: request.body.lastName,
@@ -130,13 +130,13 @@ register = function(request, response)
     },
     function(error, api_response, body)
     {
-        if(!error && body.ackValue == "SUCCESS")
+        if(body != undefined && body.ackValue == "SUCCESS")
         {
             response.render("login", {message: {
                                         type: "success",
                                         content: "You have been registered!" }});
         }
-        else if(body != undefined)
+        else if(body != undefined && body.ackValue == "FAILURE")
         {
             response.render("register", {message: {
                                         type: "danger",
