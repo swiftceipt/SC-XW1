@@ -40,6 +40,7 @@ h6 {
     font-size: 15px;
     font-weight: 400;
     text-align: center;
+    margin:45px;
 }
 
 .container {
@@ -443,4 +444,8 @@ footer li
 {display: inline-block}
 footer .copyright{
     text-align: center
+}
+.imgwrapper img{ 
+     display:block;
+    margin:auto;
 }
