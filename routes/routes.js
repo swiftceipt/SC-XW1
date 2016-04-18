@@ -154,12 +154,17 @@ register = function(request, response)
                                         type: "success",
                                         content: "You have been registered!" }});
         }
-        else
+        else if(body != undefined)
         {
-            console.log(body.errors);
             response.render("register", {message: {
                                         type: "danger",
                                         content: body.errors[0].errorMessage }});
+        }
+        else
+        {
+            response.render("register", {message: {
+                                        type: "danger",
+                                        content: "The SC server is currently down" }});
         }
     });
 
