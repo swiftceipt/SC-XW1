@@ -6,6 +6,8 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 describe("Walking through the login process", function()
 {
+    this.timeout(0);
+    
     it("should have defined headless browser", function(done)
     {
         assert.isTrue(typeof browser != "undefined");
