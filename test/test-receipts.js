@@ -4,6 +4,16 @@ var browser = new Browser({ debug: true });
 var assert = require('chai').assert;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
+
+/*
+    Sees whether or not the browser can query for the selector and kind the key
+    In the selected innerHTML
+*/
+function contains(selector, key)
+{
+    return browser.query(selector).innerHTML.indexOf(key) >= 0; 
+}
+
 describe("Looking through receipts", function()
 {
     this.timeout(0);
@@ -38,8 +48,8 @@ describe("Looking through receipts", function()
         browser.visit(url + "/receipts").then(function()
         {
             // look for place holder
-            assert.isAbove(browser.query(".jumbotron").innerHTML.indexOf("get started"), -1);
-            assert.isAbove(browser.query("li.ui-draggable").innerHTML.indexOf("The Home Depot"), -1);
+            assert.isTrue(contains(".jumbotron", "get started"));
+            assert.isTrue(contains("li.ui-draggable", "The Home Depot"));
 
         }).then(done, done);
     })
@@ -50,7 +60,7 @@ describe("Looking through receipts", function()
 
         browser.window.$(browser.document).on("click", "#840", function()
         {
-            assert.isAbove(browser.query("#receiptArea").innerHTML.indexOf("RAPID SET SET CONTROL"), -1);
+            assert.isTrue(contains("#receiptArea", "RAPID SET SET CONTROL"));
         });
 
         done();
@@ -61,7 +71,7 @@ describe("Looking through receipts", function()
         var button = '<button type="button" class="btn btn-default">Original Email</button>'
         browser.window.$(browser.document).on("click", "#840", function()
         {
-            assert.isAbove(browser.query("#receiptArea").innerHTML.indexOf(button), -1);
+            assert.isTrue(contains("#receiptArea", button));
         });
 
         done();
@@ -71,7 +81,7 @@ describe("Looking through receipts", function()
     {
         browser.clickLink("a[target='_blank']").then(function()
         {
-            assert.isAbove(browser.query(".col-md-6:nth-child(2)").innerHTML.indexOf("WEST MIFFLIN, PA"), -1);
+            assert.isTrue(contains(".col-md-6:nth-child(2)", "WEST MIFFLIN, PA"));
             done();
         });
     });
