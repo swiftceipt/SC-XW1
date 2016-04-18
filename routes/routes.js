@@ -35,11 +35,9 @@ check_login = function(request, response)
 {
     api_wrapper.make_api_call("/signIn",
     {
-        body: 
-        {
-            "email": request.body.email, 
-            "password": request.body.password
-        }
+        "email": request.body.email, 
+        "password": request.body.password
+        
     },
     function(error, api_response, body)
     {
@@ -123,15 +121,12 @@ register = function(request, response)
 
     api_response.make_api_call("/registerUser",
     {
-        body: 
-        {
-            firstName: request.body.firstName,
-            lastName: request.body.lastName,
-            email: request.body.email,
-            username: request.body.username,
-            password: request.body.password
+        firstName: request.body.firstName,
+        lastName: request.body.lastName,
+        email: request.body.email,
+        username: request.body.username,
+        password: request.body.password
 
-        }
     },
     function(error, api_response, body)
     {
