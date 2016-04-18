@@ -121,14 +121,8 @@ register = function(request, response)
                                         content: result.reason }});
     }
 
-    var options = {
-        url: config.api_endpoint + "/registerUser",
-        headers:
-        {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        json: true,
+    api_response.make_api_call("/registerUser",
+    {
         body: 
         {
             firstName: request.body.firstName,
@@ -138,9 +132,8 @@ register = function(request, response)
             password: request.body.password
 
         }
-    };
-
-    request_api.post(options, function(error, api_response, body)
+    },
+    function(error, api_response, body)
     {
         if(!error && body.ackValue == "SUCCESS")
         {
