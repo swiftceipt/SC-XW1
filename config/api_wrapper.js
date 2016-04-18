@@ -13,8 +13,10 @@ make_api_call = function(endpoint, body, callback, method)
             "Content-Type": "application/json"
         },
         json: true,
-        body: body
+        body: body.body
     };
+
+    console.log(options);
 
     method = method || "post";
     request[method](options, callback);
