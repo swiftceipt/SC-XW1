@@ -226,7 +226,8 @@ receipt = function(request, response)
             google_maps.render_with_lat_long(body.receipt, function(receipt)
             {
                 response.render("receipt", {receipt: receipt,
-                                            popout: popout});
+                                            popout: popout,
+                                            session: request.session});
             });
         }
         else if (!error && body.ackValue == "SUCCESS" && request.query.html == "true")
