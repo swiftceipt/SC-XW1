@@ -36,7 +36,7 @@ Error: ENOENT, no such file or directory './config/key.pem'
     at startup (node.js:119:16)
     at node.js:902:3
 
-$ openssl req -x509 -newkey rsa:2048 -keyout config/key.pem -out config/cert.pem -days 365
+$ openssl req -nodes -x509 -newkey rsa:2048 -keyout config/key.pem -out config/cert.pem -days 365
   ...
 $ npm start
 Mon Apr 18 2016 00:14:44 GMT-0400 (EDT): Server started on https://localhost:50000 ...
