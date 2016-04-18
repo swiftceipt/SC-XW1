@@ -3,7 +3,8 @@ var validation = require('./validate');
 var google_maps = require('./map');
 var forget = require('./forget');
 var folder = require('./folder');
-var config = require("../config/config.json")
+var config = require("../config/config.json");
+var api_wrapper = require('../config/api_wrapper');
         
 exports.init = function(app)
 {
@@ -32,22 +33,15 @@ exports.init = function(app)
 
 check_login = function(request, response)
 {
-   var options = {
-        url: config.api_endpoint + "/signIn",
-        headers:
-        {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        json: true,
+    api_wrapper.make_api_call("/signIn",
+    {
         body: 
         {
             "email": request.body.email, 
             "password": request.body.password
         }
-    };
-
-    request_api.post(options,function (error, api_response, body)
+    },
+    function(error, api_response, body)
     {
         if(api_response == undefined || api_response.statusCode == 500)
         {
