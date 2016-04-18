@@ -1,6 +1,6 @@
 var Browser = require("zombie");
 var config = require("../config/config.json");
-var browser = new Browser();
+var browser = new Browser({ debug: true });
 var assert = require('chai').assert;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -56,14 +56,23 @@ describe("Looking through receipts", function()
         done();
     });
 
-    it("should be able to see the Original HTML page", function(done)
+    it("should be able to see the original HTML page", function(done)
     {
         var button = '<button type="button" class="btn btn-default">Original Email</button>'
         browser.window.$(browser.document).on("click", "#840", function()
         {
             assert.isAbove(browser.query("#receiptArea").innerHTML.indexOf(button), -1);
         });
-        
+
         done();
-    })
+    });
+
+    it("should be able to go to the popped out receipt page", function(done)
+    {
+        browser.clickLink("a[target='_blank']").then(function()
+        {
+            assert.isAbove(browser.query(".col-md-6:nth-child(2)").innerHTML.indexOf("WEST MIFFLIN, PA"), -1);
+            done();
+        });
+    });
 });
