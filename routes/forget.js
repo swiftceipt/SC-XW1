@@ -33,12 +33,12 @@ forgetPath = function(request, response)
                     }
                 });
             }
-            else
+            else if(!error && body.ackValue == "FAILURE")
             {
                 response.render("login", {
                     message : {
                         type: "danger",
-                        content: "There is something up with the SC server, please try again later"
+                        content: body.errors[0].errorMessage
                     }
                 });
             }

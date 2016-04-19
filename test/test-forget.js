@@ -40,7 +40,20 @@ describe("Forget Password", function()
             });
         }); 
     });
-    it("should allow you to enter a valid email");
+
+    it("should allow you to enter a valid email and confirm a sent email", function()
+    {
+        browser.pressButton("button[data-target='#forgetModal']", function()
+        {
+            browser
+            .fill("input#recipient-name", "jack@cirno.de")
+            .pressButton('button#forget_pw_button', function()
+            {
+                assert.isTrue(contains("div.alert-warning", "A reset email has been sent to jack@cirno.de"));
+                done();
+            });
+        });
+    });
+
     it("should tell you if you aren't recognized by the server");
-    it("should confirm that you have sent an email");
 });
