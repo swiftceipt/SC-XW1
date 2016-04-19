@@ -41,7 +41,7 @@ describe("Forget Password", function()
         }); 
     });
 
-    it("should allow you to enter a valid email and confirm a sent email", function()
+    it("should allow you to enter a valid email and confirm a sent email", function(done)
     {
         browser.pressButton("button[data-target='#forgetModal']", function()
         {
@@ -49,7 +49,7 @@ describe("Forget Password", function()
             .fill("input#recipient-name", "jack@cirno.de")
             .pressButton('button#forget_pw_button', function()
             {
-                assert.isTrue(contains("div.alert-success", "A reset email has been sent to jack@cirno.de"));
+                assert.isTrue(contains("div.alert-success", "A reset email has been sent"));
                 done();
             });
         });
