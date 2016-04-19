@@ -55,5 +55,17 @@ describe("Forget Password", function()
         });
     });
 
-    it("should tell you if you aren't recognized by the server");
+    it("should tell you if you aren't recognized by the server", function(done)
+    {
+        browser.pressButton("button[data-target='#forgetModal']", function()
+        {
+            browser
+            .fill("input#recipient-name", "bruce@waynecorp.com")
+            .pressButton('button#forget_pw_button', function()
+            {
+                assert.isTrue(contains("div.alert-danger", "We don't have a user with this email"));
+                done();
+            });
+        });  
+    });
 });
