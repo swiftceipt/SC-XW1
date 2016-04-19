@@ -15,6 +15,7 @@ function contains(selector, key)
 
 describe("Forget Password", function()
 {
+    this.timeout(0);
     var url = "https://" + config.server.ipaddress + ":" + config.server.port;
 
     it("should see the forget password", function(done)
@@ -22,9 +23,23 @@ describe("Forget Password", function()
         browser.visit(url + "/login").then(function()
         {
             assert.isTrue(contains("form", "Forgot Password?"));
+            done();
         })
     });
-    it("should not allow you to enter a invalid email");
+
+    it("should not allow you to enter a invalid email", function(done)
+    {
+        browser.pressButton("button[data-target='#forgetModal']", function()
+        {
+            browser
+            .fill("input#recipient-name", "this is not an email")
+            .pressButton('button#forget_pw_button', function()
+            {
+                assert.isTrue(contains("div.alert-warning", "That's not a valid email"));
+                done();
+            });
+        }); 
+    });
     it("should allow you to enter a valid email");
     it("should tell you if you aren't recognized by the server");
     it("should confirm that you have sent an email");
