@@ -85,4 +85,10 @@ describe("Looking through receipts", function()
             done();
         });
     });
+
+    it("should be able to see the Google Map", function(done)
+    {
+        assert.isTrue(contains(".col-md-6:nth-child(2)", "Google Maps JavaScript API"));
+        done();
+    });
 });
