@@ -453,3 +453,24 @@ footer .copyright{
      display:block;
     margin:auto;
 }
+#appview img{
+    max-width:100%;
+    box-shadow: 5px 5px 5px #888888;
+
+}
+#appview .panel-title{
+    background-color: rgb(249,87,34);
+    text-align: center;
+    font-size: 23px;
+    color:white;
+}
+#appview .panel-default{
+    width: 50%;
+    text-align: center;
+    color: rgb(88,88,88);
+    border-style: transparent;
+    display:block;
+    margin:auto;
+    
+}
+
