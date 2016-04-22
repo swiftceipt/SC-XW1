@@ -5,7 +5,7 @@ var config = require('../config/config.json');
 
 exports.init = function(app)
 {
-	app.get("/charts", is_logged_in, f1);
+	app.get("/charts", is_logged_in, dashboard);
     app.get("/how_it_works", how_it_works);
     app.get("/support", support);
     app.get("/services", services);

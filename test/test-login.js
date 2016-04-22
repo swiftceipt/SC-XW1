@@ -4,6 +4,11 @@ var browser = new Browser();
 var assert = require('chai').assert;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
+function contains(selector, key)
+{
+    return browser.query(selector).innerHTML.indexOf(key) >= 0; 
+}
+
 describe("Walking through the login process", function()
 {
     this.timeout(0);
@@ -43,7 +48,7 @@ describe("Walking through the login process", function()
         .fill('input[name="password"]', "1234")
         .pressButton('button[type="submit"]', function()
         {
-            assert.isTrue(browser.query("h2").innerHTML == "Yearly Spendings");
+            assert.isTrue(contains(".jumbotron", "get started"));
             done();
         });
     });
