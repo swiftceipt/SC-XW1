@@ -38,7 +38,7 @@ describe("Looking through receipts", function()
         .fill('input[name="password"]', "1234")
         .pressButton('button[type="submit"]', function()
         {
-            assert.isTrue(browser.query("h2").innerHTML == "Yearly Spendings");
+            assert.isTrue(contains(".jumbotron", "get started"));
             done();
         });
     });

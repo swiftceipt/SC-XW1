@@ -40,6 +40,7 @@ h6 {
     font-size: 15px;
     font-weight: 400;
     text-align: center;
+    margin:45px;
 }
 
 .container {
@@ -95,6 +96,10 @@ h6 {
     width: 400px;
     border-top: 1px solid #f8f8f8;
     border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.header-divider{
+    width:70px;
+    border-top:4px solid rgb(249,87,34);
 }
 
 .intro-message > h3 {
@@ -162,6 +167,7 @@ h6 {
 footer {
     padding: 50px 0;
     background-color: #f8f8f8;
+    bottom: 0px;
 }
 
 p.copyright {
@@ -444,3 +450,70 @@ footer li
 footer .copyright{
     text-align: center
 }
+.imgwrapper img{ 
+     display:block;
+    margin:auto;
+}
+#appview img{
+    max-width:100%;
+    box-shadow: 5px 5px 5px #888888;
+
+}
+#appview .panel-title{
+    background-color: rgb(249,87,34);
+    text-align: center;
+    font-size: 23px;
+    color:white;
+}
+#appview .panel-default{
+    width: 50%;
+    text-align: center;
+    color: rgb(88,88,88);
+    border-style: transparent;
+    display:block;
+    margin:auto;
+
+}
+#btn-over-phone{
+    position:relative;
+}
+#btn-over-phone img{
+    max-width:100%;
+}
+#btn-over-phone a{
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    background-color: rgb(249,87,34);
+    color: white;
+
+}
+#btn-over-phone a:hover{
+    background-color: #ff3333;
+
+}
+#get-started .thumbnail{
+    margin-top:10%;
+    height:30%;
+    background-color: rgb(235,230,224);
+    color: white;
+    padding: 20px;
+}
+#get-started h2{
+    margin-top: 30%;
+}
+#get-started .thumbnail h3{
+    color: rgb(88,88,88);
+}
+
+#get-started .thumbnail a{
+    color: rgb(249,87,34);
+}
+
+#get-started .thumbnail a:hover{
+    color: #ff3333;
+    text-decoration: none;
+}
+

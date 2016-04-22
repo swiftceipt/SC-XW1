@@ -22,7 +22,7 @@ exports.init = function(app)
     
     app.get("/", landing2);
 
-
+    
     app.get("/receipts", is_logged_in, receipts);
     app.get("/receipts/:receiptId", is_logged_in, receipt)
 
@@ -41,6 +41,7 @@ check_login = function(request, response)
     },
     function(error, api_response, body)
     {
+
         if(api_response == undefined || api_response.statusCode == 500)
         {
             response.render("login",
@@ -69,7 +70,7 @@ check_login = function(request, response)
 
             folder.save_folder_info(response, request, function(response)
             {
-                response.redirect("/dashboard");
+                response.redirect("/receipts");
             });
         }
     });
