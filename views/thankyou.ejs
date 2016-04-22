@@ -1,6 +1,7 @@
 <html>
     <head>
         <% include partials/headers %>
+        <title>Home</title>
     </head>
     <body>
         <% if(JSON.stringify(session) === JSON.stringify({})){%>
@@ -10,13 +11,18 @@
         <%}%>
         
         
-        <div class="intro-header" style="background: url(images/dark-table-detail.png) no-repeat center center;">
+        <div class="intro-header" style="background: url(images/city-people-street-sun.jpg) no-repeat center center;">
         <div class="container">
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>SwiftCeipt. All in one spot.</h1>
+                        <h1>Thank you for your input!</h1>
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="/" class="btn btn-default btn-lg"><span class="network-name">Back</span></a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -24,19 +30,7 @@
         </div>
         <!-- /.container -->
     </div>
-     <a id="how_it_works"></a>
-
-     <div class="content-section-a">
-         <hr>
-         <div class="row">
-         <div class="col-md-1"></div>
-         <div class="col-md-10">
-         <img class="img-responsive" style="width:100%" src="images/SC_HowItWorks.png" alt="">
-         </div>
-         <div class="col-md-1"></div>
-         </div>
-     </div>
-
+    
         <% include partials/footer %>
     </body>
     

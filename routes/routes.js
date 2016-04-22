@@ -3,6 +3,8 @@ var validation = require('./validate');
 var google_maps = require('./map');
 var forget = require('./forget');
 var folder = require('./folder');
+var config = require("../config/config.json");
+var api_wrapper = require('../config/api_wrapper');
         
 exports.init = function(app)
 {
@@ -20,7 +22,7 @@ exports.init = function(app)
     
     app.get("/", landing2);
 
-
+    
     app.get("/receipts", is_logged_in, receipts);
     app.get("/receipts/:receiptId", is_logged_in, receipt)
 
@@ -31,23 +33,15 @@ exports.init = function(app)
 
 check_login = function(request, response)
 {
-   var options = {
-        url: "https://tenv-service.swiftceipt.com/signIn",
-        headers:
-        {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        json: true,
-        body: 
-        {
-            "email": request.body.email, 
-            "password": request.body.password
-        }
-    };
-
-    request_api.post(options,function (error, api_response, body)
+    api_wrapper.make_api_call("/signIn",
     {
+        "email": request.body.email, 
+        "password": request.body.password
+        
+    },
+    function(error, api_response, body)
+    {
+
         if(api_response == undefined || api_response.statusCode == 500)
         {
             response.render("login",
@@ -76,7 +70,7 @@ check_login = function(request, response)
 
             folder.save_folder_info(response, request, function(response)
             {
-                response.redirect("/dashboard");
+                response.redirect("/receipts");
             });
         }
     });
@@ -126,39 +120,34 @@ register = function(request, response)
                                         content: result.reason }});
     }
 
-    var options = {
-        url: "https://tenv-service.swiftceipt.com/registerUser",
-        headers:
-        {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        json: true,
-        body: 
-        {
-            firstName: request.body.firstName,
-            lastName: request.body.lastName,
-            email: request.body.email,
-            username: request.body.username,
-            password: request.body.password
-
-        }
-    };
-
-    request_api.post(options, function(error, api_response, body)
+    api_wrapper.make_api_call("/registerUser",
     {
-        if(!error && body.ackValue == "SUCCESS")
+        firstName: request.body.firstName,
+        lastName: request.body.lastName,
+        email: request.body.email,
+        username: request.body.username,
+        password: request.body.password
+
+    },
+    function(error, api_response, body)
+    {
+        if((body != undefined && body.ackValue == "SUCCESS") || typeof body == 'string')
         {
             response.render("login", {message: {
                                         type: "success",
                                         content: "You have been registered!" }});
         }
-        else
+        else if(body != undefined && body.ackValue == "FAILURE")
         {
-            console.log(body.errors);
             response.render("register", {message: {
                                         type: "danger",
                                         content: body.errors[0].errorMessage }});
+        }
+        else
+        {
+            response.render("register", {message: {
+                                        type: "danger",
+                                        content: "The SC server is currently down" }});
         }
     });
 
@@ -177,7 +166,7 @@ landing2 = function(request, response)
 receipts = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/getNewReceipts",
+        url: config.api_endpoint + "/getNewReceipts",
         headers:
         {
             "Accept": "application/json",
@@ -211,7 +200,7 @@ receipts = function(request, response)
 receipt = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/getReceiptById",
+        url: config.api_endpoint + "/getReceiptById",
         headers:
         {
             "Accept": "application/json",
@@ -238,7 +227,8 @@ receipt = function(request, response)
             google_maps.render_with_lat_long(body.receipt, function(receipt)
             {
                 response.render("receipt", {receipt: receipt,
-                                            popout: popout});
+                                            popout: popout,
+                                            session: request.session});
             });
         }
         else if (!error && body.ackValue == "SUCCESS" && request.query.html == "true")

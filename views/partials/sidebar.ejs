@@ -3,7 +3,7 @@
                 <li class="sidebar-brand">
                 </li>
                 <li>
-                    <a href="/dashboard">Charts</a>
+                    <a href="/charts">Charts</a>
                 </li>
                 <li>
                     <a href = "/receipts">Receipts</a>
@@ -15,8 +15,9 @@
                         <% for(var i = 0; i < session.folders.length; i ++){ %>
                                 <li class = "folder" id = "<%= session.folders[i] %>" style="padding-right: 10px;">
                                     <span class="ico-pull pull-right">
-                                     
-                                        <img src="/images/glyphicons-31-pencil.png" onclick="renameForm(<%= i %>, '<%=session.folders[i] %>')" style="cursor: pointer;">
+                                    
+                                        <!-- icon from http://www.freepik.com -->
+                                        <img src="/images/tool.png" onclick="renameForm(<%= i %>, '<%=session.folders[i] %>')" style="cursor: pointer;">
 
                                         <img src="/images/glyphicons-208-remove.png" onclick="showModal('<%=session.folders[i] %>')" style="cursor: pointer;">
 
@@ -30,11 +31,7 @@
                 </li>
                 <li>
                     <button id="nameFolder" onclick="nameFolder()" class="btn btn-success">Create Folder</button>
-                </li>
-
-                <li>
-                    <a href = "/logout">Logout</a>
-                </li>   
+                </li> 
             </ul>
         </div>
 

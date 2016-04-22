@@ -10,7 +10,6 @@
         <script type="text/javascript">
                 $('#forgetModal').on('shown.bs.modal', function () { $('#myInput').focus()})
         </script>
-        <title>Login</title>
     </head>
 
     <body>
@@ -34,7 +33,7 @@
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
                 <button type="button" class="btn btn-default btn-block" data-toggle = "modal" data-target="#forgetModal">
-                    Forgot Password ?
+                    Forgot Password?
                 </button>
 
                 <br />
@@ -57,7 +56,7 @@
                                         </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-lg btn-primary btn-block" type = "submit">Submit Reset Request</button>
+                                    <button class="btn btn-lg btn-primary btn-block" type = "submit" id = "forget_pw_button">Submit Reset Request</button>
                                     <button class="btn btn-default btn-block" data-dismiss="modal">Close</button>
                                 </div>
                             </form>

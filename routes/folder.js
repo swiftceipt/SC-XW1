@@ -1,4 +1,6 @@
 var request_api = require('request');
+var config = require("../config/config.json");
+
 
 init = function(app)
 {
@@ -8,7 +10,7 @@ init = function(app)
 create_folder = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/folders",
+        url: config.api_endpoint + "/folders",
         headers:
         {
             "Accept": "application/json",
@@ -36,6 +38,10 @@ create_folder = function(request, response)
             console.log(body);
             response.status(500).send({ error: 'This folder already exists' });
         }
+        else if(api_response.statusCode == 401)
+        {
+            response.redirect("/logout");
+        }
         else
         {
             console.log(body);
@@ -47,7 +53,7 @@ create_folder = function(request, response)
 rename_folder = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/folders",
+        url: config.api_endpoint + "/folders",
         headers:
         {
             "Accept": "application/json",
@@ -78,6 +84,10 @@ rename_folder = function(request, response)
             console.log(body);
             response.status(500).send({ status: 'already exists' });
         }
+        else if(api_response.statusCode == 401)
+        {
+            response.redirect("/logout");
+        }
         else
         {
             console.log(body);
@@ -89,7 +99,7 @@ rename_folder = function(request, response)
 delete_folder = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/folders",
+        url: config.api_endpoint + "/folders",
         headers:
         {
             "Accept": "application/json",
@@ -113,6 +123,10 @@ delete_folder = function(request, response)
             request.session.folders.splice(i, 1);
             response.status(200).send({ status: 'success' });
         }
+        else if(api_response.statusCode == 401)
+        {
+            response.redirect("/logout");
+        }
         else
         {
             response.status.send({ status: 'something blew up' });
@@ -123,7 +137,7 @@ delete_folder = function(request, response)
 oneFolder = function(request, response)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/getFolderByName",
+        url: config.api_endpoint + "/getFolderByName",
         headers:
         {
             "Accept": "application/json",
@@ -139,7 +153,7 @@ oneFolder = function(request, response)
 
     request_api.post(options, function(error, api_response, body)
     {
-        console.log(body);
+        // console.log(body);
         if(!error && body.ackValue == "SUCCESS")
         {
             if(body.folder != null)
@@ -162,7 +176,7 @@ oneFolder = function(request, response)
 save_folder_info = function(response, request, callback)
 {
     var options = {
-        url: "https://tenv-service.swiftceipt.com/getAllFolders",
+        url: config.api_endpoint + "/getAllFolders",
         headers:
         {
             "Accept": "application/json",

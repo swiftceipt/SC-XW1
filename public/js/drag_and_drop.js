@@ -32,7 +32,6 @@ function init() {
     accept: ".list-group-item",
     hoverClass: "ui-state-hover",
   });
-  
 }
 function handleDropStop( event, ui ) {
   var element_id = ui.draggable.attr("id");
