@@ -4,7 +4,7 @@ var validation = require('./validate');
 
 exports.init = function(app)
 {
-	app.get("/dashboard", is_logged_in, f1);
+	app.get("/charts", is_logged_in, f1);
 	 app.get("/how_it_works", how_it_works);
 	 app.get("/support", support);
 	 app.get("/services", services);
