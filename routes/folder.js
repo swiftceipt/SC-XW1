@@ -141,7 +141,7 @@ oneFolder = function(request, response)
 
     request_api.post(options, function(error, api_response, body)
     {
-        console.log(body);
+        // console.log(body);
         if(!error && body.ackValue == "SUCCESS")
         {
             if(body.folder != null)
