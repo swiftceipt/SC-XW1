@@ -38,6 +38,10 @@ create_folder = function(request, response)
             console.log(body);
             response.status(500).send({ error: 'This folder already exists' });
         }
+        else if(api_response.statusCode == 401)
+        {
+            response.redirect("/logout");
+        }
         else
         {
             console.log(body);
@@ -80,6 +84,10 @@ rename_folder = function(request, response)
             console.log(body);
             response.status(500).send({ status: 'already exists' });
         }
+        else if(api_response.statusCode == 401)
+        {
+            response.redirect("/logout");
+        }
         else
         {
             console.log(body);
@@ -114,6 +122,10 @@ delete_folder = function(request, response)
             var i = request.session.folders.indexOf(request.params.folderId);
             request.session.folders.splice(i, 1);
             response.status(200).send({ status: 'success' });
+        }
+        else if(api_response.statusCode == 401)
+        {
+            response.redirect("/logout");
         }
         else
         {
