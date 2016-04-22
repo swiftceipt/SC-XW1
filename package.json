@@ -18,7 +18,8 @@
     "morgan": "~1.0.0",
     "nodemailer": "^2.3.2",
     "request": "latest",
-    "toastr": "^2.1.2"
+    "toastr": "^2.1.2",
+    "zombie": "^3.1.x"
   },
   "repository": {
     "type": "git",
@@ -31,5 +32,8 @@
   "engines": {
     "node": ">= 0.6.0",
     "npm": ">= 1.0.0"
+  },
+  "devDependencies": {
+    "zombie": "^3.1.1"
   }
 }

@@ -5,10 +5,12 @@ var bodyParser = require('body-parser');
 var session = require('client-sessions');
 var Chance = require('chance');
 var chance = new Chance();
+var config = require('./config/config.json');
+var fs = require('fs');
+var https = require('https');
 
-// set for local development, change when deploying
-var port     = 50000;
-var ipaddress = "127.0.0.1";
+var port     = config.server.port;
+var ipaddress = config.server.ipaddress;
 
 // set up our express application
 app.use(morgan('dev'));
@@ -20,12 +22,8 @@ app.use(bodyParser());
 app.use(session({
   cookieName: 'session',
   secret: chance.word({length: 30}),
-  /* restore when iOS testing is done
-  duration: 180 * 60 * 1000, // 180 minutes or 3 hours
-  activeDuration: 30 * 60 * 1000, // 30 minutes
-  */
-  duration: 2 * 60 * 1000, // 2 minutes
-  activeDuration: 1 * 60 * 1000, // 1 minute
+  duration: config.session_duration,
+  activeDuration: config.activeDuration,
   secure: true, // ensures cookies are only used via HTTPS
 }));
 
@@ -36,7 +34,13 @@ require('./routes/folder.js').init(app);
 require('./routes/add_and_remove_receipts.js').init(app);
 require('./routes/mailer.js').init(app);
 
-// launch 
-app.listen(port, ipaddress, function() {
-  console.log('%s: Server started on %s:%d ...', Date(Date.now()), ipaddress, port);
-});
+// launch with https
+https.createServer({
+      key: fs.readFileSync('./config/key.pem'),
+      cert: fs.readFileSync('./config/cert.pem')
+    }, app).listen(port);
+
+console.log('%s: Server started on https://%s:%d ...', Date(Date.now()), ipaddress, port);
+
+// export for testing
+module.exports = app;

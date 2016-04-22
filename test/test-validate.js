@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var validate_module = require('../routes/validate');
 
-describe('routes/validate.js', function()
+describe('/routes/validate.js', function()
 {
     describe('isEmail(str)', function()
     {

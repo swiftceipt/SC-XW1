@@ -1,5 +1,7 @@
 var validate = require("./validate");
 var request_api = require('request');
+var config = require('../config/config.json');
+
 
 forgetPath = function(request, response)
 {
@@ -7,7 +9,7 @@ forgetPath = function(request, response)
     if(validate.isEmail(request.body.email))
     {
         var options = {
-            url: "https://tenv-service.swiftceipt.com/forgotPassword",
+            url: config.api_endpoint + "/forgotPassword",
             headers:
             {
                 "Accept": "application/json",
@@ -31,12 +33,12 @@ forgetPath = function(request, response)
                     }
                 });
             }
-            else
+            else if(!error && body.ackValue == "FAILURE")
             {
                 response.render("login", {
                     message : {
                         type: "danger",
-                        content: "There is something up with the SC server, please try again later"
+                        content: body.errors[0].errorMessage
                     }
                 });
             }
