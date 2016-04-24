@@ -4,8 +4,6 @@ var browser = new Browser({ debug: true });
 var assert = require('chai').assert;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-
-
 function contains(selector, key)
 {
     return browser.query(selector).innerHTML.indexOf(key) >= 0; 
@@ -40,12 +38,6 @@ describe("Looking through all the content", function()
     	done();
     });
     
-
-
-
-
-    
-
     it("should go back to to home page by clicking logout", function(done){
     	var logout = '<li><a href="/logout">Logout</a></li>'
     	browser.window.$(browser.document).on("click", logout, function()
@@ -54,7 +46,5 @@ describe("Looking through all the content", function()
         	});
         done();
     });
-
     
 });
-
