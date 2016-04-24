@@ -26,30 +26,39 @@ describe("Folder Functionality", function()
         });
     });
 
-    it("should successfully log in", function(done)
+    it("should see the login page", function(done)
     {
-        assert.isTrue(typeof browser != "undefined");
-        assert.isTrue(browser instanceof Browser);
-
         browser.visit(url + "/login").then(function()
         {
             assert.isTrue(browser.success);
             assert.isTrue(browser.query("button[type='submit']").innerHTML == "Sign in");
-        }).then(done, function(done2)
-        {
+        }).then(done, done);
+    });
 
-            browser
-            .fill('input[name="email"]', "jack@cirno.de")
-            .fill('input[name="password"]', "1234")
-            .pressButton('button[type="submit"]', function()
-            {
-                assert.isTrue(contains(".jumbotron", "get started"));
-                done2();
-            });
+    it("should be able to login with valid credentials", function(done)
+    {
+        browser
+        .fill('input[name="email"]', "jack@cirno.de")
+        .fill('input[name="password"]', "1234")
+        .pressButton('button[type="submit"]', function()
+        {
+            assert.isTrue(contains(".jumbotron", "get started"));
+            done();
         });
     });
 
-    it("if there is no 'food' folder defined, should be able to create it");
+    it("if there is no 'food' folder defined, should be able to create it", function(done)
+    {   
+        assert(contains(".sidebar-nav", "<span>Folders</span>"));
+        if(!contains(".sidebar-nav", "<span>food</span>"))
+        {
+            done();
+        }
+        else
+        {
+            done();
+        }
+    });
     it("should be able to change the folder name to 'delicious food'");
     it("should be able to delete the folder");
 })
