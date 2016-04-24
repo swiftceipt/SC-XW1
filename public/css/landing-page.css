@@ -215,7 +215,7 @@ p.copyright {
 
 #page-content-wrapper {
     width: 100%;
-    position: absolute;
+    position: relative;
     padding: 15px;
 }
 
@@ -524,15 +524,10 @@ footer .copyright{
     position: fixed;
 }
 
-#receiptArea {
+
+#receiptArea{
     position:relative;
     top:0;
     left:0;
     bottom:0;
 }
-/*#receiptArea{
-    position: fixed;
-    margin-right: 10px;
-    width: 40%;
-    overflow-y:scroll;
-}*/
