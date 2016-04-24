@@ -5,9 +5,6 @@ var browser = new Browser({ debug: true });
 var assert = require('chai').assert;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-
-
-
 function contains(selector, key)
 {
     return browser.query(selector).innerHTML.indexOf(key) >= 0; 
@@ -22,7 +19,6 @@ function exists(id){
     	return false;
 	}
 }
-
 
 describe('testing drag and drop functionalities', function() {
 	this.timeout(0);
@@ -67,5 +63,6 @@ describe('testing drag and drop functionalities', function() {
 		});
 		done();
 	});
+
 
 });
