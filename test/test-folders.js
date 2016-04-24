@@ -58,7 +58,7 @@ describe("Folder Functionality", function()
     it("if there is no 'food' folder defined, should be able to create it", function(done)
     {   
         assert(contains(".sidebar-nav", "<span>Folders</span>"));
-        if(!contains(".sidebar-nav", "<span>food</span>"))
+        if(!contains(".sidebar-nav", "<span>FOOD</span>"))
         {
             browser.pressButton("#nameFolder", function()
             {
