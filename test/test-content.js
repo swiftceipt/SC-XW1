@@ -16,7 +16,7 @@ describe("Looking through all the content", function()
 
 	this.timeout(0);
     var url = "https://" + config.server.ipaddress + ":" + config.server.port;
-    it("should see logo when logged in and clicking the logo will lead back the the receipts page", function(done){
+    it("should go back the the receipts page by clicking the logo", function(done){
     	//login
     	browser.visit(url + "/login").then(function(){
     		browser
@@ -31,13 +31,13 @@ describe("Looking through all the content", function()
         		});
         		done();
         	});
-        	
-
     	});
-
-    	
-
     });
+    it("should see the name on the nav bar", function(done){
+    	assert.isTrue(contains(".navbar-right", "test@ceet.us"));
+    	done();
+    });
+
     
 });
 
