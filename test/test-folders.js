@@ -26,6 +26,14 @@ describe("Folder Functionality", function()
         });
     });
 
+    after(function()
+    {
+        browser.visit(url + "/logout", function(done)
+        {
+            contains("ul.nav", "Register");
+        });
+    });
+
     it("should see the login page", function(done)
     {
         browser.visit(url + "/login").then(function()
