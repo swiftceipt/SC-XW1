@@ -39,7 +39,12 @@ describe("Looking through all the content", function()
     	assert.isTrue(contains(".navbar-right", "test@ceet.us"));
     	done();
     });
+    
 
+
+
+
+    
 
     it("should go back to to home page by clicking logout", function(done){
     	var logout = '<li><a href="/logout">Logout</a></li>'
