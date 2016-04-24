@@ -33,9 +33,21 @@ describe("Looking through all the content", function()
         	});
     	});
     });
+
+
     it("should see the name on the nav bar", function(done){
     	assert.isTrue(contains(".navbar-right", "test@ceet.us"));
     	done();
+    });
+
+
+    it("should go back to to home page by clicking logout", function(done){
+    	var logout = '<li><a href="/logout">Logout</a></li>'
+    	browser.window.$(browser.document).on("click", logout, function()
+        	{
+            	assert.isTrue(contains(".intro-message", "Manage Receipts Effortlessly Forever"));
+        	});
+        done();
     });
 
     
