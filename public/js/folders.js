@@ -74,9 +74,13 @@ function nameFolder() {
                 },
                 error: function(xhr, status, message)
                 {
-                    if(xhr.responseJSON.error == 'This folder already exists')
+                    if(xhr.responseJSON != undefined && xhr.responseJSON.error == 'This folder already exists')
                     {
                         toastr["warning"]("A folder with this name already exists! Please choose a new name.");
+                    }
+                    else if (xhr.responseJSON == undefined)
+                    {
+                        location.href = "/logout";
                     }
                     else
                     {
