@@ -52,17 +52,7 @@ describe('testing drag and drop functionalities', function() {
     	});
     	done();
 	});
-	it('should remove receipts from folder properly',function(done){
-		var receipt = browser.document.querySelector('#840');
-		var delete_button = browser.document.querySelector('#delete');
-		var folder = '<a href="/folders/test"><span>test</span></a>';
-		dragMock.dragStart(receipt).drop(delete_button);
-		browser.window.$(browser.document).on("click", folder, function()
- 		{
-			assert.isTrue(exists('#840'))
-		});
-		done();
-	});
+
 
 
 });

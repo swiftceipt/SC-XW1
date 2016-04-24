@@ -519,4 +519,7 @@ footer .copyright{
 .jumbotron{
     position: fixed;
 }
-
+.float-content{
+    position: fixed;
+    top:0;
+}
