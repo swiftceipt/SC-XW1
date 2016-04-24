@@ -516,4 +516,7 @@ footer .copyright{
     color: #ff3333;
     text-decoration: none;
 }
+.jumbotron{
+    position: fixed;
+}
 

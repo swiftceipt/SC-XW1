@@ -36,6 +36,8 @@ function init() {
 function handleDropStop( event, ui ) {
   var element_id = ui.draggable.attr("id");
   var element_drop_id = event.target.id;
+  var receiptName = document.getElementById(element_id).getElementsByTagName("h4")[0].innerHTML;
+  console.log(receiptName);
     $.ajax({
       type: "GET",
       url: "/add/" + element_id +"/" + element_drop_id,
@@ -44,7 +46,7 @@ function handleDropStop( event, ui ) {
       success: function(data, status)
       {
         //window.reload();
-        toastr.success( "you have successfully dragged receipt"+ " " + element_id 
+        toastr.success( "you have successfully dragged receipt"+ " " + receiptName 
           + " " +"on to" + " " + "folder"+ " " + element_drop_id);
       },
       error: function(xhr, status, message)
