@@ -94,8 +94,8 @@ function nameFolder() {
     })
 }
 
-function deleteFolder(folderName) {
-    console.log('asdf');
+function deleteFolder(folderName)
+{
     $.ajax({
         type: "POST",
         url: "/delete_folder/" + folderName,
@@ -109,7 +109,14 @@ function deleteFolder(folderName) {
         },
         error: function(xhr, status, message)
         {
-            toastr["error"]( "Sorry, something went wrong.");
+            if(xhr.responseText.indexOf("Login template largely") > 0)
+            {
+                location.href = "/logout";
+            }
+            else
+            {
+                toastr["error"]( "Sorry, something went wrong.");
+            }
         }
     });
     return false;

@@ -52,7 +52,15 @@ describe("Folder Functionality", function()
         assert(contains(".sidebar-nav", "<span>Folders</span>"));
         if(!contains(".sidebar-nav", "<span>food</span>"))
         {
-            done();
+            browser.pressButton("#nameFolder", function()
+            {
+                browser
+                .fill("input[name='folderName']", "food")
+                .fire("form", "submit", function()
+                {
+                    done();
+                });
+            });
         }
         else
         {
