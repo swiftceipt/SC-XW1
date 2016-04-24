@@ -14,13 +14,20 @@ function contains(selector, key)
 }
 
 
-
+function exists(id){
+	if(browser.document.getElementById(id)){
+    	return true;
+	}
+	else {
+    	return false;
+	}
+}
 
 
 describe('testing drag and drop functionalities', function() {
 	this.timeout(0);
     var url = "https://" + config.server.ipaddress + ":" + config.server.port;
-    it('should moves receipts into folder properly', function(done) {
+    it('should moves receipts into and out of folder properly', function(done) {
     //login
     	browser.visit(url + "/login").then(function(){
     		browser
@@ -30,6 +37,7 @@ describe('testing drag and drop functionalities', function() {
 
         		var receipt = document.querySelector('#830');
 				var folder = '<a href="/folders/test"><span>test</span></a>';
+				var delete_button = browser.document.querySelector('#delete');
 				dragMock.dragStart(receipt).drop(folder);
 
 				browser.window.$(browser.document).on("click", folder, function()
@@ -39,10 +47,25 @@ describe('testing drag and drop functionalities', function() {
         			{		
             			assert.isTrue(contains("#receiptArea", "RAPID SET SET CONTROL"));
        				});
+       				dragMock.dragStart(receipt).drop(delete_button);
+
+       				assert.isTrue(exists('#840'));
+       				assert.isFalse(exists('#830'));
         		});
         	});
     	});
     	done();
 	});
+	// it('should remove receipts from folder properly',function(done){
+	// 	var receipt = browser.document.querySelector('#840');
+	// 	var delete_button = browser.document.querySelector('#delete');
+	// 	var folder = '<a href="/folders/test"><span>test</span></a>';
+	// 	dragMock.dragStart(receipt).drop(delete_button);
+	// 	browser.window.$(browser.document).on("click", folder, function()
+ // 		{
+	// 		assert.isTrue(exists('#840'))
+	// 	});
+	// 	done();
+	// });
 
 });
