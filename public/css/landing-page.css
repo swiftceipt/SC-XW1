@@ -443,6 +443,10 @@ p.copyright {
     font-size: 13px;
 }
 /*end of receipt third column*/
+footer{
+    z-index: 100;
+    width: 100%;
+}
 footer ul 
 {list-style-type: none; text-align: center}
 footer li 
@@ -519,7 +523,16 @@ footer .copyright{
 .jumbotron{
     position: fixed;
 }
-.float-content{
-    position: fixed;
+
+#receiptArea {
+    position:relative;
     top:0;
+    left:0;
+    bottom:0;
 }
+/*#receiptArea{
+    position: fixed;
+    margin-right: 10px;
+    width: 40%;
+    overflow-y:scroll;
+}*/
