@@ -1,4 +1,6 @@
-function renameForm(i, name) {
+function renameForm(i, name)
+{
+    name = name.toUpperCase();
     // turns the folder li into a text box to rename the folder
     var renameForm = $("<form><input type='text' name='newFolderName' placeholder='" + name + "'></form>");
     var selector = "[id='" + name + "']"
@@ -45,13 +47,14 @@ function renameForm(i, name) {
     } )
 }
 
-function nameFolder() {
+function nameFolder()
+{
     var nameForm = $("<form><input type='text' name='folderName' placeholder='Folder Name'></form>");
-    console.log(nameForm);
     // turns the 'create folder' button into a text box
     $("#nameFolder").replaceWith(nameForm);
     nameForm.submit(function() {
-        folderName = nameForm.find("input").val();
+        var folderName = nameForm.find("input").val();
+        folderName = folderName.toUpperCase();
         if (!isValidFolderName(folderName))
         {
             toastr["warning"]("Please choose a folder name that contains only letters, numbers, and is less than 40 characters long.")
@@ -74,9 +77,13 @@ function nameFolder() {
                 },
                 error: function(xhr, status, message)
                 {
-                    if(xhr.responseJSON.error == 'This folder already exists')
+                    if(xhr.responseJSON != undefined && xhr.responseJSON.error == 'This folder already exists')
                     {
                         toastr["warning"]("A folder with this name already exists! Please choose a new name.");
+                    }
+                    else if (xhr.responseJSON == undefined)
+                    {
+                        location.href = "/logout";
                     }
                     else
                     {
@@ -90,8 +97,8 @@ function nameFolder() {
     })
 }
 
-function deleteFolder(folderName) {
-    console.log('asdf');
+function deleteFolder(folderName)
+{
     $.ajax({
         type: "POST",
         url: "/delete_folder/" + folderName,
@@ -105,19 +112,28 @@ function deleteFolder(folderName) {
         },
         error: function(xhr, status, message)
         {
-            toastr["error"]( "Sorry, something went wrong.");
+            if(xhr.responseText.indexOf("Login template largely") > 0)
+            {
+                location.href = "/logout";
+            }
+            else
+            {
+                toastr["error"]( "Sorry, something went wrong.");
+            }
         }
     });
     return false;
 }
 
-function showModal(folderName) {
+function showModal(folderName)
+{
     var replacementButton = $("<button id='confirmDelete' onclick='deleteFolder(&quot;" + folderName + "&quot;)' type='button' class='btn btn-danger'>Confirm</button>")
     $("#confirmDelete").replaceWith(replacementButton);
     $("#modal").modal('show');
 }
 
-function isValidFolderName(folderName) {
+function isValidFolderName(folderName)
+{
     var regex = /^[a-zA-Z0-9][a-zA-Z0-9 ]{0,40}$/
     return regex.test(folderName);
 }

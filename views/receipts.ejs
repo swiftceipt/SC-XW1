@@ -14,14 +14,13 @@
         <% include partials/navbar-inside %>
         <% include partials/sidebar %>
         <div class = "container">
-            <div class = "row">
             <div id="wrapper">
             <div id="page-content-wrapper">
-
-
+                
+            <div class="row">
                 <% if (typeof receipts == "object" && receipts != null) { %>
-
-                    <ul class="list-group col-md-6"> <% for(var i = 0; i < receipts.length; i++) { %>
+                    <div class="col-md-6">
+                    <ul class="list-group"> <% for(var i = 0; i < receipts.length; i++) { %>
                         <li class = "list-group-item" id = "<%= receipts[i].receipt_id %>">
                             <a href = "/receipts/<%= receipts[i].receipt_id %>?popout=true", target = "_blank">
                                 <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
@@ -37,31 +36,37 @@
                         </li>
                     <% } %>
                     </ul>
-                    <div class = "col-md-6" id = "receiptArea">
+                    </div>
+                    <div class = "col-md-6">
+                        <div id = "receiptArea">
                         <div class = "jumbotron well">
                             <h3>Let's get started!</h3>
                             <p>Click a receipt on the left to view it individually.</p>
-                            <p> You can also click <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> to move the receipt to a new window.</p>
+                            <p> You can also click <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> to move the receipt to a new window. There, you will also find a map of the store associated with that receipt.</p>
+                            <p>Finally, you can drag and drop receipts into your folders to categorize them accordingly!</p>
+                        </div>
                         </div>
                     </div>
                 <% } else { %>
-                    <div class = "col-md-12" id = "receiptArea">
-                        <div class = "jumbotron well">
+                    <div class = "col-md-12">
+                        <div class = "jumbotron well" id = "receiptArea">
                             <h3>No receipts</h3>
-                            <p>There are no receipts according to your selection</p>
-                            <p>Please either add some new ones from your email, or add some to folder</p>
+                            <p>There are no receipts according to your selection.</p>
                         </div>
                     </div>
                 <% } %>
+
             </div>
+            <!-- end of row -->
             </div>
+            <!-- end of page content wrapper -->
             </div>
+            <!-- end of wrapper -->
         </div>
 
-    <p><a href = "/dashboard">Dashboard</a></p>
 
     <br>
-    <% include partials/footer %>
+    <% include partials/footer %> 
 
     </body>
 </html>

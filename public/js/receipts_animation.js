@@ -23,11 +23,16 @@ window.onload = function()
                 url: "/receipts/" + this.id,
                 success: function(data, status)
                 {
+                    if(data.indexOf("Login to SwiftCeipt") > 0)
+                    {
+                        window.location = "/logout";
+                        window.reload();
+                    }
                     responseArea.innerHTML = data;
                 },
                 error: function(xhr, status, message)
                 {
-                    window.location = "/login";
+                    window.location = "/logout";
                     window.reload();
                 }
             });
