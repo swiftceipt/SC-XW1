@@ -215,7 +215,7 @@ p.copyright {
 
 #page-content-wrapper {
     width: 100%;
-    position: absolute;
+    position: relative;
     padding: 15px;
 }
 
@@ -443,6 +443,10 @@ p.copyright {
     font-size: 13px;
 }
 /*end of receipt third column*/
+footer{
+    z-index: 100;
+    width: 100%;
+}
 footer ul 
 {list-style-type: none; text-align: center}
 footer li 
@@ -516,4 +520,14 @@ footer .copyright{
     color: #ff3333;
     text-decoration: none;
 }
+.jumbotron{
+    position: fixed;
+}
 
+
+#receiptArea{
+    position:relative;
+    top:0;
+    left:0;
+    bottom:0;
+}

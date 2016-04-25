@@ -32,7 +32,7 @@ window.onload = function()
                 },
                 error: function(xhr, status, message)
                 {
-                    window.location = "/login";
+                    window.location = "/logout";
                     window.reload();
                 }
             });
