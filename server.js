@@ -13,7 +13,16 @@ var port     = config.server.port;
 var ipaddress = config.server.ipaddress;
 
 // set up our express application
-app.use(morgan('dev'));
+if(process.argv.length > 2 && process.argv[2] == "test") // if we're testing
+{
+    // do not use a morgan logging module
+    port = process.argv[3]
+}
+else
+{
+    app.use(morgan('dev'));
+}
+
 app.set('view engine', 'ejs'); // set up ejs for templating
 app.use(express.static(__dirname + '/public'));
 
