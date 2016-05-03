@@ -47,12 +47,15 @@ require('./routes/mailer.js').init(app);
 // launch with https
 
 // set up our express application
+var message = "";
 if(process.argv.length > 2 && process.argv[2] == "nodetest") // if we're testing
 {
     https.createServer({
-          key: fs.readFileSync('./config/dummy_key.pem'),
-          cert: fs.readFileSync('./config/dummy_cert.pem')
+            key: fs.readFileSync('./config/dummy_key.pem'),
+            cert: fs.readFileSync('./config/dummy_cert.pem')
         }, app).listen(port);
+
+    var message = '%s: Test server started on https://%s:%d ...';
 }
 else
 {
@@ -61,9 +64,11 @@ else
           cert: fs.readFileSync('./config/cert.pem')
         }, app).listen(port);
 
+    var message = '%s: Public server started on https://%s:%d ...'
+
 }
 
-console.log('%s: Server started on https://%s:%d ...', Date(Date.now()), ipaddress, port);
+console.log(message, Date(Date.now()), ipaddress, port);
 
 // export for testing
 module.exports = app;
