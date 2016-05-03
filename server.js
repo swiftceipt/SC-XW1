@@ -12,6 +12,7 @@ var https = require('https');
 var port     = config.server.port;
 var ipaddress = config.server.ipaddress;
 
+
 // set up our express application
 if(process.argv.length > 2 && process.argv[2] == "nodetest") // if we're testing
 {
@@ -44,10 +45,23 @@ require('./routes/add_and_remove_receipts.js').init(app);
 require('./routes/mailer.js').init(app);
 
 // launch with https
-https.createServer({
-      key: fs.readFileSync('./config/key.pem'),
-      cert: fs.readFileSync('./config/cert.pem')
-    }, app).listen(port);
+
+// set up our express application
+if(process.argv.length > 2 && process.argv[2] == "nodetest") // if we're testing
+{
+    https.createServer({
+          key: fs.readFileSync('./config/dummy_key.pem'),
+          cert: fs.readFileSync('./config/dummy_cert.pem')
+        }, app).listen(port);
+}
+else
+{
+    https.createServer({
+          key: fs.readFileSync('./config/key.pem'),
+          cert: fs.readFileSync('./config/cert.pem')
+        }, app).listen(port);
+
+}
 
 console.log('%s: Server started on https://%s:%d ...', Date(Date.now()), ipaddress, port);
 
