@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "node server.js test 4043 & mocha ; killall node"
+    "test": "node server.js test 4043 & mocha"
   },
   "engines": {
     "node": ">= 0.6.0",
