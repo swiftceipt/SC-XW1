@@ -21,7 +21,7 @@ describe("/routes/routes.js", function()
         it("should be able to be able to register a new user", function(done)
         {
             var options = {
-                url: "https://" + config.server.ipaddress + ":" + config.server.port + "/register",
+                url: "https://" + config.server.ipaddress + ":4043" + "/register",
                 headers:
                 {
                     "Accept": "application/json",

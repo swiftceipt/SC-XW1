@@ -16,7 +16,7 @@ function contains(selector, key)
 describe("Forget Password", function()
 {
     this.timeout(0);
-    var url = "https://" + config.server.ipaddress + ":" + config.server.port;
+    var url = "https://" + config.server.ipaddress + ":4043";
 
     it("should see the forget password", function(done)
     {

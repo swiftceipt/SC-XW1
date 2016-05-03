@@ -13,9 +13,9 @@ var port     = config.server.port;
 var ipaddress = config.server.ipaddress;
 
 // set up our express application
-if(process.argv.length > 2 && process.argv[2] == "test") // if we're testing
+if(process.argv.length > 2 && process.argv[2] == "nodetest") // if we're testing
 {
-    // do not use a morgan logging module
+    // do not use a morgan logging module and change the port
     port = process.argv[3]
 }
 else

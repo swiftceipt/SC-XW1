@@ -22,7 +22,7 @@ describe("Walking through the login process", function()
 
     it("should visit the site and see the login form", function(done)
     {
-        browser.visit("https://" + config.server.ipaddress + ":" + config.server.port + "/login").then(function()
+        browser.visit("https://" + config.server.ipaddress + ":4043" + "/login").then(function()
         {
             assert.isTrue(browser.success);
             assert.isTrue(browser.query("button[type='submit']").innerHTML == "Sign in");
