@@ -1,4 +1,4 @@
-# SC-XW1
+# SC-XW1 [![Build Status](https://travis-ci.org/SivanMehta/SC-XW1.svg?branch=dev)](https://travis-ci.org/SivanMehta/SC-XW1)
 CMU/Swiftceipt Collaborative Project.
 
 ## Tests
