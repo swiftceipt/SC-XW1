@@ -15,7 +15,7 @@ function contains(selector, key)
 
 describe("Folder Functionality", function()
 {
-    this.timeout(0);
+    this.timeout(5 * 1000); // 5 seconds
     var url = "https://" + config.server.ipaddress + ":4043";
 
     before(function()

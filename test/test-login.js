@@ -11,7 +11,6 @@ function contains(selector, key)
 
 describe("Walking through the login process", function()
 {
-    this.timeout(0);
     
     it("should have defined headless browser", function(done)
     {
@@ -22,6 +21,7 @@ describe("Walking through the login process", function()
 
     it("should visit the site and see the login form", function(done)
     {
+        this.timeout(5 * 1000); // 5 seconds
         browser.visit("https://" + config.server.ipaddress + ":4043" + "/login").then(function()
         {
             assert.isTrue(browser.success);
@@ -31,6 +31,7 @@ describe("Walking through the login process", function()
 
     it("should not be able to login with wrong credentials", function(done)
     {
+        this.timeout(5 * 1000); // 5 seconds
         browser
         .fill('input[name="email"]', "wrongname")
         .fill('input[name="password"]', "wrongpassword")
@@ -43,6 +44,7 @@ describe("Walking through the login process", function()
 
     it("should be able to login with valid credentials", function(done)
     {
+        this.timeout(5 * 1000); // 5 seconds
         browser
         .fill('input[name="email"]', "jack@cirno.de")
         .fill('input[name="password"]', "1234")
