@@ -9,6 +9,7 @@
     "chai": "^3.5.0",
     "chance": "latest",
     "client-sessions": "latest",
+    "cluster-service": "^2.0.0-alpha4",
     "cookie-parser": "~1.0.0",
     "ejs": "~0.8.5",
     "express": "~4.0.0",
@@ -26,7 +27,7 @@
     "url": "https://github.com/swiftceipt/SC-XW1"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "cservice 'server.js' --accessKey 'swiftceipt'",
     "test": "node server.js nodetest 4043 & mocha"
   },
   "engines": {
