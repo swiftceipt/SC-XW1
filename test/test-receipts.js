@@ -16,8 +16,8 @@ function contains(selector, key)
 
 describe("Looking through receipts", function()
 {
-    this.timeout(0);
-    var url = "https://" + config.server.ipaddress + ":" + config.server.port;
+    this.timeout(5 * 1000); // 5 seconds
+    var url = "https://" + config.server.ipaddress + ":4043";
 
     it("should have defined headless browser and log in ", function(done)
     {

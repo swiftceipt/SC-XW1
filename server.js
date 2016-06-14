@@ -12,8 +12,18 @@ var https = require('https');
 var port     = config.server.port;
 var ipaddress = config.server.ipaddress;
 
+
 // set up our express application
-app.use(morgan('dev'));
+if(process.argv.length > 2 && process.argv[2] == "nodetest") // if we're testing
+{
+    // do not use a morgan logging module and change the port
+    port = process.argv[3]
+}
+else
+{
+    app.use(morgan('dev'));
+}
+
 app.set('view engine', 'ejs'); // set up ejs for templating
 app.use(express.static(__dirname + '/public'));
 
@@ -35,12 +45,30 @@ require('./routes/add_and_remove_receipts.js').init(app);
 require('./routes/mailer.js').init(app);
 
 // launch with https
-https.createServer({
-      key: fs.readFileSync('./config/key.pem'),
-      cert: fs.readFileSync('./config/cert.pem')
-    }, app).listen(port);
 
-console.log('%s: Server started on https://%s:%d ...', Date(Date.now()), ipaddress, port);
+// set up our express application
+var message = "";
+if(process.argv.length > 2 && process.argv[2] == "nodetest") // if we're testing
+{
+    https.createServer({
+            key: fs.readFileSync('./config/dummy_key.pem'),
+            cert: fs.readFileSync('./config/dummy_cert.pem')
+        }, app).listen(port);
+
+    var message = '%s: Test server started on https://%s:%d ...';
+}
+else
+{
+    https.createServer({
+          key: fs.readFileSync('./config/key.pem'),
+          cert: fs.readFileSync('./config/cert.pem')
+        }, app).listen(port);
+
+    var message = '%s: Public server started on https://%s:%d ...'
+
+}
+
+console.log(message, Date(Date.now()), ipaddress, port);
 
 // export for testing
 module.exports = app;

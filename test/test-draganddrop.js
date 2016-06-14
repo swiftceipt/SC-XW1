@@ -22,7 +22,7 @@ function exists(id){
 
 describe('testing drag and drop functionalities', function() {
 	this.timeout(0);
-    var url = "https://" + config.server.ipaddress + ":" + config.server.port;
+    var url = "https://" + config.server.ipaddress + ":4043";
     it('should moves receipts into and out of folder properly', function(done) {
     //login
     	browser.visit(url + "/login").then(function(){

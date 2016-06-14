@@ -11,9 +11,8 @@ function contains(selector, key)
 
 describe("Looking through all the content", function()
 {
-
-	this.timeout(0);
-    var url = "https://" + config.server.ipaddress + ":" + config.server.port;
+    this.timeout(5 * 1000); // 5 seconds
+    var url = "https://" + config.server.ipaddress + ":4043" ;
     it("should go back the the receipts page by clicking the logo", function(done){
     	//login
     	browser.visit(url + "/login").then(function(){
